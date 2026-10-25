@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SafraX: projeto educativo sobre como a expansão urbana avança sobre florestas, matas e mananciais, e o que podemos fazer a respeito.">
-    <title>SafraX — Expansão Urbana e Sustentabilidade</title>
+    <meta name="description" content="Entenda como a expansão urbana afeta habitats, solo, água e clima, e acompanhe uma animação sobre o crescimento de uma árvore.">
+    <title>Impactos ambientais — SafraX</title>
     <link rel="stylesheet" href="../css/principal.css">
-    <script src="../js/script.js"></script>
+    <script src="../js/script.js" defer></script>
 </head>
-<body>
+<body class="impact-page">
 
     <header>
         <nav class="navbar">
@@ -24,10 +24,10 @@
 
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html" class="nav-link">Início</a></li>
-                <li><a href="galeria.html" class="nav-link active">Galeria</a></li>
+                <li><a href="galeria.html" class="nav-link">Galeria</a></li>
                 <li><a href="sobre.html" class="nav-link">Sobre</a></li>
                 <li><a href="projetos.html" class="nav-link">Projetos</a></li>
-                <li><a href="impacto.html" class="nav-link">Impacto</a></li>
+                <li><a href="impacto.html" class="nav-link active" aria-current="page">Impacto</a></li>
                 <li><a href="acessibilidade.html" class="nav-link">Acessibilidade</a></li>
                 <li><a href="midia.html" class="nav-link">Mídia</a></li>
                 <li><a href="noticias.html" class="nav-link">Notícias</a></li>
@@ -37,58 +37,46 @@
         </nav>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>O impacto de crescer sem esquecer a natureza</h1>
-            <p>Entenda como a expansão das cidades afeta os ecossistemas e por que cada área natural protegida importa.</p>
+    <section class="impact-hero" aria-labelledby="impact-title">
+        <div class="impact-hero-content">
+            <p class="impact-eyebrow">SafraX / território em transformação</p>
+            <h1 id="impact-title">O crescimento das cidades deixa marcas.</h1>
+            <p>Entenda o que acontece com a natureza quando a expansão urbana não considera os limites do território.</p>
+            <a class="impact-hero-link" href="#impactos">Conheça os impactos <span aria-hidden="true">↓</span></a>
         </div>
+        <p class="impact-hero-index" aria-hidden="true">01 — 03 &nbsp; SOLO · ÁGUA · VIDA</p>
     </section>
 
-    <main>
-        <div class="container">
-            <section class="intro" aria-labelledby="impactos-title">
-                <h2 id="impactos-title">Quando a cidade avança, o ambiente sente</h2>
-                <p>
-                    A ocupação urbana sem planejamento pode transformar paisagens, fragmentar habitats
-                    e pressionar recursos naturais. Esses efeitos estão conectados e também influenciam
-                    o bem-estar de quem vive nas cidades.
-                </p>
-            </section>
+    <main class="impact-main">
+        <section class="impact-overview" aria-labelledby="impactos-title">
+            <p class="impact-section-label"><span>01</span> / EFEITOS CONECTADOS</p>
+            <div class="impact-overview-copy">
+                <h2 id="impactos-title">Quando a cidade avança, o ambiente sente.</h2>
+                <p>A ocupação urbana sem planejamento transforma paisagens, fragmenta habitats e pressiona recursos naturais. Os efeitos se conectam e também influenciam o bem-estar de quem vive nas cidades.</p>
+            </div>
+        </section>
 
-            <section class="grid-cards" aria-label="Principais impactos ambientais da expansão urbana">
-                <article class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">Biodiversidade e habitats</h3>
-                        <p class="card-text">
-                            A perda e a fragmentação de áreas naturais reduzem os espaços disponíveis
-                            para que plantas e animais encontrem alimento, abrigo e condições para viver.
-                        </p>
-                    </div>
-                </article>
+        <section class="impact-cards" id="impactos" aria-label="Principais impactos ambientais da expansão urbana">
+            <article class="impact-card">
+                <p class="impact-card-index">01 <span>Ecossistemas</span></p>
+                <h3>Biodiversidade e habitats</h3>
+                <p>A perda e a fragmentação de áreas naturais reduzem os espaços para que plantas e animais encontrem alimento, abrigo e condições para viver.</p>
+            </article>
 
-                <article class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">Solo e água</h3>
-                        <p class="card-text">
-                            A remoção da vegetação e a impermeabilização do solo alteram a absorção da
-                            água e podem aumentar a pressão sobre rios e mananciais.
-                        </p>
-                    </div>
-                </article>
+            <article class="impact-card">
+                <p class="impact-card-index">02 <span>Recursos naturais</span></p>
+                <h3>Solo e água</h3>
+                <p>A remoção da vegetação e a impermeabilização do solo alteram a absorção da água e podem aumentar a pressão sobre rios e mananciais.</p>
+            </article>
 
-                <article class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">Clima e qualidade de vida</h3>
-                        <p class="card-text">
-                            Áreas verdes ajudam a amenizar o calor e oferecem espaços importantes
-                            para o convívio e o bem-estar nas cidades.
-                        </p>
-                    </div>
-                </article>
-            </section>
-        </div>
+            <article class="impact-card">
+                <p class="impact-card-index">03 <span>Vida urbana</span></p>
+                <h3>Clima e bem-estar</h3>
+                <p>Áreas verdes ajudam a amenizar o calor e oferecem espaços importantes para o convívio e a qualidade de vida nas cidades.</p>
+            </article>
+        </section>
 
-        <section class="tree-growth-section" aria-label="A importância da semente e o crescimento de uma árvore">
+        <section class="tree-growth-section" aria-labelledby="tree-growth-title">
             <div class="tree-growth-scene">
                 <svg class="tree-growth" viewBox="0 0 400 400" role="img" aria-label="Animação passo a passo de uma semente se tornando uma árvore e uma floresta">
                     <ellipse cx="200" cy="362" rx="175" ry="14" fill="#07140a"/>
@@ -105,7 +93,7 @@
                 </svg>
                 <div class="tree-growth-copy">
                     <p class="tree-growth-eyebrow">Da semente à floresta</p>
-                    <h2>Pequenas origens sustentam grandes ecossistemas.</h2>
+                    <h2 id="tree-growth-title">Pequenas origens sustentam grandes ecossistemas.</h2>
                     <p class="tree-growth-instruction">Role a página para acompanhar cada etapa.</p>
                     <div class="tree-growth-progress" role="progressbar" aria-label="Progresso do crescimento da árvore" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                         <span></span>
@@ -121,36 +109,19 @@
             </div>
         </section>
 
-        <div class="container">
-            <section class="intro" aria-labelledby="protecao-title">
-                <h2 id="protecao-title">Proteger também é planejar</h2>
-                <p>
-                    O desenvolvimento urbano pode considerar as características do território e preservar
-                    os ambientes naturais dos quais as comunidades também dependem.
-                </p>
-            </section>
+        <section class="impact-response" aria-labelledby="protecao-title">
+            <div class="impact-response-heading">
+                <p class="impact-section-label"><span>02</span> / POSSIBILIDADES</p>
+                <h2 id="protecao-title">Proteger também é planejar.</h2>
+                <p>O desenvolvimento urbano pode considerar as características do território e preservar os ambientes naturais dos quais as comunidades dependem.</p>
+            </div>
 
-            <section class="grid-cards" aria-label="Ações para conciliar cidades e natureza">
-                <article class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">Planejar a ocupação</h3>
-                        <p class="card-text">Considerar rios, áreas verdes e habitats naturais nas decisões sobre o crescimento urbano.</p>
-                    </div>
-                </article>
-                <article class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">Conectar áreas verdes</h3>
-                        <p class="card-text">Valorizar parques e corredores verdes para aproximar a natureza das comunidades.</p>
-                    </div>
-                </article>
-                <article class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">Informar e participar</h3>
-                        <p class="card-text">Acompanhar informações ambientais e participar das conversas sobre o futuro da cidade.</p>
-                    </div>
-                </article>
-            </section>
-        </div>
+            <ol class="impact-actions" aria-label="Ações para conciliar cidades e natureza">
+                <li><span>01</span><div><h3>Planejar a ocupação</h3><p>Considerar rios, áreas verdes e habitats naturais nas decisões sobre o crescimento urbano.</p></div></li>
+                <li><span>02</span><div><h3>Conectar áreas verdes</h3><p>Valorizar parques e corredores verdes para aproximar a natureza das comunidades.</p></div></li>
+                <li><span>03</span><div><h3>Informar e participar</h3><p>Acompanhar informações ambientais e participar das conversas sobre o futuro da cidade.</p></div></li>
+            </ol>
+        </section>
     </main>
 
     <footer>

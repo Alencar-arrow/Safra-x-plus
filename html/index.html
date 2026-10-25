@@ -6,9 +6,9 @@
     <meta name="description" content="SafraX: projeto educativo sobre como a expansão urbana avança sobre florestas, matas e mananciais, e o que podemos fazer a respeito.">
     <title>SafraX — Expansão Urbana e Sustentabilidade</title>
     <link rel="stylesheet" href="../css/principal.css">
-    <script src="../js/script.js"></script>
+    <script src="../js/script.js" defer></script>
 </head>
-<body>
+<body class="home-page">
 
     <header>
         <nav class="navbar">
@@ -37,59 +37,66 @@
         </nav>
     </header>
 
-   <section class="hero">
+   <section class="hero home-hero" aria-labelledby="home-title">
         <div class="hero-content">
-            <h1>Tecnologia e sustentabilidade para um futuro mais verde.</h1>
-            <p>Conheça o SafraX, um projeto dedicado à conscientização ambiental e à busca por soluções que contribuam para a preservação das florestas e do meio ambiente.</p>
-            <a href="sobre.html" class="btn">Conheça o SafraX</a>
+            <p class="home-eyebrow">Florestas, cidades e futuro</p>
+            <h1 id="home-title">SafraX</h1>
+            <p class="home-lead">A cidade pode crescer sem apagar a floresta. Um espaço para entender os impactos da expansão urbana e imaginar outros caminhos.</p>
+            <div class="home-actions">
+                <a href="galeria.html" class="btn">Explorar a galeria</a>
+                <a href="sobre.html" class="home-secondary-link">Conheça o projeto <span aria-hidden="true">→</span></a>
+            </div>
         </div>
     </section>
 
-    <main class="container home-sections">
-        <section class="intro">
-            <h2>A Urgência de Parar o Desmatamento</h2>
-            <p>
-                O desmatamento é um dos principais desafios ambientais da atualidade, afetando a biodiversidade, o clima e a qualidade de vida. Por isso, o SafraX busca informar, conscientizar e apresentar iniciativas que contribuam para a preservação das áreas naturais.
-            </p>
+    <main class="container home-sections home-main">
+        <section class="intro home-intro" aria-labelledby="home-intro-title">
+            <div>
+                <p class="home-section-label">O desafio</p>
+                <h2 id="home-intro-title">Desenvolvimento e preservação precisam caminhar juntos.</h2>
+            </div>
+            <p>O avanço das cidades transforma paisagens, pressiona ecossistemas e afeta a vida de quem depende deles. Informação é um primeiro passo para pensar em escolhas mais sustentáveis.</p>
         </section>
 
-        <section class="grid-cards">
-            
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=600&q=80" alt="Mãos plantando uma pequena muda de árvore" class="card-img">
+        <section class="grid-cards home-cards" aria-label="Explore o SafraX">
+            <article class="card">
+                <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80" alt="Floresta densa com luz atravessando as copas" class="card-img" loading="lazy">
                 <div class="card-body">
-                    <h3 class="card-title">Sobre o SafraX</h3>
-                    <p class="card-text">Conheça o projeto e sua proposta de conscientização sobre a preservação ambiental e o crescimento das cidades.</p>
-                    <a href="sobre.html" class="card-link">Conheça o projeto &rarr;</a>
+                    <p class="home-card-label">Em imagens</p>
+                    <h3 class="card-title">Da floresta ao território</h3>
+                    <p class="card-text">Veja paisagens, impactos e sinais de regeneração em uma seleção de imagens.</p>
+                    <a href="galeria.html" class="card-link">Abrir galeria <span aria-hidden="true">→</span></a>
                 </div>
-            </div>
+            </article>
 
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80" alt="Vista aérea de uma floresta preservada" class="card-img">
+            <article class="card">
+                <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=800&q=80" alt="Chão de floresta com folhas secas e vegetação" class="card-img" loading="lazy">
                 <div class="card-body">
-                    <h3 class="card-title">Dados e Indicadores</h3>
-                    <p class="card-text">Acompanhe informações e indicadores que ajudam a compreender os impactos ambientais e a importância da preservação das nossas florestas..</p>
-                    <a href="impacto.html" class="card-link">Acessar dados &rarr;</a>
+                    <p class="home-card-label">Entenda os impactos</p>
+                    <h3 class="card-title">O que muda com a expansão urbana?</h3>
+                    <p class="card-text">Conheça efeitos sobre a biodiversidade, o clima, o solo e os recursos hídricos.</p>
+                    <a href="impacto.html" class="card-link">Ver impactos <span aria-hidden="true">→</span></a>
                 </div>
-            </div>
+            </article>
 
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="Trilha em uma floresta ensolarada" class="card-img">
+            <article class="card">
+                <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=800&q=80" alt="Mudas jovens crescendo em uma área de plantio" class="card-img" loading="lazy">
                 <div class="card-body">
-                    <h3 class="card-title">Impactos ambientais</h3>
-                    <p class="card-text">Entenda como a expansão das cidades pode afetar os ecossistemas e a qualidade de vida.</p>
-                    <a href="impacto.html" class="card-link">Conheça os impactos &rarr;</a>
+                    <p class="home-card-label">Sobre o projeto</p>
+                    <h3 class="card-title">Conheça o SafraX</h3>
+                    <p class="card-text">Descubra por que o projeto existe e como conecta sustentabilidade e conscientização.</p>
+                    <a href="sobre.html" class="card-link">Nossa história <span aria-hidden="true">→</span></a>
                 </div>
-            </div>
-
+            </article>
         </section>
 
-        <section class="info">
+        <section class="info home-cta" aria-labelledby="home-cta-title">
             <div class="info-text">
-                <h3>Quer fazer a diferença na sua região?</h3>
-                <p>Pequenas atitudes podem contribuir para grandes mudanças. Conheça nossas iniciativas, compartilhe informações e faça parte da construção de um futuro mais sustentável..</p>
-                <a href="contato.html" class="btn">Entre em Contato</a>
+                <p class="home-section-label">O próximo passo começa perto</p>
+                <h2 id="home-cta-title">Cuidar do território também é construir o futuro.</h2>
+                <p>Compartilhe uma ideia, proponha uma parceria ou converse com a equipe SafraX.</p>
             </div>
+            <a href="contato.html" class="btn">Fale com a equipe <span aria-hidden="true">→</span></a>
         </section>
     </main>
 

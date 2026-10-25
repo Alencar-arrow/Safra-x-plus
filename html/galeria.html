@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SafraX: projeto educativo sobre como a expansão urbana avança sobre florestas, matas e mananciais, e o que podemos fazer a respeito.">
-    <title>SafraX — Expansão Urbana e Sustentabilidade</title>
+    <meta name="description" content="Explore imagens sobre florestas, impactos do desmatamento, vida silvestre e regeneração ambiental.">
+    <title>Galeria — SafraX</title>
     <link rel="stylesheet" href="../css/principal.css">
-    <script src="../js/script.js"></script>
+    <script src="../js/script.js" defer></script>
 </head>
-<body>
+<body class="gallery-page">
 
     <header>
         <nav class="navbar">
@@ -37,116 +37,114 @@
         </nav>
     </header>
 
-     <main>
+    <main>
+        <section class="gallery-hero" aria-labelledby="gallery-title">
+            <div class="gallery-hero-content">
+                <p class="gallery-eyebrow">SafraX em imagens</p>
+                <h1 id="gallery-title">Entre a perda<br>e a vida que volta</h1>
+                <p>Um olhar sobre as marcas do desmatamento e os sinais de regeneração que já crescem no lugar.</p>
+                <a class="gallery-hero-link" href="#acervo">Explorar imagens <span aria-hidden="true">↓</span></a>
+            </div>
+            <p class="gallery-hero-index" aria-hidden="true">01 / 04 &nbsp; FLORESTA</p>
+        </section>
 
-    <section id="desmatamento">
-      <h2>O avanço do desmatamento</h2>
-      <p>
-        A retirada da vegetação nativa para dar lugar a pastagens e lavouras
-        transforma profundamente a paisagem. Onde antes existia mata contínua,
-        restam áreas expostas, solos frágeis e fragmentos isolados de floresta.
-      </p>
-      <figure class="imagem">
-        <img src="https://images.unsplash.com/photo-1536147116438-62679a5e01f2?auto=format&fit=crop&w=1200&q=80"
-             alt="Área de floresta desmatada com troncos cortados e solo exposto">
-        <figcaption>Área desmatada: perda de cobertura vegetal e solo exposto.</figcaption>
-      </figure>
-    </section>
+        <section class="gallery-collection" id="acervo" aria-labelledby="collection-title">
+            <div class="gallery-heading">
+                <div>
+                    <p class="gallery-eyebrow">Paisagens em transformação</p>
+                    <h2 id="collection-title">Um território, muitos futuros</h2>
+                </div>
+                <p>Do impacto à recuperação, cada imagem conta uma parte da relação entre as pessoas e a floresta.</p>
+            </div>
 
-    <section id="consequencias">
-      <h2>Consequências para o ambiente</h2>
-      <p>O desmatamento gera efeitos que se estendem muito além da área cortada:</p>
-      <ul class="lista">
-        <li>Erosão e empobrecimento do solo;</li>
-        <li>Assoreamento e secamento de nascentes e rios;</li>
-        <li>Perda de habitat e redução da biodiversidade;</li>
-        <li>Alteração do regime de chuvas e aumento das temperaturas locais;</li>
-        <li>Maior emissão de gases de efeito estufa.</li>
-    <br>  
-    </ul>
-      <div class="grade">
-        <figure>
-          <img class="imagens" src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=800&q=80"
-               alt="Solo seco e rachado em terreno sem vegetação">
-          <figcaption>Solo ressecado após a perda da cobertura vegetal.</figcaption>
-        </figure>
-        <figure>
-          <img class="imagens" src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=800&q=80"
-               alt="Floresta preservada com árvores altas e neblina">
-          <figcaption>Floresta preservada: referência de equilíbrio ecológico.</figcaption>
-        </figure>
-      </div>
-    </section>
+            <div class="gallery-toolbar">
+                <div class="gallery-filters" role="group" aria-label="Filtrar imagens por tema">
+                    <button type="button" class="gallery-filter is-active" data-gallery-filter="all" aria-pressed="true">Todas</button>
+                    <button type="button" class="gallery-filter" data-gallery-filter="preservacao" aria-pressed="false">Preservação</button>
+                    <button type="button" class="gallery-filter" data-gallery-filter="impacto" aria-pressed="false">Impactos</button>
+                    <button type="button" class="gallery-filter" data-gallery-filter="regeneracao" aria-pressed="false">Regeneração</button>
+                    <button type="button" class="gallery-filter" data-gallery-filter="fauna" aria-pressed="false">Fauna</button>
+                </div>
+                <p class="gallery-count" aria-live="polite">9 imagens</p>
+            </div>
 
-    <section id="fauna">
-      <h2>Fauna renovada: a natureza que retorna</h2>
-      <p>
-        Com a restauração de áreas degradadas, corredores ecológicos e o manejo
-        sustentável das safras, a fauna volta a ocupar o território. Aves,
-        pequenos mamíferos e polinizadores reaparecem, sinalizando que o ecossistema
-        está se recuperando.
-      </p> <br>
-      <div class="grade">
-        <figure>
-          <img class="imagens" src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&w=800&q=80"
-               alt="Arara colorida pousada em um galho de árvore">
-          <figcaption>Aves retornam às áreas reflorestadas.</figcaption>
-        </figure>
-        <figure>
-          <img class="imagens" src="https://images.unsplash.com/photo-1470093851219-69951fcbb533?auto=format&fit=crop&w=800&q=80"
-               alt="Veado silvestre caminhando em meio à vegetação verde">
-          <figcaption>Mamíferos voltam a circular por corredores ecológicos.</figcaption>
-        </figure>
-        <figure>
-          <img class="imagens" src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=800&q=80"
-               alt="Abelha polinizando uma flor amarela">
-          <figcaption>Polinizadores: essenciais para a safra e para a floresta.</figcaption>
-        </figure>
-      </div>
-    </section>
+            <div class="gallery-grid">
+                <figure class="gallery-item" data-category="preservacao">
+                    <button type="button" class="gallery-open" aria-label="Ampliar imagem: mata nativa em pé">
+                        <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1000&q=85" alt="Floresta densa com raios de sol entre as árvores" loading="lazy">
+                        <span class="gallery-open-label">Ampliar imagem</span>
+                    </button>
+                    <figcaption><span>Preservação</span><strong>Mata nativa em pé</strong></figcaption>
+                </figure>
+                <figure class="gallery-item" data-category="impacto">
+                    <button type="button" class="gallery-open" aria-label="Ampliar imagem: o avanço do desmatamento">
+                        <img src="https://images.unsplash.com/photo-1536147116438-62679a5e01f2?auto=format&fit=crop&w=1000&q=85" alt="Área de floresta desmatada com troncos cortados e solo exposto" loading="lazy">
+                        <span class="gallery-open-label">Ampliar imagem</span>
+                    </button>
+                    <figcaption><span>Impactos</span><strong>O avanço do desmatamento</strong></figcaption>
+                </figure>
+                <figure class="gallery-item" data-category="impacto">
+                    <button type="button" class="gallery-open" aria-label="Ampliar imagem: solo sob pressão">
+                        <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1000&q=85" alt="Solo seco e rachado em terreno sem vegetação" loading="lazy">
+                        <span class="gallery-open-label">Ampliar imagem</span>
+                    </button>
+                    <figcaption><span>Impactos</span><strong>Solo sob pressão</strong></figcaption>
+                </figure>
+                <figure class="gallery-item" data-category="regeneracao">
+                    <button type="button" class="gallery-open" aria-label="Ampliar imagem: o primeiro passo da regeneração">
+                        <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1000&q=85" alt="Mudas jovens crescendo em solo preparado para reflorestamento" loading="lazy">
+                        <span class="gallery-open-label">Ampliar imagem</span>
+                    </button>
+                    <figcaption><span>Regeneração</span><strong>O primeiro passo</strong></figcaption>
+                </figure>
+                <figure class="gallery-item" data-category="regeneracao">
+                    <button type="button" class="gallery-open" aria-label="Ampliar imagem: uma floresta em recuperação">
+                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1000&q=85" alt="Trilha em floresta verde e fechada" loading="lazy">
+                        <span class="gallery-open-label">Ampliar imagem</span>
+                    </button>
+                    <figcaption><span>Regeneração</span><strong>Uma floresta em recuperação</strong></figcaption>
+                </figure>
+                <figure class="gallery-item" data-category="fauna">
+                    <button type="button" class="gallery-open" aria-label="Ampliar imagem: a vida entre as folhas">
+                        <img src="https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&w=1000&q=85" alt="Pássaro pousado em um galho entre folhagens" loading="lazy">
+                        <span class="gallery-open-label">Ampliar imagem</span>
+                    </button>
+                    <figcaption><span>Fauna</span><strong>A vida entre as folhas</strong></figcaption>
+                </figure>
+                <figure class="gallery-item" data-category="fauna">
+                    <button type="button" class="gallery-open" aria-label="Ampliar imagem: mamíferos e corredores verdes">
+                        <img src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?auto=format&fit=crop&w=1000&q=85" alt="Raposa silvestre em meio à vegetação" loading="lazy">
+                        <span class="gallery-open-label">Ampliar imagem</span>
+                    </button>
+                    <figcaption><span>Fauna</span><strong>Corredores para a vida</strong></figcaption>
+                </figure>
+                <figure class="gallery-item" data-category="fauna">
+                    <button type="button" class="gallery-open" aria-label="Ampliar imagem: polinizadores em ação">
+                        <img src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=1000&q=85" alt="Abelha polinizando uma flor amarela" loading="lazy">
+                        <span class="gallery-open-label">Ampliar imagem</span>
+                    </button>
+                    <figcaption><span>Fauna</span><strong>Polinizadores em ação</strong></figcaption>
+                </figure>
+                <figure class="gallery-item" data-category="preservacao">
+                    <button type="button" class="gallery-open" aria-label="Ampliar imagem: abrigo para a biodiversidade">
+                        <img src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1000&q=85" alt="Floresta preservada com árvores altas e neblina" loading="lazy">
+                        <span class="gallery-open-label">Ampliar imagem</span>
+                    </button>
+                    <figcaption><span>Preservação</span><strong>Abrigo para a biodiversidade</strong></figcaption>
+                </figure>
+            </div>
+        </section>
 
-    <section id="galeria">
-      <h2>Galeria: da degradação à regeneração</h2>
-      <p>
-        Imagens que mostram o caminho entre a perda da floresta e a volta da vida
-        em áreas recuperadas.
-      </p> 
-      <br>
-      <div class="grade">
-        <figure>
-          <img class="imagens" src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80"
-               alt="Floresta densa com raios de sol entre as árvores">
-          <figcaption>Mata nativa em pé: abrigo para centenas de espécies.</figcaption>
-        </figure>
-        <figure>
-          <img class="imagens" src="https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?auto=format&fit=crop&w=800&q=80"
-               alt="Tronco de árvore cortado em área de desmatamento">
-          <figcaption>Troncos cortados marcam o início da perda de habitat.</figcaption>
-        </figure>
-        <figure>
-          <img class="imagens" src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=800&q=80"
-               alt="Mudas jovens crescendo em solo preparado para reflorestamento">
-          <figcaption>Mudas nativas: o primeiro passo da regeneração.</figcaption>
-        </figure>
-        <figure>
-          <img class="imagens" src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80"
-               alt="Trilha em floresta verde e fechada">
-          <figcaption>Floresta em recuperação, com o dossel voltando a se formar.</figcaption>
-        </figure>
-        <figure>
-          <img class="imagens" src="https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&w=800&q=80"
-               alt="Pássaro pousado em um galho entre folhagens">
-          <figcaption>A avifauna é um dos primeiros sinais de recuperação.</figcaption>
-        </figure>
-        <figure>
-          <img class="imagens" src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?auto=format&fit=crop&w=800&q=80"
-               alt="Raposa silvestre em meio à vegetação">
-          <figcaption>Mamíferos silvestres retornam quando há alimento e abrigo.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-  </main> 
+        <dialog class="gallery-dialog" id="gallery-dialog" aria-labelledby="gallery-dialog-caption">
+            <form method="dialog">
+                <button class="gallery-dialog-close" aria-label="Fechar imagem">Fechar <span aria-hidden="true">×</span></button>
+            </form>
+            <figure>
+                <img src="" alt="" id="gallery-dialog-image">
+                <figcaption id="gallery-dialog-caption"></figcaption>
+            </figure>
+        </dialog>
+    </main>
 
     <footer>
         <p>&copy; 2026 Projeto SafraX — Sustentabilidade & Preservação Florestal. Todos os direitos reservados.</p>

@@ -3,81 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SafraX: projeto educativo sobre como a expansão urbana avança sobre florestas, matas e mananciais, e o que podemos fazer a respeito.">
-    <title>SafraX — Expansão Urbana e Sustentabilidade</title>
+    <meta name="description" content="Fale com a equipe SafraX: envie uma mensagem, conheça os integrantes e encontre os canais de contato do projeto.">
+    <title>Contato — SafraX</title>
     <link rel="stylesheet" href="../css/principal.css">
-    <script src="../js/script.js"></script>
+    <script src="../js/script.js" defer></script>
 </head>
-<body>
+<body class="page-contact">
+
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
     <header>
-        <nav class="navbar">
+        <nav class="navbar" aria-label="Principal">
             <a href="index.html" class="logo">
                 🌱 SafraX
             </a>
 
-            <div class="hamburger" id="hamburger" aria-label="Abrir Menu">
+            <button class="hamburger" id="hamburger" type="button" aria-label="Abrir menu" aria-controls="nav-menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
 
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html" class="nav-link">Início</a></li>
-                <li><a href="galeria.html" class="nav-link active">Galeria</a></li>
+                <li><a href="galeria.html" class="nav-link">Galeria</a></li>
                 <li><a href="sobre.html" class="nav-link">Sobre</a></li>
                 <li><a href="projetos.html" class="nav-link">Projetos</a></li>
                 <li><a href="impacto.html" class="nav-link">Impacto</a></li>
                 <li><a href="acessibilidade.html" class="nav-link">Acessibilidade</a></li>
                 <li><a href="midia.html" class="nav-link">Mídia</a></li>
                 <li><a href="noticias.html" class="nav-link">Notícias</a></li>
-                <li><a href="contato.html" class="nav-link">Contato</a></li>
+                <li><a href="contato.html" class="nav-link active" aria-current="page">Contato</a></li>
                 <li><a href="orcamento_hospedagem.html" class="nav-link">Hospedagem</a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="contact-hero">
-        <h1>Fale com a gente</h1>
-        <p>Quer apoiar o SafraX? Conte como você gostaria de ajudar e retornamos o quanto antes.</p>
+    <section class="hero contact-hero">
+        <div class="hero-content">
+            <p class="contact-kicker">Contato e equipe</p>
+            <h1>Fale com a gente</h1>
+            <p>Quer apoiar o SafraX, tirar uma dúvida ou apontar uma barreira de acesso? Envie uma mensagem e retornamos em até dois dias úteis.</p>
+        </div>
     </section>
 
-    <main class="container">
-        <form class="contact-form" action="/processar_contato" method="post">
+    <main id="conteudo" class="container contact-page">
+        <div class="contact-layout">
+            <section class="contact-panel" aria-labelledby="form-title">
+                <div class="contact-panel-header">
+                    <h2 id="form-title">Envie uma mensagem</h2>
+                    <p>Campos com asterisco são obrigatórios. A validação acontece ao sair do campo e ao enviar.</p>
+                </div>
 
-            <label for="nome">Nome completo</label>
-            <input type="text" id="nome" name="nome" required>
+                <div class="contact-success" id="contact-success" hidden>
+                    <p class="contact-success-kicker">Mensagem enviada</p>
+                    <h3 tabindex="-1">Obrigado pelo contato.</h3>
+                    <p id="contact-success-text">Recebemos sua mensagem e retornamos em breve pelo e-mail informado.</p>
+                    <button type="button" class="btn" id="contact-reset">Enviar outra mensagem</button>
+                </div>
 
-            <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" required>
+                <form class="contact-form" id="contact-form" action="#" method="post" novalidate>
+                    <div class="form-status" id="form-status" role="alert" aria-live="assertive"></div>
 
-            <label for="telefone">Telefone (opcional)</label>
-            <input type="tel" id="telefone" name="telefone">
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="nome">Nome completo <span aria-hidden="true">*</span></label>
+                            <input type="text" id="nome" name="nome" autocomplete="name" required minlength="3" aria-describedby="nome-error">
+                            <p class="field-error" id="nome-error"></p>
+                        </div>
+                        <div class="form-field">
+                            <label for="email">E-mail <span aria-hidden="true">*</span></label>
+                            <input type="email" id="email" name="email" autocomplete="email" required aria-describedby="email-error">
+                            <p class="field-error" id="email-error"></p>
+                        </div>
+                    </div>
 
-            <label for="ajuda">Como você gostaria de ajudar?</label>
-            <select id="ajuda" name="ajuda" required>
-                <option value="">Selecione uma opção</option>
-                <option value="doacao">Fazer uma doação</option>
-                <option value="voluntariado">Ser voluntário</option>
-                <option value="parceria">Propor uma parceria</option>
-                <option value="divulgacao">Ajudar na divulgação</option>
-                <option value="outro">Outro</option>
-            </select>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="telefone">Telefone</label>
+                            <input type="tel" id="telefone" name="telefone" autocomplete="tel" inputmode="tel" placeholder="(11) 90000-0000" aria-describedby="telefone-hint telefone-error">
+                            <p class="field-hint" id="telefone-hint">Opcional. Use DDD e número, com ou sem formatação.</p>
+                            <p class="field-error" id="telefone-error"></p>
+                        </div>
+                        <div class="form-field">
+                            <label for="ajuda">Assunto <span aria-hidden="true">*</span></label>
+                            <select id="ajuda" name="ajuda" required aria-describedby="ajuda-error">
+                                <option value="">Selecione uma opção</option>
+                                <option value="doacao">Fazer uma doação</option>
+                                <option value="voluntariado">Ser voluntário</option>
+                                <option value="parceria">Propor uma parceria</option>
+                                <option value="divulgacao">Ajudar na divulgação</option>
+                                <option value="acessibilidade">Reportar barreira de acessibilidade</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                            <p class="field-error" id="ajuda-error"></p>
+                        </div>
+                    </div>
 
-            <label for="mensagem">Mensagem</label>
-            <textarea id="mensagem" name="mensagem" placeholder="Conte um pouco sobre como você quer contribuir" rows="4" required></textarea>
+                    <div class="form-field">
+                        <label for="mensagem">Mensagem <span aria-hidden="true">*</span></label>
+                        <textarea id="mensagem" name="mensagem" rows="5" required minlength="20" aria-describedby="mensagem-hint mensagem-error" placeholder="Conte um pouco sobre como você quer contribuir"></textarea>
+                        <p class="field-hint" id="mensagem-hint">Mínimo de 20 caracteres.</p>
+                        <p class="field-error" id="mensagem-error"></p>
+                    </div>
 
-            <label class="checkbox-label">
-                <input type="checkbox" name="newsletter">
-                Quero receber novidades do projeto por e-mail
-            </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <span>Quero receber novidades do projeto por e-mail</span>
+                    </label>
 
-            <button type="submit">Enviar mensagem</button>
-        </form>
+                    <button type="submit" class="btn contact-submit">Enviar mensagem</button>
+                </form>
+            </section>
+
+            <aside class="contact-aside" aria-labelledby="canais-title">
+                <h2 id="canais-title">Canais institucionais</h2>
+                <p>Informações fictícias para o projeto educativo, usadas apenas para demonstrar o fluxo de contato.</p>
+                <ul class="contact-channels">
+                    <li>
+                        <span>E-mail</span>
+                        <a href="mailto:contato@safrax.org">contato@safrax.org</a>
+                    </li>
+                    <li>
+                        <span>Telefone</span>
+                        <a href="tel:+551140028922">(11) 4002-8922</a>
+                    </li>
+                    <li>
+                        <span>Endereço</span>
+                        <address>Rua das Sementes, 120 — Vila Verde, São Paulo, SP</address>
+                    </li>
+                    <li>
+                        <span>Horário</span>
+                        <p>Segunda a sexta, das 9h às 18h</p>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+
+        <section class="contact-team" aria-labelledby="equipe-title">
+            <div class="intro">
+                <h2 id="equipe-title">Quem constrói o SafraX</h2>
+                <p>A equipe reúne pesquisa, design, front-end, back-end e dados para transformar o tema da expansão urbana em uma plataforma educativa.</p>
+            </div>
+            <ul class="team-grid">
+                <li>
+                    <article class="team-card">
+                        <p class="team-role">Pesquisa e design</p>
+                        <h3>Bruno Guedes</h3>
+                        <p>Pesquisa do trabalho e direção visual do projeto.</p>
+                    </article>
+                </li>
+                <li>
+                    <article class="team-card">
+                        <p class="team-role">Back-end</p>
+                        <h3>Gilberto Alencar</h3>
+                        <p>Estrutura, fluxos e comportamento da plataforma.</p>
+                    </article>
+                </li>
+                <li>
+                    <article class="team-card">
+                        <p class="team-role">Front-end</p>
+                        <h3>Pedro Penedo</h3>
+                        <p>Interface, layout e experiência de navegação.</p>
+                    </article>
+                </li>
+                <li>
+                    <article class="team-card">
+                        <p class="team-role">Pesquisa e SQL</p>
+                        <h3>Rafael Bertelli</h3>
+                        <p>Levantamento de conteúdo e organização dos dados.</p>
+                    </article>
+                </li>
+            </ul>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Projeto SafraX — Sustentabilidade & Preservação Florestal. Todos os direitos reservados.</p>
+        <p>&copy; 2026 Projeto SafraX — Sustentabilidade &amp; Preservação Florestal. Todos os direitos reservados.</p>
     </footer>
 
 </body>

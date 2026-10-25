@@ -6,6 +6,8 @@
 @import url(responsibilidade.css);
 @import url(contato.css);
 @import url(galeria.css);
+@import url(sobre.css);
+@import url(tree-growth.css);
 
 * {
     margin: 0;
@@ -35,4 +37,25 @@ body {
     --terra: #8d6e4c;
     --texto: #1f2a24;
     --branco: #ffffff;
+    --gallery-ink: #18382c;
+    --gallery-leaf: #32634a;
+    --gallery-paper: #f4f3ec;
+    --gallery-clay: #bd7658;
+    --about-ink: #18382c;
+    --about-leaf: #32634a;
+    --about-paper: #f4f3ec;
+    --about-clay: #bd7658;
+    --page-cover-height: 560px;
+}
+
+@media (max-width: 850px) {
+    :root {
+        --page-cover-height: 520px;
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --page-cover-height: 500px;
+    }
 }

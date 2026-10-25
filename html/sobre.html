@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SafraX: projeto educativo sobre como a expansão urbana avança sobre florestas, matas e mananciais, e o que podemos fazer a respeito.">
-    <title>SafraX — Expansão Urbana e Sustentabilidade</title>
+    <meta name="description" content="Conheça o SafraX, um projeto educativo sobre expansão urbana, preservação das florestas e cidades em equilíbrio com a natureza.">
+    <title>Sobre o SafraX — Cidades e natureza</title>
     <link rel="stylesheet" href="../css/principal.css">
-    <script src="../js/script.js"></script>
+    <link rel="stylesheet" href="../css/sobre.css">
+    <script src="../js/script.js" defer></script>
 </head>
-<body>
+<body class="about-page">
 
     <header>
         <nav class="navbar">
@@ -24,8 +25,8 @@
 
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html" class="nav-link">Início</a></li>
-                <li><a href="galeria.html" class="nav-link active">Galeria</a></li>
-                <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+                <li><a href="galeria.html" class="nav-link">Galeria</a></li>
+                <li><a href="sobre.html" class="nav-link active" aria-current="page">Sobre</a></li>
                 <li><a href="projetos.html" class="nav-link">Projetos</a></li>
                 <li><a href="impacto.html" class="nav-link">Impacto</a></li>
                 <li><a href="acessibilidade.html" class="nav-link">Acessibilidade</a></li>
@@ -37,80 +38,84 @@
         </nav>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Sobre o SafraX</h1>
-            <p>Um projeto educativo sobre o crescimento das cidades e a importância de preservar a natureza.</p>
-        </div>
-    </section>
-
-    <main class="container">
-        <section class="intro" aria-labelledby="historia-title">
-            <h2 id="historia-title">Por que o projeto existe?</h2>
-            <p>
-                O SafraX nasceu da preocupação com o avanço acelerado das cidades sobre florestas,
-                áreas verdes e mananciais. Criamos este espaço para informar, conscientizar e mostrar
-                por que o desenvolvimento urbano precisa caminhar junto com a preservação ambiental.
-            </p>
+    <main class="about-main">
+        <section class="about-cover" aria-labelledby="about-title">
+            <img class="about-cover-image" src="https://images.unsplash.com/photo-1536147116438-62679a5e01f2?auto=format&fit=crop&w=2200&q=85" alt="Vista de uma floresta marcada pela abertura de uma área de terra" fetchpriority="high">
+            <div class="about-cover-content">
+                <p class="about-kicker">Um projeto sobre território e escolhas</p>
+                <h1 id="about-title">SafraX</h1>
+                <p class="about-cover-lead">A cidade também é natureza.</p>
+                <a class="about-cover-link" href="#origem">Conheça nossa origem <span aria-hidden="true">↓</span></a>
+            </div>
+            <p class="about-cover-note" aria-hidden="true">CIDADE <span>×</span> FLORESTA</p>
         </section>
 
-        <section class="grid-cards" aria-label="Propósito e valores do SafraX">
-            <article class="card">
-                <div class="card-body">
-                    <h2 class="card-title">Nossa missão</h2>
-                    <p class="card-text">
-                        Conscientizar sobre os impactos da expansão urbana desordenada e incentivar
-                        o planejamento de cidades que respeitem os ecossistemas.
-                    </p>
+        <section class="about-origin" id="origem" aria-labelledby="origin-title">
+            <div class="about-section-marker"><span>01</span> / ORIGEM</div>
+            <div class="about-origin-copy">
+                <h2 id="origin-title">O crescimento das cidades muda tudo ao redor.</h2>
+                <div class="about-origin-detail">
+                    <p>O SafraX nasceu da preocupação com o avanço acelerado da ocupação urbana sobre florestas, áreas verdes e mananciais. Quando a paisagem muda, também mudam os habitats, a água e a vida de quem depende desses territórios.</p>
+                    <p>Criamos este espaço educativo para aproximar informação e cotidiano, e para mostrar que planejar o futuro das cidades também significa cuidar da natureza que existe dentro e ao redor delas.</p>
                 </div>
-            </article>
-
-            <article class="card">
-                <div class="card-body">
-                    <h2 class="card-title">Nossa visão</h2>
-                    <p class="card-text">
-                        Inspirar cidadãos e gestores a construir um futuro em que as cidades cresçam
-                        em harmonia com a natureza.
-                    </p>
-                </div>
-            </article>
-
-            <article class="card">
-                <div class="card-body">
-                    <h2 class="card-title">Nossos valores</h2>
-                    <p class="card-text">
-                        Sustentabilidade, preservação ambiental, conscientização por meio da informação
-                        e transparência sobre dados e fontes.
-                    </p>
-                </div>
-            </article>
+            </div>
+            <p class="about-thesis">Desenvolvimento e preservação precisam caminhar juntos.</p>
         </section>
 
-        <section aria-labelledby="futuro-title">
-            <div class="intro">
-                <h2 id="futuro-title">O crescimento pode seguir outros caminhos</h2>
-                <p>As escolhas de planejamento fazem diferença para as cidades e para a natureza ao redor.</p>
+        <section class="about-principles" aria-labelledby="principles-title">
+            <div class="about-principles-heading">
+                <div class="about-section-marker"><span>02</span> / PRINCÍPIOS</div>
+                <h2 id="principles-title">O que orienta<br>o projeto</h2>
+                <p>Três compromissos guiam a forma como pesquisamos e compartilhamos este tema.</p>
             </div>
-            <div class="grid-cards">
-                <article class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">Quando a cidade cresce sem planejamento</h3>
-                        <p class="card-text">
-                            A ocupação desordenada pode pressionar florestas, rios e mananciais,
-                            além de reduzir os espaços verdes disponíveis para as pessoas.
-                        </p>
+            <div class="about-principles-list">
+                <article class="about-principle">
+                    <span class="about-principle-number">01</span>
+                    <div>
+                        <h3>Informar com contexto</h3>
+                        <p>Explicar como a expansão urbana afeta ecossistemas e comunidades, conectando causas, impactos e possibilidades.</p>
                     </div>
+                    <span class="about-principle-word">Missão</span>
                 </article>
-                <article class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">Quando o desenvolvimento considera a natureza</h3>
-                        <p class="card-text">
-                            Proteger áreas naturais e integrar espaços verdes ao planejamento
-                            ajuda a construir cidades mais equilibradas e melhores para viver.
-                        </p>
+                <article class="about-principle">
+                    <span class="about-principle-number">02</span>
+                    <div>
+                        <h3>Imaginar outros futuros</h3>
+                        <p>Valorizar escolhas de planejamento que respeitem os ecossistemas e tornem as cidades melhores para viver.</p>
                     </div>
+                    <span class="about-principle-word">Visão</span>
+                </article>
+                <article class="about-principle">
+                    <span class="about-principle-number">03</span>
+                    <div>
+                        <h3>Agir com responsabilidade</h3>
+                        <p>Tratar sustentabilidade, preservação, educação e transparência como partes inseparáveis da conversa.</p>
+                    </div>
+                    <span class="about-principle-word">Valores</span>
                 </article>
             </div>
+        </section>
+
+        <section class="about-outlook" aria-labelledby="outlook-title">
+            <div class="about-outlook-image">
+                <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1200&q=85" alt="Mudas jovens crescendo em solo preparado para restauração" loading="lazy">
+                <span>O futuro também se cultiva.</span>
+            </div>
+            <div class="about-outlook-copy">
+                <div class="about-section-marker"><span>03</span> / PERSPECTIVA</div>
+                <h2 id="outlook-title">Não existe uma única maneira de crescer.</h2>
+                <p>Com informação e planejamento, é possível pensar em cidades que protejam áreas naturais, valorizem espaços verdes e reconheçam os limites do território.</p>
+                <div class="about-outlook-links">
+                    <a href="impacto.html">Entenda os impactos <span aria-hidden="true">↗</span></a>
+                    <a href="galeria.html">Explore a galeria <span aria-hidden="true">↗</span></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-contact" aria-labelledby="about-contact-title">
+            <p class="about-section-marker"><span>04</span> / CONVERSA</p>
+            <h2 id="about-contact-title">Esse futuro se constrói em conjunto.</h2>
+            <a href="contato.html">Fale com a equipe SafraX <span aria-hidden="true">→</span></a>
         </section>
     </main>
 
