@@ -12,4 +12,4 @@ O SafraX reúne conteúdos sobre os efeitos da expansão urbana nos ecossistemas
 
 ## Publicação
 
-O site é publicado automaticamente no GitHub Pages a cada atualização na branch `main`.
+O site é publicado pelo GitHub Pages a partir da branch `main` deste repositório.
