@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Notícias, atualizações e artigos relacionados a cidades, floresta e sustentabilidade.">
+    <title>Notícias — SafraX</title>
+    <link rel="stylesheet" href="../css/principal.css">
+    <script src="../js/script.js" defer></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f6f4ee;
+            color: #1f2a24;
+        }
+
+        .page-shell {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem 5rem;
+        }
+
+        .intro {
+            margin-bottom: 2rem;
+        }
+
+        .intro h1 {
+            margin: 0.5rem 0 1rem;
+            font-size: clamp(2.5rem, 4vw, 4rem);
+            color: #18382c;
+        }
+
+        .intro p {
+            max-width: 700px;
+            color: #4f5d58;
+            line-height: 1.8;
+        }
+
+        .news-list {
+            display: grid;
+            gap: 1.2rem;
+        }
+
+        .news-item {
+            display: grid;
+            grid-template-columns: 210px minmax(0, 1fr);
+            gap: 1.2rem;
+            padding: 1.3rem;
+            background: #fff;
+            border-radius: 18px;
+            border: 1px solid rgba(24, 56, 44, 0.08);
+            box-shadow: 0 10px 24px rgba(24, 56, 44, 0.04);
+        }
+
+        .news-item img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .meta {
+            display: inline-block;
+            margin-bottom: 0.6rem;
+            color: #2e7d32;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .news-item h2 {
+            margin: 0 0 0.5rem;
+            font-size: 1.6rem;
+            color: #18382c;
+        }
+
+        .news-item p {
+            color: #4d5c56;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 850px) {
+            .news-item {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="../img/SafraX-1-transparent.png" alt="SafraX Meio Ambiente">
+            </a>
+
+            <div class="hamburger" id="hamburger" aria-label="Abrir Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="nav-link">Início</a></li>
+                <li><a href="galeria.html" class="nav-link">Galeria</a></li>
+                <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+                <li><a href="projetos.html" class="nav-link">Projetos</a></li>
+                <li><a href="impacto.html" class="nav-link">Impacto</a></li>
+                <li><a href="acessibilidade.html" class="nav-link">Acessibilidade</a></li>
+                <li><a href="midia.html" class="nav-link">Mídia</a></li>
+                <li><a href="noticias.html" class="nav-link active" aria-current="page">Notícias</a></li>
+                <li><a href="contato.html" class="nav-link">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html" class="nav-link">Hospedagem</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page-shell">
+        <section class="intro">
+            <p class="meta">SafraX / notícias</p>
+            <h1>O território em destaque.</h1>
+            <p>Notícias, debates e material de referência sobre desenvolvimento urbano, proteção ambiental e a relação entre cidades e natureza.</p>
+        </section>
+
+        <section class="news-list">
+            <article class="news-item">
+                <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1000&q=80" alt="Floresta verde com folhagem e luz" loading="lazy">
+                <div>
+                    <span class="meta">Urbanismo</span>
+                    <h2>Áreas verdes deixam de ser luxo e passam a ser infraestrutura.</h2>
+                    <p>Especialistas apontam que arborização, parques e corredores ecológicos ajudam a reduzir calor, melhorar o clima urbano e reforçar a conexão com a natureza.</p>
+                </div>
+            </article>
+
+            <article class="news-item">
+                <img src="https://images.unsplash.com/photo-1536147116438-62679a5e01f2?auto=format&fit=crop&w=1000&q=80" alt="Terreno com solo exposto e vegetação reduzida" loading="lazy">
+                <div>
+                    <span class="meta">Meio ambiente</span>
+                    <h2>Quando a cidade cresce sem limites, o solo e a água sofrem.</h2>
+                    <p>Os impactos vão além da paisagem: água, biodiversidade e bem-estar da comunidade sofrem com a perda da cobertura vegetal e a impermeabilização do território.</p>
+                </div>
+            </article>
+
+            <article class="news-item">
+                <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1000&q=80" alt="Mudas em área de restauração ambiental" loading="lazy">
+                <div>
+                    <span class="meta">Restauração</span>
+                    <h2>Recuperar áreas degradadas exige informação, planejamento e participação.</h2>
+                    <p>Projetos de restauração e reflorestamento mostram que é possível reequilibrar ecossistemas e fortalecer a convivência entre comunidade e natureza.</p>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Projeto SafraX — Sustentabilidade &amp; Preservação Florestal. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

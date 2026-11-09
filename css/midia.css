@@ -1,0 +1,213 @@
+/* Estilos da pagina de midia, limitados ao body correspondente. */
+body.media-page {
+    background: #f4f3ef;
+    color: #1d2a23;
+}
+
+/* Apresentacao da pagina e imagem de destaque. */
+body.media-page .page-shell {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 5rem;
+}
+
+body.media-page .hero {
+    display: grid;
+    grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr);
+    align-items: center;
+    gap: 3rem;
+    min-height: 0;
+    margin: 0 0 4rem;
+    padding: 1rem 0 0;
+    background: none;
+    color: inherit;
+    text-align: left;
+}
+
+body.media-page .hero > div {
+    animation: media-rise-in .65s ease both;
+}
+
+body.media-page .badge,
+body.media-page .meta {
+    color: #9c573e;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+body.media-page .hero h1 {
+    max-width: 560px;
+    margin: .75rem 0 1rem;
+    color: #18382c;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 4rem;
+    font-weight: 400;
+    line-height: 1.02;
+}
+
+body.media-page .hero p {
+    max-width: 550px;
+    margin-bottom: 0;
+    color: #465651;
+    line-height: 1.8;
+}
+
+body.media-page .hero-figure {
+    width: 100%;
+    aspect-ratio: 1.2;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 6px;
+    background: #18382c;
+    animation: media-rise-in .75s .12s ease both;
+}
+
+body.media-page .hero-figure img,
+body.media-page .media-art img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s cubic-bezier(.2, .7, .2, 1);
+}
+
+body.media-page .hero-figure img { object-position: center 54%; }
+
+body.media-page .section-heading {
+    padding-top: 1.5rem;
+    border-top: 1px solid #cbd4c8;
+}
+
+body.media-page .section-heading h2 {
+    margin-top: .5rem;
+    color: #18382c;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+}
+
+/* Grade de reportagens com imagem, texto e link de leitura. */
+body.media-page .report-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+body.media-page .report-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #d5ddd2;
+    border-radius: 6px;
+    background: #fff;
+    transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
+    animation: media-rise-in .55s ease both;
+}
+
+body.media-page .report-card:nth-child(2) { animation-delay: .1s; }
+body.media-page .report-card:nth-child(3) { animation-delay: .2s; }
+
+body.media-page .media-art {
+    width: 100%;
+    aspect-ratio: 1.55;
+    overflow: hidden;
+    background: #dcebd8;
+}
+
+body.media-page .report-card-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 1.2rem 1.2rem 1.4rem;
+}
+
+body.media-page .report-card-body h3 {
+    margin: .5rem 0;
+    color: #18382c;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+body.media-page .report-card-body p {
+    flex: 1;
+    color: #4d5c56;
+    font-size: .96rem;
+    line-height: 1.7;
+}
+
+body.media-page .report-card-body a {
+    align-self: flex-start;
+    margin-top: .7rem;
+    color: #32634a;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: .2em;
+    transition: color .2s ease;
+}
+
+body.media-page .report-card-body a:hover { color: #9c573e; }
+
+body.media-page .report-card-body a:focus-visible {
+    outline: 3px solid #bd7658;
+    outline-offset: 4px;
+}
+
+/* Entrada suave e destaque ao interagir com imagem ou reportagem. */
+@keyframes media-rise-in {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (hover: hover) {
+    body.media-page .hero-figure:hover img,
+    body.media-page .report-card:hover img { transform: scale(1.045); }
+
+    body.media-page .report-card:hover {
+        transform: translateY(-4px);
+        border-color: #9fb6a2;
+        box-shadow: 0 12px 26px rgba(24, 56, 44, .12);
+    }
+}
+
+/* Reduz colunas e espaçamentos em telas menores. */
+@media (max-width: 850px) {
+    body.media-page .page-shell { padding: 2.5rem 1rem 3.5rem; }
+
+    body.media-page .hero {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    body.media-page .hero-figure {
+        aspect-ratio: 16 / 9;
+        max-height: 360px;
+    }
+
+    body.media-page .report-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* No celular, reportagens aparecem em uma coluna. */
+@media (max-width: 600px) {
+    body.media-page .hero h1 { font-size: 2.8rem; }
+    body.media-page .section-heading h2 { font-size: 1.8rem; }
+    body.media-page .report-grid { grid-template-columns: 1fr; gap: 1rem; }
+}
+
+/* Desativa animacoes quando o movimento reduzido e preferido. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}

@@ -1,3 +1,4 @@
+/* Cenario fixo durante a rolagem para mostrar o crescimento da arvore. */
 .tree-growth-section {
     position: relative;
     height: 300vh;
@@ -20,6 +21,7 @@
     color: var(--white);
 }
 
+/* Desenho SVG e seus elementos sao preparados para animacao por etapas. */
 .tree-growth {
     display: block;
     width: min(100%, 440px);
@@ -45,6 +47,7 @@
     opacity: 0;
 }
 
+/* Texto, indicador de progresso e etapas sincronizadas com a animacao. */
 .tree-growth-copy {
     position: relative;
     display: grid;
@@ -131,6 +134,7 @@
     filter: blur(0);
 }
 
+/* Estilos da pagina de impactos e sua capa ilustrada. */
 .impact-page {
     background: #f4f3ec;
     color: #18382c;
@@ -216,6 +220,7 @@
     letter-spacing: .1em;
 }
 
+/* Resumo dos impactos, causas e alternativas de solucao. */
 .impact-overview,
 .impact-cards,
 .impact-response {
@@ -231,6 +236,46 @@
     gap: 1rem 2rem;
     padding-top: 5rem;
     padding-bottom: 2rem;
+}
+
+.impact-cause-solution {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 2rem;
+}
+
+.impact-cause-panel,
+.impact-solution-panel {
+    padding: 1.5rem 1.3rem;
+    background: #f4f0e9;
+    border: 1px solid rgba(24, 56, 44, 0.08);
+    border-radius: 18px;
+}
+
+.impact-cause-panel h2,
+.impact-solution-panel h2 {
+    margin: 0.8rem 0 0.8rem;
+    color: #18382c;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2rem, 2vw + 1rem, 2.8rem);
+    font-weight: 400;
+    line-height: 1.1;
+}
+
+.impact-cause-panel ul,
+.impact-solution-panel ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: #58645a;
+    line-height: 1.8;
+}
+
+.impact-cause-panel li,
+.impact-solution-panel li {
+    margin-bottom: 0.55rem;
 }
 
 .impact-section-label {
@@ -263,6 +308,7 @@
     font-size: 1.03rem;
 }
 
+/* Cartoes que descrevem os principais efeitos da expansao urbana. */
 .impact-cards {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -309,6 +355,7 @@
     font-size: .95rem;
 }
 
+/* Ajustes finais da animacao da arvore e do bloco de resposta. */
 .tree-growth-section {
     scroll-margin-top: 0;
 }
@@ -398,6 +445,7 @@
     outline-offset: 3px;
 }
 
+/* Em telas menores, empilha a animacao e o texto explicativo. */
 @media (max-width: 800px) {
     .tree-growth-section {
         height: 280vh;
@@ -464,7 +512,8 @@
 
     .impact-overview,
     .impact-cards,
-    .impact-response {
+    .impact-response,
+    .impact-cause-solution {
         padding-right: 1.25rem;
         padding-left: 1.25rem;
     }
@@ -473,6 +522,11 @@
         grid-template-columns: 1fr;
         gap: 1rem;
         padding-top: 3.5rem;
+    }
+
+    .impact-cause-solution {
+        grid-template-columns: 1fr;
+        padding-bottom: 1.25rem;
     }
 
     .impact-overview > .impact-section-label {
@@ -511,6 +565,7 @@
     }
 }
 
+/* Mantem a animacao legivel e reduz movimento quando solicitado. */
 @media (prefers-reduced-motion: reduce) {
     .tree-growth-progress span,
     .tree-growth-steps p {

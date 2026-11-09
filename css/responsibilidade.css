@@ -1,29 +1,6 @@
-  @media (max-width: 900px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--white);
-                flex-direction: column;
-                padding: 1rem 0;
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            }
-
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .nav-menu li {
-                text-align: center;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-        }
+/* Reduz o titulo da capa em telas menores. */
+@media (max-width: 900px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+}

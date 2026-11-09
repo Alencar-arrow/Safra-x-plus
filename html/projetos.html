@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Projetos e soluções do SafraX para refletir sobre crescimento urbano, proteção ambiental e cidades mais equilibradas.">
+    <title>Projetos — SafraX</title>
+    <link rel="stylesheet" href="../css/principal.css">
+    <script src="../js/script.js" defer></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f3ee;
+            color: #1f2a24;
+        }
+
+        .page-shell {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem 5rem;
+        }
+
+        .page-hero {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem 0 4rem;
+        }
+
+        .eyebrow {
+            margin-bottom: 1rem;
+            color: #2e7d32;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(2.6rem, 5vw, 5rem);
+            line-height: 1;
+            margin-bottom: 1rem;
+            color: #18382c;
+        }
+
+        .lead {
+            max-width: 620px;
+            font-size: 1.08rem;
+            color: #4a5a52;
+            line-height: 1.8;
+        }
+
+        .hero-panel {
+            background: linear-gradient(135deg, #173b2d, #2d6a4f);
+            color: #ffffff;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 18px 45px rgba(17, 39, 29, 0.12);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 16px;
+            padding: 1rem;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .section-title {
+            margin: 3rem 0 1.5rem;
+            font-size: clamp(2rem, 3vw, 3rem);
+            color: #18382c;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.3rem;
+        }
+
+        .content-card {
+            background: #fff;
+            border: 1px solid rgba(21, 40, 32, 0.08);
+            border-radius: 18px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px rgba(24, 56, 44, 0.04);
+        }
+
+        .content-card h3 {
+            margin: 0.6rem 0 0.8rem;
+            color: #18382c;
+            font-size: 1.5rem;
+        }
+
+        .content-card p {
+            color: #4d5c56;
+            line-height: 1.8;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.42rem 0.7rem;
+            border-radius: 999px;
+            background: #eaf7eb;
+            color: #2e7d32;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .impact-box {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            background: #e9f1ea;
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid rgba(46, 125, 50, 0.12);
+        }
+
+        .impact-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0;
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        .impact-box li {
+            display: flex;
+            gap: 0.75rem;
+            color: #294635;
+            line-height: 1.6;
+        }
+
+        .impact-box li::before {
+            content: '✓';
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.2rem;
+            height: 1.2rem;
+            background: #2e7d32;
+            color: #fff;
+            border-radius: 50%;
+            font-size: 0.78rem;
+            margin-top: 0.2rem;
+        }
+
+        @media (max-width: 850px) {
+            .page-hero,
+            .impact-box,
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <img src="../img/SafraX-1-transparent.png" alt="SafraX Meio Ambiente">
+            </a>
+
+            <div class="hamburger" id="hamburger" aria-label="Abrir Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="nav-link">Início</a></li>
+                <li><a href="galeria.html" class="nav-link">Galeria</a></li>
+                <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+                <li><a href="projetos.html" class="nav-link active" aria-current="page">Projetos</a></li>
+                <li><a href="impacto.html" class="nav-link">Impacto</a></li>
+                <li><a href="acessibilidade.html" class="nav-link">Acessibilidade</a></li>
+                <li><a href="midia.html" class="nav-link">Mídia</a></li>
+                <li><a href="noticias.html" class="nav-link">Notícias</a></li>
+                <li><a href="contato.html" class="nav-link">Contato</a></li>
+                <li><a href="orcamento_hospedagem.html" class="nav-link">Hospedagem</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page-shell">
+        <section class="page-hero">
+            <div>
+                <p class="eyebrow">SafraX / projetos</p>
+                <h1>Projetos para repensar o crescimento urbano.</h1>
+                <p class="lead">As cidades podem crescer sem apagar a floresta. O projeto SafraX mostra que é possível combinar desenvolvimento, educação e preservação com planejamento e informação.</p>
+            </div>
+
+            <div style="margin:0; border-radius:24px; overflow:hidden; box-shadow:0 18px 45px rgba(17, 39, 29, 0.12); min-height:320px; position:relative; background: linear-gradient(135deg, #dfeecf 0%, #9fc58d 24%, #2a5543 68%, #152f25 100%);">
+                <div style="position:absolute; inset:auto 16% 12% 16%; height:46%; background:linear-gradient(180deg, rgba(149, 200, 116, 0.9), rgba(38, 82, 48, 0.9)); clip-path:polygon(50% 0%, 100% 100%, 0% 100%);"></div>
+                <div style="position:absolute; inset:auto 28% 0 28%; height:28%; background:linear-gradient(180deg, #1f4034, #0f221b); border-radius:18px 18px 0 0;"></div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Causas do problema</h2>
+            <div class="card-grid">
+                <article class="content-card">
+                    <span class="tag">Causa 01</span>
+                    <h3>Urbanização sem planejamento</h3>
+                    <p>O crescimento das cidades muitas vezes avança sem considerar o uso do solo, os mananciais e os ecossistemas locais. O resultado é um território cada vez mais fragmentado.</p>
+                </article>
+
+                <article class="content-card">
+                    <span class="tag">Causa 02</span>
+                    <h3>Perda de vegetação</h3>
+                    <p>Quando áreas verdes são removidas, a capacidade de absorção de água e a regulação térmica da cidade diminuem. O solo e os recursos hídricos ficam mais vulneráveis.</p>
+                </article>
+
+                <article class="content-card">
+                    <span class="tag">Causa 03</span>
+                    <h3>Impermeabilização</h3>
+                    <p>Calçadas, edificações e asfaltos impedem a infiltração natural da água. Isso aumenta o risco de enchentes e prejudica a qualidade dos rios e mananciais.</p>
+                </article>
+
+                <article class="content-card">
+                    <span class="tag">Causa 04</span>
+                    <h3>Falta de informação</h3>
+                    <p>Sem educação ambiental e acesso à informação, é mais difícil perceber a importância de preservar áreas naturais e planejar melhor o território.</p>
+                </article>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">O que o SafraX propõe</h2>
+            <div class="card-grid">
+                <article class="content-card">
+                    <span class="tag">Solução 01</span>
+                    <h3>Mapear o território</h3>
+                    <p>Entender como as áreas verdes, os rios e os limites da cidade se conectam ajuda a criar decisões mais responsáveis e mais sustentáveis.</p>
+                </article>
+
+                <article class="content-card">
+                    <span class="tag">Solução 02</span>
+                    <h3>Preservar corredores verdes</h3>
+                    <p>Conectar áreas naturais e parques cria abrigo para vida silvestre, favorece a qualidade de vida e reduz os impactos da urbanização.</p>
+                </article>
+
+                <article class="content-card">
+                    <span class="tag">Solução 03</span>
+                    <h3>Educar para agir</h3>
+                    <p>O conhecimento sobre impactos ambientais permite que pessoas, escolas e governos respondam com melhor consciência e senso de responsabilidade.</p>
+                </article>
+
+                <article class="content-card">
+                    <span class="tag">Solução 04</span>
+                    <h3>Cuidar da recuperação</h3>
+                    <p>Quando existe recuperação de áreas degradadas, o território volta a oferecer benefício para a biodiversidade, o clima e a população.</p>
+                </article>
+            </div>
+        </section>
+
+        <div class="impact-box">
+            <div>
+                <p class="eyebrow">Impacto ao resolver</p>
+                <h2 style="margin:0; font-size: clamp(2rem, 3vw, 3rem); color: #18382c;">Quando a cidade pensa no território, a paisagem melhora.</h2>
+                <p style="margin-top: 1rem; line-height:1.8; color:#344b3f;">Ao priorizar a preservação ambiental, o resultado é maior equilíbrio entre urbanização e natureza. A água, o solo, a biodiversidade e a qualidade de vida da comunidade passam a se beneficiar juntos.</p>
+            </div>
+
+            <ul>
+                <li>Redução do impacto térmico e do calor urbano.</li>
+                <li>Melhoria na infiltração de água e preservação de mananciais.</li>
+                <li>Maior resiliência dos bairros e maior qualidade do ambiente.</li>
+                <li>Mais espaço para aprender, viver e conectar pessoas com a floresta.</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Projeto SafraX — Sustentabilidade &amp; Preservação Florestal. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

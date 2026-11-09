@@ -1,3 +1,4 @@
+ /* Bloco de informacao com destaque lateral e conteudo flexivel. */
  .info {
             background-color: var(--light-bg);
             border-left: 10px solid var(--primary-color);
@@ -10,10 +11,12 @@
             flex-wrap: wrap;
         }
 
+        /* Texto pode crescer e quebrar linha junto aos botoes. */
         .info-text {
             flex: 1 1 500px;
         }
 
+        /* Afasta o botao do texto dentro deste bloco. */
         .btn {
             margin-top: 1rem;
         }

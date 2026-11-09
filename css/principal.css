@@ -1,14 +1,21 @@
+/* Estilos compartilhados pelo site: navegação, conteúdo e componentes gerais. */
 @import url(header.css);
 @import url(main.css);
 @import url(cards.css);
 @import url(info.css);
 @import url(footer.css);
 @import url(responsibilidade.css);
+
+/* Estilos específicos de cada página; veja seus seletores nos arquivos importados. */
+@import url(acessibilidade.css);
 @import url(contato.css);
 @import url(galeria.css);
+@import url(hospedagem.css);
+@import url(midia.css);
 @import url(sobre.css);
 @import url(tree-growth.css);
 
+/* Reset comum para manter medidas e espacamentos previsiveis. */
 * {
     margin: 0;
     padding: 0;
@@ -22,6 +29,7 @@ body {
     line-height: 1.6;
 }
 
+/* Variaveis globais: cores, fontes, larguras e alturas das capas. */
 :root {
     --primary-color: #2e7d32;
     --primary-dark: #1b5e20;
@@ -31,12 +39,6 @@ body {
     --white: #ffffff;
     --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --max-width: 1200px;
-    --verde-escuro: #1b4332;
-    --verde: #2d6a4f;
-    --verde-claro: #d8f3dc;
-    --terra: #8d6e4c;
-    --texto: #1f2a24;
-    --branco: #ffffff;
     --gallery-ink: #18382c;
     --gallery-leaf: #32634a;
     --gallery-paper: #f4f3ec;
@@ -48,6 +50,7 @@ body {
     --page-cover-height: 560px;
 }
 
+/* Capas ficam mais baixas conforme a tela diminui. */
 @media (max-width: 850px) {
     :root {
         --page-cover-height: 520px;

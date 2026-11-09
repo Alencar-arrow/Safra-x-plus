@@ -1,3 +1,4 @@
+/* Estilos gerais para capas, botoes, conteudo e introducoes. */
 .hero {
     display: flex;
     align-items: center;
@@ -59,6 +60,7 @@
     margin-bottom: 1rem;
 }
 
+/* Capa da pagina inicial e imagens compartilhadas com outras capas. */
 .home-page .home-hero {
     position: relative;
     display: flex;
@@ -170,6 +172,7 @@
     font-size: 1.2rem;
 }
 
+/* Animacoes de entrada da imagem e do texto da capa. */
 @keyframes cover-image-in {
     from { transform: scale(1.04); }
     to { transform: scale(1); }
@@ -180,6 +183,7 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* Conteudo inicial e cards apresentados na pagina inicial. */
 .home-page .home-main {
     padding-top: 4.5rem;
     padding-bottom: 5rem;
@@ -250,6 +254,7 @@
     color: #32634a;
 }
 
+/* Chamada final da pagina inicial para acessar o contato. */
 .home-page .home-cta {
     justify-content: space-between;
     align-items: center;
@@ -296,6 +301,7 @@
     background: #e7cda8;
 }
 
+/* No tablet, o texto e os cards passam para colunas mais estreitas. */
 @media (max-width: 850px) {
     .home-page .home-intro {
         grid-template-columns: 1fr;
@@ -307,6 +313,7 @@
     }
 }
 
+/* No celular, capa, cards e chamada final usam uma coluna. */
 @media (max-width: 600px) {
     .home-page .home-hero {
         min-height: var(--page-cover-height);
@@ -351,6 +358,7 @@
     }
 }
 
+/* Respeita a preferencia do usuario por menos movimento. */
 @media (prefers-reduced-motion: reduce) {
     .home-page .home-hero::before,
     .gallery-page .gallery-hero::before,

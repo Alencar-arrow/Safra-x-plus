@@ -1,3 +1,5 @@
+/* Estilos da pagina "Sobre"; as cores usam tokens definidos no principal.css. */
+/* Base da página: cores compartilhadas e contenção do conteúdo principal. */
 .about-page {
     background: var(--about-paper);
     color: var(--about-ink);
@@ -7,6 +9,21 @@
     overflow: hidden;
 }
 
+/* Tipografia serifada usada nos títulos e nas frases de destaque. */
+.about-cover h1,
+.about-cover-lead,
+.about-origin-copy h2,
+.about-thesis,
+.about-principles-heading h2,
+.about-principle h3,
+.about-outlook-image span,
+.about-outlook-copy h2,
+.about-contact h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+}
+
+/* Capa: imagem, camada escura para contraste e conteúdo sobreposto. */
 .about-cover {
     position: relative;
     display: flex;
@@ -56,21 +73,20 @@
     color: #e6c89e;
 }
 
+/* O título é grande e leve para funcionar como foco visual da capa. */
 .about-cover h1 {
     margin: 0;
-    font-family: Georgia, 'Times New Roman', serif;
     font-size: 7rem;
-    font-weight: 400;
     line-height: .95;
 }
 
 .about-cover-lead {
     margin: .7rem 0 1.8rem;
     color: rgba(255, 255, 255, .92);
-    font-family: Georgia, 'Times New Roman', serif;
     font-size: 1.8rem;
 }
 
+/* Links e legenda da capa: detalhes em dourado reforçam a identidade visual. */
 .about-cover-link {
     display: inline-flex;
     align-items: center;
@@ -102,6 +118,7 @@
     color: #e6c89e;
 }
 
+/* Origem: grade com marcador lateral, texto e frase de destaque. */
 .about-origin {
     display: grid;
     grid-template-columns: 160px minmax(0, 1fr);
@@ -126,9 +143,7 @@
 .about-origin-copy h2 {
     max-width: 790px;
     margin-bottom: 2rem;
-    font-family: Georgia, 'Times New Roman', serif;
     font-size: 3.25rem;
-    font-weight: 400;
     line-height: 1.12;
 }
 
@@ -147,10 +162,10 @@
     margin-top: 2.5rem;
     padding: 1.1rem 0 0 1.2rem;
     border-left: 3px solid var(--about-clay);
-    font-family: Georgia, 'Times New Roman', serif;
     font-size: 1.5rem;
 }
 
+/* Princípios: duas colunas no desktop e itens organizados em linhas. */
 .about-principles {
     display: grid;
     grid-template-columns: minmax(260px, .8fr) minmax(0, 1.2fr);
@@ -161,9 +176,7 @@
 
 .about-principles-heading h2 {
     margin: 1.4rem 0 1rem;
-    font-family: Georgia, 'Times New Roman', serif;
     font-size: 3.4rem;
-    font-weight: 400;
     line-height: 1.05;
 }
 
@@ -196,9 +209,7 @@
 
 .about-principle h3 {
     margin-bottom: .45rem;
-    font-family: Georgia, 'Times New Roman', serif;
     font-size: 1.55rem;
-    font-weight: 400;
 }
 
 .about-principle p {
@@ -213,6 +224,7 @@
     text-align: right;
 }
 
+/* Perspectiva: imagem e texto lado a lado, com links para outras páginas. */
 .about-outlook {
     display: grid;
     grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
@@ -243,16 +255,13 @@
     padding: .8rem 1rem;
     background: var(--about-ink);
     color: #fff;
-    font-family: Georgia, 'Times New Roman', serif;
     font-size: 1.2rem;
 }
 
 .about-outlook-copy h2 {
     max-width: 520px;
     margin: 1.4rem 0 1rem;
-    font-family: Georgia, 'Times New Roman', serif;
     font-size: 3rem;
-    font-weight: 400;
     line-height: 1.12;
 }
 
@@ -282,6 +291,7 @@
     color: var(--about-clay);
 }
 
+/* Contato: chamada final com contraste alto e link destacado. */
 .about-contact {
     padding: 4.5rem max(2rem, calc((100% - 1200px) / 2));
     background: var(--about-ink);
@@ -299,9 +309,7 @@
 .about-contact h2 {
     max-width: 800px;
     margin: 1.2rem 0 1.5rem;
-    font-family: Georgia, 'Times New Roman', serif;
     font-size: 3rem;
-    font-weight: 400;
     line-height: 1.15;
 }
 
@@ -326,16 +334,14 @@
     outline-offset: 3px;
 }
 
+/* Anima a imagem da capa ao entrar; o movimento reduzido é tratado abaixo. */
 @keyframes about-image-in {
     from { transform: scale(1.04); }
     to { transform: scale(1); }
 }
 
+/* Tablet: empilha origem e princípios e reduz os espaços entre colunas. */
 @media (max-width: 850px) {
-    .about-cover {
-        min-height: var(--page-cover-height);
-    }
-
     .about-origin {
         grid-template-columns: 1fr;
         gap: 1.2rem;
@@ -361,19 +367,14 @@
     }
 }
 
+/* Celular: uma coluna, tipografia menor e espaçamentos mais compactos. */
 @media (max-width: 600px) {
     .about-cover {
-        min-height: var(--page-cover-height);
         padding: 3rem 1.25rem;
-        background-position: center;
     }
 
     .about-cover-image {
         object-position: 62% center;
-    }
-
-    .about-cover-content {
-        padding-bottom: 2.5rem;
     }
 
     .about-cover h1 {
@@ -430,7 +431,6 @@
 
     .about-outlook {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
         padding: 4rem 1.25rem;
     }
 
@@ -457,6 +457,7 @@
     }
 }
 
+/* Acessibilidade: evita animações longas para quem prefere menos movimento. */
 @media (prefers-reduced-motion: reduce) {
     .about-page *,
     .about-page *::before,

@@ -1,4 +1,5 @@
 
+ /* Grade fluida de cards, com colunas que se ajustam ao espaco disponivel. */
  .grid-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -6,6 +7,7 @@
             margin-top: 12rem;
         }
 
+        /* Card organiza imagem, texto e link como uma pilha vertical. */
         .card {
             background-color: var(--white);
             border-radius: 8px;
@@ -16,17 +18,20 @@
             flex-direction: column;
         }
 
+        /* Pequena elevacao visual indica que o card pode ser explorado. */
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 16px rgba(0,0,0,0.12);
         }
 
+        /* Imagem ocupa a largura do card sem deformar o conteudo. */
         .card-img {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
 
+        /* Area interna distribui o texto e mantem o link no final. */
         .card-body {
             padding: 1.5rem;
             flex-grow: 1;

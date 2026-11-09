@@ -1,4 +1,5 @@
 
+/* Capa da galeria, com imagem ao fundo e camada para contraste. */
 .gallery-page {
   scroll-behavior: smooth;
   background: var(--gallery-paper);
@@ -82,6 +83,7 @@
   letter-spacing: .12em;
 }
 
+/* Cabecalho da colecao e controles de filtro. */
 .gallery-collection {
   max-width: 1260px;
   margin: 0 auto;
@@ -154,6 +156,7 @@
   font-size: .85rem;
 }
 
+/* Grade de imagens e legenda visivel ao passar o mouse ou focar. */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -230,6 +233,7 @@
   font-weight: 400;
 }
 
+/* Dialog mostra uma imagem ampliada sobre uma camada escura. */
 .gallery-dialog {
   position: fixed;
   width: min(1000px, calc(100% - 2rem));
@@ -288,6 +292,7 @@
   font-size: 1.15rem;
 }
 
+/* Contorno consistente para navegacao por teclado. */
 .gallery-page :focus-visible {
   outline: 3px solid #bd7658;
   outline-offset: 3px;
@@ -298,6 +303,7 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Em tablet e celular, reduz colunas e compacta os controles. */
 @media (max-width: 800px) {
   .gallery-hero {
     min-height: var(--page-cover-height);
@@ -324,6 +330,7 @@
   }
 }
 
+/* Mantem imagens e filtros utilizaveis em telas pequenas. */
 @media (max-width: 560px) {
   .gallery-hero {
     min-height: var(--page-cover-height);
@@ -376,6 +383,7 @@
   }
 }
 
+/* Reduz animacoes e rolagem suave conforme a preferencia do sistema. */
 @media (prefers-reduced-motion: reduce) {
   .gallery-page *,
   .gallery-page *::before,
