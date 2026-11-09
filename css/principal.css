@@ -23,6 +23,7 @@
 }
 
 body {
+    zoom: 90%;
     font-family: var(--font-main);
     color: var(--text-color);
     background-color: #fafafa;
