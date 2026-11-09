@@ -7,7 +7,7 @@
   </p>
 
   <!-- Botão Principal -->
-  <a href="https://alencar-arrow.github.io/Safra-x-plus/" target="_blank">
+  <a href="https://alencar-arrow.github.io/Safra-x-plus/html/index.html" target="_blank">
     <img src="https://img.shields.io/badge/ Visitar%20SafraX%20Ao%20Vivo-2E7D32?style=for-the-badge&logo=tree&logoColor=white" alt="Visitar SafraX" />
   </a>
 
