@@ -15,7 +15,7 @@
 @import url(sobre.css);
 @import url(tree-growth.css);
 
-/* Reset comum para manter medidas e espacamentos previsiveis. */
+/* Reset comum para manter medidas e espacamentos. */
 * {
     margin: 0;
     padding: 0;
