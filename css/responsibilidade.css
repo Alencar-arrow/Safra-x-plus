@@ -4,3 +4,577 @@
         font-size: 2rem;
     }
 }
+
+/* Capas ficam mais baixas conforme a tela diminui. */
+@media (max-width: 850px) {
+    :root {
+        --page-cover-height: 520px;
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --page-cover-height: 500px;
+    }
+}
+
+/* Em telas menores, empilha a animacao e o texto explicativo. */
+@media (max-width: 800px) {
+    .tree-growth-section {
+        height: 280vh;
+    }
+
+    .tree-growth-scene {
+        min-height: 100svh;
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(150px, 38svh) minmax(0, 1fr);
+        align-content: center;
+        gap: .3rem;
+        padding: 1rem max(1.25rem, 6vw);
+    }
+
+    .tree-growth {
+        width: min(100%, 300px);
+        max-height: 38svh;
+        align-self: center;
+    }
+
+    .tree-growth-copy {
+        align-self: start;
+    }
+
+    .tree-growth-copy h2 {
+        max-width: 24ch;
+        font-size: clamp(1.8rem, 7vw, 2.6rem);
+    }
+
+    .tree-growth-instruction {
+        margin-bottom: .8rem;
+    }
+
+    .tree-growth-steps {
+        min-height: 6.5rem;
+        margin-top: .55rem;
+    }
+
+    .tree-growth-steps p {
+        font-size: clamp(1.05rem, 4.5vw, 1.35rem);
+    }
+
+    .impact-hero {
+        min-height: var(--page-cover-height);
+        padding: 4rem 1.25rem;
+    }
+
+    .impact-page .impact-hero::before {
+        background-position: 58% center;
+    }
+
+    .impact-hero h1 {
+        font-size: 3.2rem;
+    }
+
+    .impact-hero-content > p:not(.impact-eyebrow) {
+        font-size: 1rem;
+    }
+
+    .impact-hero-index {
+        right: 1.25rem;
+        bottom: 1rem;
+    }
+
+    .impact-overview,
+    .impact-cards,
+    .impact-response,
+    .impact-cause-solution {
+        padding-right: 1.25rem;
+        padding-left: 1.25rem;
+    }
+
+    .impact-overview {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding-top: 3.5rem;
+    }
+
+    .impact-cause-solution {
+        grid-template-columns: 1fr;
+        padding-bottom: 1.25rem;
+    }
+
+    .impact-overview > .impact-section-label {
+        padding-top: 0;
+    }
+
+    .impact-overview-copy h2,
+    .impact-response-heading h2 {
+        font-size: 2.25rem;
+    }
+
+    .impact-cards {
+        grid-template-columns: 1fr;
+        gap: .8rem;
+        padding-bottom: 4rem;
+    }
+
+    .impact-card {
+        padding: 1rem .2rem 1.2rem;
+        border-bottom: 0;
+    }
+
+    .impact-card:last-child {
+        border-bottom: 1px solid #c9cfc5;
+    }
+
+    .impact-card-index {
+        margin-bottom: .8rem;
+    }
+
+    .impact-response {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding-top: 4rem;
+        padding-bottom: 5rem;
+    }
+}
+
+/* Mantem a animacao legivel e reduz movimento quando solicitado. */
+@media (prefers-reduced-motion: reduce) {
+    .tree-growth-progress span,
+    .tree-growth-steps p {
+        transition: none;
+    }
+
+    .tree-growth-section.is-animated .tree-trunk,
+    .tree-growth-section.is-animated .tree-canopy,
+    .tree-growth-section.is-animated .tree-forest {
+        transform: scale(1);
+    }
+}
+
+/* Tablet: empilha origem e princípios e reduz os espaços entre colunas. */
+@media (max-width: 850px) {
+    .about-origin {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+
+    .about-origin > .about-section-marker {
+        padding-top: 0;
+    }
+
+    .about-thesis {
+        grid-column: 1;
+    }
+
+    .about-principles {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .about-outlook {
+        gap: 2.5rem;
+    }
+}
+
+/* Celular: uma coluna, tipografia menor e espaçamentos mais compactos. */
+@media (max-width: 600px) {
+    .about-cover {
+        padding: 3rem 1.25rem;
+    }
+
+    .about-cover-image {
+        object-position: 62% center;
+    }
+
+    .about-cover h1 {
+        font-size: 5rem;
+    }
+
+    .about-cover-lead {
+        font-size: 1.45rem;
+    }
+
+    .about-cover-note {
+        right: 1.25rem;
+        bottom: 1rem;
+    }
+
+    .about-origin {
+        padding: 4rem 1.25rem;
+    }
+
+    .about-origin-copy h2 {
+        margin-bottom: 1.3rem;
+        font-size: 2.35rem;
+    }
+
+    .about-origin-detail {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .about-thesis {
+        margin-top: 1.5rem;
+        font-size: 1.3rem;
+    }
+
+    .about-principles {
+        gap: 2rem;
+        padding: 4rem 1.25rem;
+    }
+
+    .about-principles-heading h2 {
+        font-size: 2.8rem;
+    }
+
+    .about-principle {
+        grid-template-columns: 28px minmax(0, 1fr);
+        gap: .8rem;
+    }
+
+    .about-principle-word {
+        grid-column: 2;
+        grid-row: 2;
+        text-align: left;
+    }
+
+    .about-outlook {
+        grid-template-columns: 1fr;
+        padding: 4rem 1.25rem;
+    }
+
+    .about-outlook-image {
+        width: calc(100% - .8rem);
+    }
+
+    .about-outlook-image img {
+        aspect-ratio: 4 / 3;
+    }
+
+    .about-outlook-image span {
+        right: -.8rem;
+        font-size: 1rem;
+    }
+
+    .about-outlook-copy h2,
+    .about-contact h2 {
+        font-size: 2.35rem;
+    }
+
+    .about-contact {
+        padding: 3.5rem 1.25rem;
+    }
+}    
+
+@media (hover: hover) {
+    body.media-page .hero-figure:hover img,
+    body.media-page .report-card:hover img { transform: scale(1.045); }
+
+    body.media-page .report-card:hover {
+        transform: translateY(-4px);
+        border-color: #9fb6a2;
+        box-shadow: 0 12px 26px rgba(24, 56, 44, .12);
+    }
+}
+
+/* Reduz colunas e espaçamentos em telas menores. */
+@media (max-width: 850px) {
+    body.media-page .page-shell { padding: 2.5rem 1rem 3.5rem; }
+
+    body.media-page .hero {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    body.media-page .hero-figure {
+        aspect-ratio: 16 / 9;
+        max-height: 360px;
+    }
+
+    body.media-page .report-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* No celular, reportagens aparecem em uma coluna. */
+@media (max-width: 600px) {
+    body.media-page .hero h1 { font-size: 2.8rem; }
+    body.media-page .section-heading h2 { font-size: 1.8rem; }
+    body.media-page .report-grid { grid-template-columns: 1fr; gap: 1rem; }
+}
+
+/* Desativa animacoes quando o movimento reduzido e preferido. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}    
+
+/* No tablet, o texto e os cards passam para colunas mais estreitas. */
+@media (max-width: 850px) {
+    .home-page .home-intro {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .home-page .home-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* No celular, capa, cards e chamada final usam uma coluna. */
+@media (max-width: 600px) {
+    .home-page .home-hero {
+        min-height: var(--page-cover-height);
+        padding: 4rem 1.25rem;
+    }
+
+    .home-page .home-hero::before {
+        background-position: 58% center;
+    }
+
+    .home-page .home-hero h1 {
+        font-size: 4rem;
+    }
+
+    .home-page .home-hero .home-lead {
+        font-size: 1rem;
+    }
+
+    .home-page .home-main {
+        padding: 3rem 1.25rem 4rem;
+    }
+
+    .home-page .home-intro h2 {
+        font-size: 2rem;
+    }
+
+    .home-page .home-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .home-page .home-cta {
+        align-items: flex-start;
+        padding: 1.5rem;
+    }
+
+    .home-page .home-cta .info-text {
+        flex-basis: 100%;
+    }
+
+    .home-page .home-cta h2 {
+        font-size: 1.7rem;
+    }
+}
+
+@media (hover: hover) {
+    body.hosting-page .hosting-visual:hover img { transform: scale(1.04); }
+
+    body.hosting-page .plan:hover {
+        transform: translateY(-4px);
+        border-color: #9fb6a2;
+        box-shadow: 0 12px 26px rgba(24, 56, 44, .12);
+    }
+}
+
+body.hosting-page .plan:focus-within {
+    outline: 3px solid #bd7658;
+    outline-offset: 3px;
+}
+
+/* Em telas menores, empilha a apresentacao e os planos. */
+@media (max-width: 850px) {
+    body.hosting-page .page-shell { padding: 2.5rem 1rem 3.5rem; }
+
+    body.hosting-page .hero {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    body.hosting-page .hosting-visual { height: 320px; }
+    body.hosting-page .pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Em celulares, exibe um plano por linha e reduz os titulos. */
+@media (max-width: 600px) {
+    body.hosting-page .hero h1 { font-size: 2.8rem; }
+    body.hosting-page .hosting-visual { height: 250px; }
+    body.hosting-page .section-heading h2 { font-size: 1.8rem; }
+    body.hosting-page .pricing-grid { grid-template-columns: 1fr; }
+}
+
+/* Respeita a preferencia de movimento reduzido do sistema. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+/* Em telas menores, os links abrem em uma lista vertical. */
+@media (max-width: 1200px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        padding: 1rem 0;
+        background: var(--white);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu li,
+    .nav-link {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Em tablet e celular, reduz colunas e compacta os controles. */
+@media (max-width: 800px) {
+  .gallery-hero {
+    min-height: var(--page-cover-height);
+    padding: 4rem 1.5rem;
+  }
+
+  .gallery-page .gallery-hero::before {
+    background-position: 58% center;
+  }
+
+  .gallery-heading {
+    align-items: start;
+    flex-direction: column;
+    gap: .8rem;
+  }
+
+  .gallery-heading > p {
+    max-width: 560px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+/* Mantem imagens e filtros utilizaveis em telas pequenas. */
+@media (max-width: 560px) {
+  .gallery-hero {
+    min-height: var(--page-cover-height);
+    padding: 3.5rem 1.25rem;
+  }
+
+  .gallery-hero h1 {
+    font-size: 2.8rem;
+  }
+
+  .gallery-hero-content > p:not(.gallery-eyebrow) {
+    font-size: 1rem;
+  }
+
+  .gallery-hero-index {
+    right: 1.25rem;
+    bottom: 1rem;
+  }
+
+  .gallery-collection {
+    padding: 3.5rem 1.25rem 4rem;
+  }
+
+  .gallery-heading h2 {
+    font-size: 2rem;
+  }
+
+  .gallery-toolbar {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .gallery-filters {
+    gap: .3rem;
+  }
+
+  .gallery-filter {
+    padding: .45rem .65rem;
+    font-size: .82rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .gallery-open-label {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Reorganiza paineis e campos em telas estreitas. */
+@media (max-width: 980px) {
+    .contact-layout,
+    .form-row,
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Evita transicoes de formulario para quem prefere menos movimento. */
+@media (prefers-reduced-motion: reduce) {
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea,
+    .btn {
+        transition: none;
+    }
+}
+
+/* Ajusta o layout para telas menores e empilha o conteudo. */
+@media (max-width: 850px) {
+    body.accessibility-page .page-shell { padding: 2.5rem 1rem 3.5rem; }
+
+    body.accessibility-page .hero {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    body.accessibility-page .hero-visual { height: 300px; }
+    body.accessibility-page .grid { grid-template-columns: 1fr; }
+
+    body.accessibility-page .card,
+    body.accessibility-page .card:nth-child(odd),
+    body.accessibility-page .card:nth-child(even) {
+        padding: 1.25rem 0;
+        border-left: 0;
+    }
+}
+
+/* Reduz titulos e espacamentos em celulares. */
+@media (max-width: 600px) {
+    body.accessibility-page .hero h1 { font-size: 2.8rem; }
+    body.accessibility-page .hero-visual { height: 250px; }
+    body.accessibility-page .principles { padding: 1.4rem; }
+    body.accessibility-page .principles-title { font-size: 2rem; }
+}

@@ -320,21 +320,3 @@
     font-size: 0.95rem;
 }
 
-/* Reorganiza paineis e campos em telas estreitas. */
-@media (max-width: 980px) {
-    .contact-layout,
-    .form-row,
-    .team-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Evita transicoes de formulario para quem prefere menos movimento. */
-@media (prefers-reduced-motion: reduce) {
-    .contact-form input,
-    .contact-form select,
-    .contact-form textarea,
-    .btn {
-        transition: none;
-    }
-}

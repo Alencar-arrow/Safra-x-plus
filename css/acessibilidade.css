@@ -200,52 +200,7 @@ body.accessibility-page .principles-title {
     font-size: 2.4rem;
 }
 
-@keyframes accessibility-enter {
-    from { opacity: 0; transform: translateY(14px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
 @media (hover: hover) {
     body.accessibility-page .hero-visual:hover img { transform: scale(1.04); }
-    body.accessibility-page .checklist li:hover { transform: translateX(3px); }
 }
 
-/* Ajusta o layout para telas menores e empilha o conteudo. */
-@media (max-width: 850px) {
-    body.accessibility-page .page-shell { padding: 2.5rem 1rem 3.5rem; }
-
-    body.accessibility-page .hero {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    body.accessibility-page .hero-visual { height: 300px; }
-    body.accessibility-page .grid { grid-template-columns: 1fr; }
-
-    body.accessibility-page .card,
-    body.accessibility-page .card:nth-child(odd),
-    body.accessibility-page .card:nth-child(even) {
-        padding: 1.25rem 0;
-        border-left: 0;
-    }
-}
-
-/* Reduz titulos e espacamentos em celulares. */
-@media (max-width: 600px) {
-    body.accessibility-page .hero h1 { font-size: 2.8rem; }
-    body.accessibility-page .hero-visual { height: 250px; }
-    body.accessibility-page .principles { padding: 1.4rem; }
-    body.accessibility-page .principles-title { font-size: 2rem; }
-}
-
-/* Desativa animacoes quando o usuario prefere movimento reduzido. */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-        transition-duration: .01ms !important;
-    }
-}

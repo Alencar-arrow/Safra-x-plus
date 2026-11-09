@@ -54,15 +54,3 @@ html {
     --page-cover-height: 560px;
 }
 
-/* Capas ficam mais baixas conforme a tela diminui. */
-@media (max-width: 850px) {
-    :root {
-        --page-cover-height: 520px;
-    }
-}
-
-@media (max-width: 600px) {
-    :root {
-        --page-cover-height: 500px;
-    }
-}

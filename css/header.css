@@ -103,32 +103,3 @@ header {
     border-radius: 2px;
     background: var(--text-color);
 }
-
-/* Em telas menores, os links abrem em uma lista vertical. */
-@media (max-width: 1200px) {
-    .hamburger {
-        display: flex;
-    }
-
-    .nav-menu {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        padding: 1rem 0;
-        background: var(--white);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .nav-menu.active {
-        display: flex;
-    }
-
-    .nav-menu li,
-    .nav-link {
-        width: 100%;
-        text-align: center;
-    }
-}
