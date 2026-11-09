@@ -23,11 +23,14 @@
 }
 
 body {
-    zoom: 90%;
     font-family: var(--font-main);
     color: var(--text-color);
     background-color: #fafafa;
     line-height: 1.6;
+}
+
+html {
+    zoom: 0.9;
 }
 
 /* Variaveis globais: cores, fontes, larguras e alturas das capas. */
