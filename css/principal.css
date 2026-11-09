@@ -22,6 +22,13 @@
     box-sizing: border-box;
 }
 
+body {
+    zoom: 90%;
+    font-family: var(--font-main);
+    color: var(--text-color);
+    background-color: #fafafa;
+    line-height: 1.6;
+}
 
 /* Variaveis globais: cores, fontes, larguras e alturas das capas. */
 :root {
