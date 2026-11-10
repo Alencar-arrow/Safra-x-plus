@@ -241,6 +241,6 @@ if (galleryGrid) {
     });
 
     galleryDialog.addEventListener('click', (event) => {
-        if (event.target === galleryDialog) galleryDialog.close(); // quando clica fora fecha.//
+        if (event.target === galleryDialog) galleryDialog.close(); // quando clica fora fecha.
     });
 }

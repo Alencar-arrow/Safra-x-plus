@@ -200,7 +200,3 @@ body.accessibility-page .principles-title {
     font-size: 2.4rem;
 }
 
-@media (hover: hover) {
-    body.accessibility-page .hero-visual:hover img { transform: scale(1.04); }
-}
-

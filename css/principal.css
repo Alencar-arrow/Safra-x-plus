@@ -4,7 +4,6 @@
 @import url(cards.css);
 @import url(info.css);
 @import url(footer.css);
-@import url(responsibilidade.css);
 
 /* Estilos específicos de cada página; veja seus seletores nos arquivos importados. */
 @import url(acessibilidade.css);
@@ -14,6 +13,7 @@
 @import url(midia.css);
 @import url(sobre.css);
 @import url(tree-growth.css);
+@import url(responsibilidade.css);
 
 /* Reset comum para manter medidas e espacamentos. */
 * {
@@ -51,6 +51,4 @@ html {
     --about-leaf: #32634a;
     --about-paper: #f4f3ec;
     --about-clay: #bd7658;
-    --page-cover-height: 560px;
 }
-
