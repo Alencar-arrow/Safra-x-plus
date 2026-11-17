@@ -61,7 +61,7 @@ body.alto-contraste .alto-contraste-toggle {
     color: #ff0 !important;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1350px) {
     .nav-menu .alto-contraste-toggle {
         width: auto;
     }

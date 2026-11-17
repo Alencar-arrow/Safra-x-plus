@@ -30,7 +30,7 @@
 
     --nav-logo-size: 86px;          /* largura da caixa do logo */
     --nav-logo-image-size: 86px;    /* largura da imagem do logo */
-    --nav-logo-offset: -0.1rem;     /* pequeno empurrão do logo para a esquerda */
+    --nav-logo-offset: 0.5rem;      /* afasta o logo da borda do cabeçalho */
 
     /* Espaço interno da barra: cima, direita, baixo, esquerda */
     --nav-padding: 0.35rem 1.5rem 0.35rem 0.75rem;
@@ -64,11 +64,13 @@ header {
    ===================================================== */
 
 .navbar {
+    position: relative;
     display: flex;
     align-items: center;               /* alinha tudo no meio, na vertical */
     justify-content: space-between;    /* logo de um lado e menu do outro */
+    gap: 1rem;
     width: 100%;
-    max-width: var(--max-width);       /* nunca passa da largura máxima do site */
+    max-width: 1400px;
     margin: 0 auto;                    /* auto nas laterais = centralizar */
     padding: var(--nav-padding);
 }
@@ -112,7 +114,9 @@ header {
 .nav-menu {
     display: flex;
     align-items: center;
-    gap: 0 var(--nav-link-gap);   /* 0 entre linhas, 10px entre colunas */
+    flex: 1;
+    justify-content: flex-end;
+    gap: 0 var(--nav-link-gap);
     list-style: none;             /* remove as bolinhas da lista */
 }
 
@@ -126,6 +130,7 @@ header {
     font-size: var(--nav-font-size);
     font-weight: 500;
     text-decoration: none;     /* tira o sublinhado padrão dos links */
+    white-space: nowrap;
     transition: background-color 0.3s, color 0.3s;   /* a troca de cor é suave */
 }
 

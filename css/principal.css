@@ -433,7 +433,7 @@ html {
 }
 
 /* Em telas menores, os links abrem em uma lista vertical. */
-@media (max-width: 1200px) {
+@media (max-width: 1350px) {
     .hamburger {
         display: flex;
     }
