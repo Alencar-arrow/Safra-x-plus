@@ -14,7 +14,7 @@
   <br/><br/>
 
   <!-- Badges de Tecnologia e Estado com espaçamento -->
-  ![](https://img.shields.io/badge/Status-Em%20Concluido-orange?style=flat-square)&nbsp;
+  ![](https://img.shields.io/badge/Status-%20Concluido-green?style=flat-square)&nbsp;
   ![](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)&nbsp;
   ![](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css&logoColor=white)&nbsp;
   ![](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
