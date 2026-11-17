@@ -1,30 +1,30 @@
 /* Estilos da pagina "Sobre"; as cores usam tokens definidos no principal.css. */
 /* Base da página: cores compartilhadas e contenção do conteúdo principal. */
-.about-page {
+.sobre-pagina {
     background: var(--about-paper);
     color: var(--about-ink);
 }
 
-.about-main {
+.sobre-principal {
     overflow: hidden;
 }
 
 /* Tipografia serifada usada nos títulos e nas frases de destaque. */
-.about-cover h1,
-.about-cover-lead,
-.about-origin-copy h2,
-.about-thesis,
-.about-principles-heading h2,
-.about-principle h3,
-.about-outlook-image span,
-.about-outlook-copy h2,
-.about-contact h2 {
+.sobre-capa h1,
+.sobre-capa-resumo,
+.sobre-origem-texto h2,
+.sobre-tese,
+.sobre-principios-cabecalho h2,
+.sobre-principio h3,
+.sobre-perspectiva-imagem span,
+.sobre-perspectiva-texto h2,
+.sobre-contato h2 {
     font-family: Georgia, 'Times New Roman', serif;
     font-weight: 400;
 }
 
 /* Capa: imagem, camada escura para contraste e conteúdo sobreposto. */
-.about-cover {
+.sobre-capa {
     position: relative;
     display: flex;
     align-items: flex-end;
@@ -36,7 +36,7 @@
     background: #254c38;
 }
 
-.about-cover::after {
+.sobre-capa::after {
     position: absolute;
     z-index: -1;
     background: rgba(12, 31, 23, .48);
@@ -44,7 +44,7 @@
     inset: 0;
 }
 
-.about-cover-image {
+.sobre-capa-imagem {
     position: absolute;
     z-index: -2;
     inset: 0;
@@ -55,39 +55,39 @@
     animation: about-image-in 1.1s ease-out both;
 }
 
-.about-cover-content {
+.sobre-capa-conteudo {
     width: min(780px, 100%);
     padding-bottom: 2.5rem;
 }
 
-.about-kicker,
-.about-section-marker {
+.sobre-rotulo,
+.sobre-secao-marcador {
     font-size: .75rem;
     font-weight: 700;
     letter-spacing: .1em;
     text-transform: uppercase;
 }
 
-.about-kicker {
+.sobre-rotulo {
     margin-bottom: .8rem;
     color: #e6c89e;
 }
 
 /* O título é grande e leve para funcionar como foco visual da capa. */
-.about-cover h1 {
+.sobre-capa h1 {
     margin: 0;
     font-size: 7rem;
     line-height: .95;
 }
 
-.about-cover-lead {
+.sobre-capa-resumo {
     margin: .7rem 0 1.8rem;
     color: rgba(255, 255, 255, .92);
     font-size: 1.8rem;
 }
 
 /* Links e legenda da capa: detalhes em dourado reforçam a identidade visual. */
-.about-cover-link {
+.sobre-capa-link {
     display: inline-flex;
     align-items: center;
     gap: .8rem;
@@ -98,12 +98,12 @@
     text-decoration: none;
 }
 
-.about-cover-link span {
+.sobre-capa-link span {
     color: #e6c89e;
     font-size: 1.2rem;
 }
 
-.about-cover-note {
+.sobre-capa-nota {
     position: absolute;
     right: max(1.5rem, calc((100% - 1200px) / 2));
     bottom: 2rem;
@@ -113,13 +113,13 @@
     letter-spacing: .12em;
 }
 
-.about-cover-note span {
+.sobre-capa-nota span {
     padding: 0 .35rem;
     color: #e6c89e;
 }
 
 /* Origem: grade com marcador lateral, texto e frase de destaque. */
-.about-origin {
+.sobre-origem {
     display: grid;
     grid-template-columns: 160px minmax(0, 1fr);
     gap: 1rem 3rem;
@@ -128,26 +128,26 @@
     padding: 7rem 2rem 6rem;
 }
 
-.about-section-marker {
+.sobre-secao-marcador {
     color: #a65e42;
 }
 
-.about-section-marker span {
+.sobre-secao-marcador span {
     color: var(--about-ink);
 }
 
-.about-origin > .about-section-marker {
+.sobre-origem > .sobre-secao-marcador {
     padding-top: .7rem;
 }
 
-.about-origin-copy h2 {
+.sobre-origem-texto h2 {
     max-width: 790px;
     margin-bottom: 2rem;
     font-size: 3.25rem;
     line-height: 1.12;
 }
 
-.about-origin-detail {
+.sobre-origem-detalhe {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 2rem;
@@ -156,7 +156,7 @@
     font-size: 1rem;
 }
 
-.about-thesis {
+.sobre-tese {
     grid-column: 2;
     max-width: 800px;
     margin-top: 2.5rem;
@@ -166,7 +166,7 @@
 }
 
 /* Princípios: duas colunas no desktop e itens organizados em linhas. */
-.about-principles {
+.sobre-principios {
     display: grid;
     grid-template-columns: minmax(260px, .8fr) minmax(0, 1.2fr);
     gap: 4rem;
@@ -174,22 +174,22 @@
     background: #e8e9df;
 }
 
-.about-principles-heading h2 {
+.sobre-principios-cabecalho h2 {
     margin: 1.4rem 0 1rem;
     font-size: 3.4rem;
     line-height: 1.05;
 }
 
-.about-principles-heading > p {
+.sobre-principios-cabecalho > p {
     max-width: 330px;
     color: #59645c;
 }
 
-.about-principles-list {
+.sobre-principios-lista {
     border-top: 1px solid #c4c9bd;
 }
 
-.about-principle {
+.sobre-principio {
     display: grid;
     grid-template-columns: 42px minmax(0, 1fr) 82px;
     gap: 1.2rem;
@@ -198,8 +198,8 @@
     border-bottom: 1px solid #c4c9bd;
 }
 
-.about-principle-number,
-.about-principle-word {
+.sobre-principio-numero,
+.sobre-principio-palavra {
     color: #a65e42;
     font-size: .72rem;
     font-weight: 700;
@@ -207,25 +207,25 @@
     text-transform: uppercase;
 }
 
-.about-principle h3 {
+.sobre-principio h3 {
     margin-bottom: .45rem;
     font-size: 1.55rem;
 }
 
-.about-principle p {
+.sobre-principio p {
     max-width: 510px;
     color: #59645c;
     font-size: .95rem;
 }
 
-.about-principle-word {
+.sobre-principio-palavra {
     padding-top: .35rem;
     color: #667168;
     text-align: right;
 }
 
 /* Perspectiva: imagem e texto lado a lado, com links para outras páginas. */
-.about-outlook {
+.sobre-perspectiva {
     display: grid;
     grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
     align-items: center;
@@ -235,19 +235,19 @@
     padding: 7rem 2rem;
 }
 
-.about-outlook-image {
+.sobre-perspectiva-imagem {
     position: relative;
     min-width: 0;
 }
 
-.about-outlook-image img {
+.sobre-perspectiva-imagem img {
     display: block;
     width: 100%;
     aspect-ratio: 4 / 5;
     object-fit: cover;
 }
 
-.about-outlook-image span {
+.sobre-perspectiva-imagem span {
     position: absolute;
     right: -1rem;
     bottom: 1.4rem;
@@ -258,26 +258,26 @@
     font-size: 1.2rem;
 }
 
-.about-outlook-copy h2 {
+.sobre-perspectiva-texto h2 {
     max-width: 520px;
     margin: 1.4rem 0 1rem;
     font-size: 3rem;
     line-height: 1.12;
 }
 
-.about-outlook-copy > p:not(.about-section-marker) {
+.sobre-perspectiva-texto > p:not(.sobre-secao-marcador) {
     max-width: 500px;
     color: #59645c;
 }
 
-.about-outlook-links {
+.sobre-perspectiva-links {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem 1.6rem;
     margin-top: 2rem;
 }
 
-.about-outlook-links a {
+.sobre-perspectiva-links a {
     display: inline-flex;
     align-items: center;
     gap: .5rem;
@@ -287,33 +287,33 @@
     text-underline-offset: .3rem;
 }
 
-.about-outlook-links a span {
+.sobre-perspectiva-links a span {
     color: var(--about-clay);
 }
 
 /* Contato: chamada final com contraste alto e link destacado. */
-.about-contact {
+.sobre-contato {
     padding: 4.5rem max(2rem, calc((100% - 1200px) / 2));
     background: var(--about-ink);
     color: #fff;
 }
 
-.about-contact .about-section-marker {
+.sobre-contato .sobre-secao-marcador {
     color: #e6c89e;
 }
 
-.about-contact .about-section-marker span {
+.sobre-contato .sobre-secao-marcador span {
     color: #fff;
 }
 
-.about-contact h2 {
+.sobre-contato h2 {
     max-width: 800px;
     margin: 1.2rem 0 1.5rem;
     font-size: 3rem;
     line-height: 1.15;
 }
 
-.about-contact > a {
+.sobre-contato > a {
     display: inline-flex;
     align-items: center;
     gap: .7rem;
@@ -324,12 +324,12 @@
     text-decoration: none;
 }
 
-.about-contact > a span {
+.sobre-contato > a span {
     color: #d8b78a;
     font-size: 1.2rem;
 }
 
-.about-page :focus-visible {
+.sobre-pagina :focus-visible {
     outline: 3px solid #bd7658;
     outline-offset: 3px;
 }

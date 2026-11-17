@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/principal.css">
     <script src="../js/script.js" defer></script>
 </head>
-<body class="accessibility-page">
+<body class="acessibilidade-pagina">
     <header>
         <nav class="navbar">
             <a href="index.html" class="logo">
@@ -27,7 +27,7 @@
                 <li><a href="sobre.html" class="nav-link">Sobre</a></li>
                 <li><a href="projetos.html" class="nav-link">Projetos</a></li>
                 <li><a href="impacto.html" class="nav-link">Impacto</a></li>
-                <li><a href="acessibilidade.html" class="nav-link active" aria-current="page">Acessibilidade</a></li>
+                <li><a href="acessibilidade.html" class="nav-link ativo" aria-current="page">Acessibilidade</a></li>
                 <li><a href="midia.html" class="nav-link">Mídia</a></li>
                 <li><a href="noticias.html" class="nav-link">Notícias</a></li>
                 <li><a href="contato.html" class="nav-link">Contato</a></li>
@@ -36,55 +36,62 @@
         </nav>
     </header>
 
-    <main class="page-shell">
+    <main class="pagina-conteudo">
         <section class="hero">
             <div>
-                <p class="eyebrow">SafraX / acessibilidade</p>
+                <p class="rotulo">SafraX / acessibilidade</p>
                 <h1>Um site melhor é um site para todos.</h1>
                 <p>Acessibilidade começa no detalhe: leitura confortável, estrutura clara e navegação que funciona para mais pessoas.</p>
             </div>
-            <figure class="hero-visual">
+            <figure class="capa-visual">
                 <img src="../img/accessibility-workshop.jpg" alt="Duas pessoas colaboram diante de um computador em um espaço de trabalho">
                 <figcaption>Tecnologia funciona melhor quando inclui mais pessoas.</figcaption>
             </figure>
         </section>
 
-        <section class="grid">
-            <article class="card">
-                <p class="eyebrow">Acesso</p>
+        <section class="grade">
+            <article class="cartao">
+                <p class="rotulo">Acesso</p>
                 <h3>Linguagem direta</h3>
                 <p>Frases diretas facilitam a leitura dos temas ambientais.</p>
             </article>
 
-            <article class="card">
-                <p class="eyebrow">Leitura</p>
+            <article class="cartao">
+                <p class="rotulo">Leitura</p>
                 <h3>Contraste e clareza</h3>
                 <p>Títulos e espaçamentos organizam o conteúdo e ajudam na leitura.</p>
             </article>
 
-            <article class="card">
-                <p class="eyebrow">Navegação</p>
+            <article class="cartao">
+                <p class="rotulo">Navegação</p>
                 <h3>Estrutura intuitiva</h3>
                 <p>O menu e os links separam os assuntos e facilitam encontrar cada página.</p>
             </article>
 
-            <article class="card">
-                <p class="eyebrow">Inclusão</p>
+            <article class="cartao">
+                <p class="rotulo">Inclusão</p>
                 <h3>Imagens descritas</h3>
                 <p>Descrições de imagens e conteúdo bem organizado apoiam diferentes formas de acesso.</p>
             </article>
         </section>
 
-        <section class="principles">
-            <p class="eyebrow">Práticas</p>
-            <h2 class="principles-title">Práticas de acessibilidade</h2>
-            <ul class="checklist">
+        <section class="principios">
+            <p class="rotulo">Práticas</p>
+            <h2 class="principios-titulo">Práticas de acessibilidade</h2>
+            <ul class="verificacao">
                 <li>Use frases curtas e títulos que indiquem o assunto.</li>
                 <li>Mantenha contraste suficiente entre texto e fundo.</li>
                 <li>Descreva imagens informativas com texto alternativo.</li>
                 <li>Organize links e controles em uma ordem previsível.</li>
                 <li>Teste a navegação por teclado e em telas menores.</li>
             </ul>
+        </section>
+
+        <section class="acessibilidade-retorno" aria-labelledby="accessibility-feedback-title">
+            <p class="rotulo">Sua experiência importa</p>
+            <h2 id="accessibility-feedback-title">Encontrou uma barreira?</h2>
+            <p>Conte para a equipe o que dificultou o acesso. O formulário de contato já estará com o assunto de acessibilidade selecionado.</p>
+            <a class="btn" href="contato.html?ajuda=acessibilidade#form-title">Reportar barreira de acessibilidade</a>
         </section>
     </main>
 

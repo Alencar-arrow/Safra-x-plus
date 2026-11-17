@@ -3,7 +3,7 @@ const navMenu = document.getElementById('nav-menu');
 
 if (hamburger && navMenu) {
     const closeMenu = () => {
-        navMenu.classList.remove('active');
+        navMenu.classList.remove('ativo');
         hamburger.setAttribute('aria-expanded', 'false');
         hamburger.setAttribute('aria-label', 'Abrir menu');
     };
@@ -12,7 +12,7 @@ if (hamburger && navMenu) {
         const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
         hamburger.setAttribute('aria-expanded', String(!isExpanded));
         hamburger.setAttribute('aria-label', isExpanded ? 'Abrir menu' : 'Fechar menu');
-        navMenu.classList.toggle('active', !isExpanded);
+        navMenu.classList.toggle('ativo', !isExpanded);
     });
 
     navMenu.addEventListener('click', (event) => {
@@ -29,14 +29,14 @@ if (hamburger && navMenu) {
     });
 }
 
-const treeGrowth = document.querySelector('.tree-growth-section');
+const treeGrowth = document.querySelector('.arvore-crescimento-secao');
 
 if (treeGrowth) {
-    treeGrowth.classList.add('is-animated');
-    const treeSvg = treeGrowth.querySelector('.tree-growth');
-    const treeSteps = Array.from(treeGrowth.querySelectorAll('.tree-growth-steps p'));
-    const treeProgress = treeGrowth.querySelector('.tree-growth-progress');
-    const treeStepCount = treeGrowth.querySelector('.tree-growth-step-count');
+    treeGrowth.classList.add('animada');
+    const treeSvg = treeGrowth.querySelector('.arvore-crescimento');
+    const treeSteps = Array.from(treeGrowth.querySelectorAll('.arvore-crescimento-etapas p'));
+    const treeProgress = treeGrowth.querySelector('.arvore-crescimento-progresso');
+    const treeStepCount = treeGrowth.querySelector('.arvore-crescimento-etapa-contador');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let treeFramePending = false;
 
@@ -60,15 +60,12 @@ if (treeGrowth) {
                 : `scale(${scale})`;
         };
 
-        treeSvg.querySelector('.tree-seed').style.opacity =
+        treeSvg.querySelector('.arvore-semente').style.opacity =
             1 - progressBetween(sectionProgress, 0.12, 0.24);
-        setScale('.tree-trunk', progressBetween(sectionProgress, 0.14, 0.5), true);
-        setScale('.tree-canopy-top', progressBetween(sectionProgress, 0.38, 0.62));
-        setScale('.tree-canopy-left', progressBetween(sectionProgress, 0.46, 0.7));
-        setScale('.tree-canopy-right', progressBetween(sectionProgress, 0.52, 0.76));
-        setScale('.tree-canopy-center', progressBetween(sectionProgress, 0.58, 0.82));
+        setScale('.arvore-tronco', progressBetween(sectionProgress, 0.14, 0.5), true);
+        setScale('.arvore-copa', progressBetween(sectionProgress, 0.38, 0.72));
 
-        treeSvg.querySelectorAll('.tree-forest').forEach((tree, index) => {
+        treeSvg.querySelectorAll('.arvore-floresta').forEach((tree, index) => {
             tree.style.transform = `scale(${progressBetween(sectionProgress, 0.76 + index * 0.025, 0.98)})`;
         });
 
@@ -82,7 +79,7 @@ if (treeGrowth) {
         treeStepCount.firstChild.textContent = `${String(activeStep + 1).padStart(2, '0')} `;
 
         treeSteps.forEach((step, index) => {
-            step.classList.toggle('is-active', index === activeStep);
+            step.classList.toggle('ativo', index === activeStep);
         });
     };
 
@@ -114,6 +111,11 @@ if (contactForm) {
         mensagem: contactForm.querySelector('#mensagem')
     };
 
+    const requestedSubject = new URLSearchParams(window.location.search).get('ajuda');
+    if (requestedSubject && Array.from(fields.ajuda.options).some((option) => option.value === requestedSubject)) {
+        fields.ajuda.value = requestedSubject;
+    }
+
     const messages = {
         nome: 'Informe seu nome completo (mínimo de 3 caracteres).',
         email: 'Informe um e-mail válido, no formato nome@dominio.com.',
@@ -127,7 +129,7 @@ if (contactForm) {
 
     const setFieldError = (field, message) => {
         const error = document.getElementById(`${field.id}-error`);
-        field.classList.toggle('is-invalid', Boolean(message));
+        field.classList.toggle('invalido', Boolean(message));
         field.setAttribute('aria-invalid', message ? 'true' : 'false');
         if (error) {
             error.textContent = message || '';
@@ -157,7 +159,7 @@ if (contactForm) {
     Object.values(fields).forEach((field) => {
         field.addEventListener('blur', () => validateField(field));
         field.addEventListener('input', () => {
-            if (field.classList.contains('is-invalid')) {
+            if (field.classList.contains('invalido')) {
                 validateField(field);
             }
         });
@@ -198,12 +200,12 @@ if (contactForm) {
     });
 }
 
-const galleryGrid = document.querySelector('.gallery-grid');
+const galleryGrid = document.querySelector('.galeria-grade');
 
 if (galleryGrid) {
-    const galleryItems = Array.from(galleryGrid.querySelectorAll('.gallery-item'));
+    const galleryItems = Array.from(galleryGrid.querySelectorAll('.galeria-item'));
     const galleryFilters = Array.from(document.querySelectorAll('[data-gallery-filter]'));
-    const galleryCount = document.querySelector('.gallery-count');
+    const galleryCount = document.querySelector('.galeria-contador');
     const galleryDialog = document.getElementById('gallery-dialog');
     const galleryDialogImage = document.getElementById('gallery-dialog-image');
     const galleryDialogCaption = document.getElementById('gallery-dialog-caption');
@@ -215,7 +217,7 @@ if (galleryGrid) {
 
             galleryFilters.forEach((button) => {
                 const isActive = button === filter;
-                button.classList.toggle('is-active', isActive);
+                button.classList.toggle('ativo', isActive);
                 button.setAttribute('aria-pressed', String(isActive));
             });
 
@@ -230,7 +232,7 @@ if (galleryGrid) {
     });
 
     galleryGrid.addEventListener('click', (event) => {
-        const trigger = event.target.closest('.gallery-open');
+        const trigger = event.target.closest('.galeria-abrir');
         if (!trigger) return;
 
         const image = trigger.querySelector('img');

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/principal.css">
     <script src="../js/script.js" defer></script>
 </head>
-<body class="gallery-page">
+<body class="galeria-pagina">
 
     <header>
         <nav class="navbar">
@@ -24,7 +24,7 @@
 
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html" class="nav-link">Início</a></li>
-                <li><a href="galeria.html" class="nav-link active">Galeria</a></li>
+                <li><a href="galeria.html" class="nav-link ativo" aria-current="page">Galeria</a></li>
                 <li><a href="sobre.html" class="nav-link">Sobre</a></li>
                 <li><a href="projetos.html" class="nav-link">Projetos</a></li>
                 <li><a href="impacto.html" class="nav-link">Impacto</a></li>
@@ -38,106 +38,106 @@
     </header>
 
     <main>
-        <section class="gallery-hero" aria-labelledby="gallery-title">
-            <div class="gallery-hero-content">
-                <p class="gallery-eyebrow">SafraX em imagens</p>
+        <section class="galeria-capa" aria-labelledby="gallery-title">
+            <div class="galeria-capa-conteudo">
+                <p class="galeria-rotulo">SafraX em imagens</p>
                 <h1 id="gallery-title">Entre a perda<br>e a vida que volta</h1>
                 <p>Um olhar sobre as marcas do desmatamento e os sinais de regeneração que já crescem no lugar.</p>
-                <a class="gallery-hero-link" href="#acervo">Explorar imagens <span aria-hidden="true">↓</span></a>
+                <a class="galeria-capa-link" href="#acervo">Explorar imagens <span aria-hidden="true">↓</span></a>
             </div>
-            <p class="gallery-hero-index" aria-hidden="true">01 / 04 &nbsp; FLORESTA</p>
+            <p class="galeria-capa-indice" aria-hidden="true">01 / 04 &nbsp; FLORESTA</p>
         </section>
 
-        <section class="gallery-collection" id="acervo" aria-labelledby="collection-title">
-            <div class="gallery-heading">
+        <section class="galeria-colecao" id="acervo" aria-labelledby="collection-title">
+            <div class="galeria-cabecalho">
                 <div>
-                    <p class="gallery-eyebrow">Paisagens em transformação</p>
+                    <p class="galeria-rotulo">Paisagens em transformação</p>
                     <h2 id="collection-title">Um território, muitos futuros</h2>
                 </div>
                 <p>Do impacto à recuperação, cada imagem conta uma parte da relação entre as pessoas e a floresta.</p>
             </div>
 
-            <div class="gallery-toolbar">
-                <div class="gallery-filters" role="group" aria-label="Filtrar imagens por tema">
-                    <button type="button" class="gallery-filter is-active" data-gallery-filter="all" aria-pressed="true">Todas</button>
-                    <button type="button" class="gallery-filter" data-gallery-filter="preservacao" aria-pressed="false">Preservação</button>
-                    <button type="button" class="gallery-filter" data-gallery-filter="impacto" aria-pressed="false">Impactos</button>
-                    <button type="button" class="gallery-filter" data-gallery-filter="regeneracao" aria-pressed="false">Regeneração</button>
-                    <button type="button" class="gallery-filter" data-gallery-filter="fauna" aria-pressed="false">Fauna</button>
+            <div class="galeria-ferramentas">
+                <div class="galeria-filtros" role="group" aria-label="Filtrar imagens por tema">
+                    <button type="button" class="galeria-filtro ativo" data-gallery-filter="all" aria-pressed="true">Todas</button>
+                    <button type="button" class="galeria-filtro" data-gallery-filter="preservacao" aria-pressed="false">Preservação</button>
+                    <button type="button" class="galeria-filtro" data-gallery-filter="impacto" aria-pressed="false">Impactos</button>
+                    <button type="button" class="galeria-filtro" data-gallery-filter="regeneracao" aria-pressed="false">Regeneração</button>
+                    <button type="button" class="galeria-filtro" data-gallery-filter="fauna" aria-pressed="false">Fauna</button>
                 </div>
-                <p class="gallery-count" aria-live="polite">9 imagens</p>
+                <p class="galeria-contador" aria-live="polite">9 imagens</p>
             </div>
 
-            <div class="gallery-grid">
-                <figure class="gallery-item" data-category="preservacao">
-                    <button type="button" class="gallery-open" aria-label="Ampliar imagem: mata nativa em pé">
+            <div class="galeria-grade">
+                <figure class="galeria-item" data-category="preservacao">
+                    <button type="button" class="galeria-abrir" aria-label="Ampliar imagem: mata nativa em pé">
                         <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1000&q=85" alt="Floresta densa com raios de sol entre as árvores" loading="lazy">
-                        <span class="gallery-open-label">Ampliar imagem</span>
+                        <span class="galeria-abrir-rotulo">Ampliar imagem</span>
                     </button>
                     <figcaption><span>Preservação</span><strong>Mata nativa em pé</strong></figcaption>
                 </figure>
-                <figure class="gallery-item" data-category="impacto">
-                    <button type="button" class="gallery-open" aria-label="Ampliar imagem: o avanço do desmatamento">
+                <figure class="galeria-item" data-category="impacto">
+                    <button type="button" class="galeria-abrir" aria-label="Ampliar imagem: o avanço do desmatamento">
                         <img src="https://images.unsplash.com/photo-1536147116438-62679a5e01f2?auto=format&fit=crop&w=1000&q=85" alt="Área de floresta desmatada com troncos cortados e solo exposto" loading="lazy">
-                        <span class="gallery-open-label">Ampliar imagem</span>
+                        <span class="galeria-abrir-rotulo">Ampliar imagem</span>
                     </button>
                     <figcaption><span>Impactos</span><strong>O avanço do desmatamento</strong></figcaption>
                 </figure>
-                <figure class="gallery-item" data-category="impacto">
-                    <button type="button" class="gallery-open" aria-label="Ampliar imagem: solo sob pressão">
+                <figure class="galeria-item" data-category="impacto">
+                    <button type="button" class="galeria-abrir" aria-label="Ampliar imagem: solo sob pressão">
                         <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1000&q=85" alt="Solo seco e rachado em terreno sem vegetação" loading="lazy">
-                        <span class="gallery-open-label">Ampliar imagem</span>
+                        <span class="galeria-abrir-rotulo">Ampliar imagem</span>
                     </button>
                     <figcaption><span>Impactos</span><strong>Solo sob pressão</strong></figcaption>
                 </figure>
-                <figure class="gallery-item" data-category="regeneracao">
-                    <button type="button" class="gallery-open" aria-label="Ampliar imagem: o primeiro passo da regeneração">
+                <figure class="galeria-item" data-category="regeneracao">
+                    <button type="button" class="galeria-abrir" aria-label="Ampliar imagem: o primeiro passo da regeneração">
                         <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1000&q=85" alt="Mudas jovens crescendo em solo preparado para reflorestamento" loading="lazy">
-                        <span class="gallery-open-label">Ampliar imagem</span>
+                        <span class="galeria-abrir-rotulo">Ampliar imagem</span>
                     </button>
                     <figcaption><span>Regeneração</span><strong>O primeiro passo</strong></figcaption>
                 </figure>
-                <figure class="gallery-item" data-category="regeneracao">
-                    <button type="button" class="gallery-open" aria-label="Ampliar imagem: uma floresta em recuperação">
+                <figure class="galeria-item" data-category="regeneracao">
+                    <button type="button" class="galeria-abrir" aria-label="Ampliar imagem: uma floresta em recuperação">
                         <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1000&q=85" alt="Trilha em floresta verde e fechada" loading="lazy">
-                        <span class="gallery-open-label">Ampliar imagem</span>
+                        <span class="galeria-abrir-rotulo">Ampliar imagem</span>
                     </button>
                     <figcaption><span>Regeneração</span><strong>Uma floresta em recuperação</strong></figcaption>
                 </figure>
-                <figure class="gallery-item" data-category="fauna">
-                    <button type="button" class="gallery-open" aria-label="Ampliar imagem: a vida entre as folhas">
+                <figure class="galeria-item" data-category="fauna">
+                    <button type="button" class="galeria-abrir" aria-label="Ampliar imagem: a vida entre as folhas">
                         <img src="https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&w=1000&q=85" alt="Pássaro pousado em um galho entre folhagens" loading="lazy">
-                        <span class="gallery-open-label">Ampliar imagem</span>
+                        <span class="galeria-abrir-rotulo">Ampliar imagem</span>
                     </button>
                     <figcaption><span>Fauna</span><strong>A vida entre as folhas</strong></figcaption>
                 </figure>
-                <figure class="gallery-item" data-category="fauna">
-                    <button type="button" class="gallery-open" aria-label="Ampliar imagem: mamíferos e corredores verdes">
+                <figure class="galeria-item" data-category="fauna">
+                    <button type="button" class="galeria-abrir" aria-label="Ampliar imagem: mamíferos e corredores verdes">
                         <img src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?auto=format&fit=crop&w=1000&q=85" alt="Raposa silvestre em meio à vegetação" loading="lazy">
-                        <span class="gallery-open-label">Ampliar imagem</span>
+                        <span class="galeria-abrir-rotulo">Ampliar imagem</span>
                     </button>
                     <figcaption><span>Fauna</span><strong>Corredores para a vida</strong></figcaption>
                 </figure>
-                <figure class="gallery-item" data-category="fauna">
-                    <button type="button" class="gallery-open" aria-label="Ampliar imagem: polinizadores em ação">
+                <figure class="galeria-item" data-category="fauna">
+                    <button type="button" class="galeria-abrir" aria-label="Ampliar imagem: polinizadores em ação">
                         <img src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=1000&q=85" alt="Abelha polinizando uma flor amarela" loading="lazy">
-                        <span class="gallery-open-label">Ampliar imagem</span>
+                        <span class="galeria-abrir-rotulo">Ampliar imagem</span>
                     </button>
                     <figcaption><span>Fauna</span><strong>Polinizadores em ação</strong></figcaption>
                 </figure>
-                <figure class="gallery-item" data-category="preservacao">
-                    <button type="button" class="gallery-open" aria-label="Ampliar imagem: abrigo para a biodiversidade">
+                <figure class="galeria-item" data-category="preservacao">
+                    <button type="button" class="galeria-abrir" aria-label="Ampliar imagem: abrigo para a biodiversidade">
                         <img src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1000&q=85" alt="Floresta preservada com árvores altas e neblina" loading="lazy">
-                        <span class="gallery-open-label">Ampliar imagem</span>
+                        <span class="galeria-abrir-rotulo">Ampliar imagem</span>
                     </button>
                     <figcaption><span>Preservação</span><strong>Abrigo para a biodiversidade</strong></figcaption>
                 </figure>
             </div>
         </section>
 
-        <dialog class="gallery-dialog" id="gallery-dialog" aria-labelledby="gallery-dialog-caption">
+        <dialog class="galeria-janela" id="gallery-dialog" aria-labelledby="gallery-dialog-caption">
             <form method="dialog">
-                <button class="gallery-dialog-close" aria-label="Fechar imagem">Fechar <span aria-hidden="true">×</span></button>
+                <button class="galeria-janela-fechar" aria-label="Fechar imagem">Fechar <span aria-hidden="true">×</span></button>
             </form>
             <figure>
                 <img src="" alt="" id="gallery-dialog-image">

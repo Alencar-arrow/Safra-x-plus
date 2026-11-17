@@ -1,5 +1,5 @@
 /* Link de salto e ajustes visuais da capa de contato. */
-.page-contact .skip-link {
+.pagina-contato .pular-link {
     position: absolute;
     left: 1rem;
     top: -4rem;
@@ -12,18 +12,18 @@
     font-weight: 700;
 }
 
-.page-contact .skip-link:focus {
+.pagina-contato .pular-link:focus {
     top: 1rem;
 }
 
-.page-contact .contact-hero {
+.pagina-contato .contato-capa {
     background-image:
         linear-gradient(rgba(10, 28, 16, 0.72), rgba(10, 28, 16, 0.78)),
         url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80');
     padding: 7rem 1.5rem;
 }
 
-.contact-kicker {
+.contato-rotulo {
     margin-bottom: 0.75rem;
     color: var(--secondary-color);
     font-size: 0.8rem;
@@ -32,53 +32,53 @@
     text-transform: uppercase;
 }
 
-.contact-page {
+.contato-pagina {
     padding-top: 3rem;
 }
 
 /* Estrutura dos paineis de formulario e informacoes de contato. */
-.contact-layout {
+.contato-estrutura {
     display: grid;
     grid-template-columns: minmax(0, 1.4fr) minmax(18rem, 0.8fr);
     gap: 2rem;
     align-items: start;
 }
 
-.contact-panel,
-.contact-aside {
+.contato-painel,
+.contato-lateral {
     background: var(--white);
     border: 1px solid #d7e6d8;
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(27, 94, 32, 0.06);
 }
 
-.contact-panel {
+.contato-painel {
     padding: 2rem;
 }
 
-.contact-panel:has(.contact-form[hidden]) .contact-panel-header {
+.contato-painel:has(.contato-formulario[hidden]) .contato-painel-cabecalho {
     display: none;
 }
 
-.page-contact [hidden] {
+.pagina-contato [hidden] {
     display: none !important;
 }
 
 /* Campos, estados de foco e mensagens de validacao do formulario. */
-.contact-panel-header h2,
-.contact-aside h2,
-.contact-success h3 {
+.contato-painel-cabecalho h2,
+.contato-lateral h2,
+.contato-sucesso h3 {
     color: var(--primary-dark);
     margin-bottom: 0.6rem;
 }
 
-.contact-panel-header p,
-.contact-aside > p {
+.contato-painel-cabecalho p,
+.contato-lateral > p {
     color: #4b5563;
     margin-bottom: 1.5rem;
 }
 
-.contact-form {
+.contato-formulario {
     max-width: none;
     margin: 0;
     padding: 0;
@@ -86,42 +86,42 @@
     border: 0;
 }
 
-.form-status {
+.formulario-status {
     min-height: 0;
     margin-bottom: 0;
     color: #9b1c1c;
     font-weight: 600;
 }
 
-.form-status:not(:empty) {
+.formulario-status:not(:empty) {
     margin-bottom: 1rem;
     padding: 0.8rem 1rem;
     background: #fde8e8;
     border-radius: 8px;
 }
 
-.form-row {
+.formulario-linha {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem 1.25rem;
 }
 
-.form-field {
+.formulario-campo {
     margin-bottom: 1rem;
 }
 
-.contact-form label {
+.contato-formulario label {
     display: block;
     margin: 0 0 0.4rem;
     font-weight: 700;
     color: var(--primary-dark);
 }
 
-.contact-form input[type="text"],
-.contact-form input[type="email"],
-.contact-form input[type="tel"],
-.contact-form select,
-.contact-form textarea {
+.contato-formulario input[type="text"],
+.contato-formulario input[type="email"],
+.contato-formulario input[type="tel"],
+.contato-formulario select,
+.contato-formulario textarea {
     width: 100%;
     padding: 0.85rem 0.95rem;
     border: 1.5px solid #c5d8c6;
@@ -133,55 +133,55 @@
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.contact-form textarea {
+.contato-formulario textarea {
     resize: vertical;
     min-height: 8rem;
 }
 
-.contact-form input:hover,
-.contact-form select:hover,
-.contact-form textarea:hover {
+.contato-formulario input:hover,
+.contato-formulario select:hover,
+.contato-formulario textarea:hover {
     border-color: var(--primary-color);
 }
 
-.contact-form input:focus-visible,
-.contact-form select:focus-visible,
-.contact-form textarea:focus-visible,
-.contact-form input:focus,
-.contact-form select:focus,
-.contact-form textarea:focus {
+.contato-formulario input:focus-visible,
+.contato-formulario select:focus-visible,
+.contato-formulario textarea:focus-visible,
+.contato-formulario input:focus,
+.contato-formulario select:focus,
+.contato-formulario textarea:focus {
     border-color: var(--primary-color);
     outline: 3px solid rgba(46, 125, 50, 0.28);
     outline-offset: 1px;
 }
 
-.contact-form .is-invalid {
+.contato-formulario .invalido {
     border-color: #b42318;
     background: #fff7f6;
 }
 
-.contact-form .is-invalid:focus,
-.contact-form .is-invalid:focus-visible {
+.contato-formulario .invalido:focus,
+.contato-formulario .invalido:focus-visible {
     outline-color: rgba(180, 35, 24, 0.28);
 }
 
-.field-hint,
-.field-error {
+.campo-orientacao,
+.campo-erro {
     margin-top: 0.35rem;
     font-size: 0.85rem;
 }
 
-.field-hint {
+.campo-orientacao {
     color: #5b6770;
 }
 
-.field-error {
+.campo-erro {
     min-height: 1.1em;
     color: #b42318;
 }
 
 /* Consentimento, envio do formulario e confirmacao de sucesso. */
-.checkbox-label {
+.caixa-selecao-rotulo {
     display: flex;
     align-items: flex-start;
     gap: 0.7rem;
@@ -194,37 +194,37 @@
     cursor: pointer;
 }
 
-.checkbox-label input {
+.caixa-selecao-rotulo input {
     width: 1.1rem;
     height: 1.1rem;
     margin-top: 0.15rem;
     accent-color: var(--primary-color);
 }
 
-.contact-submit {
+.contato-envio {
     width: 100%;
     border: 0;
     cursor: pointer;
     font-size: 1.05rem;
 }
 
-.contact-submit:focus-visible {
+.contato-envio:focus-visible {
     outline: 3px solid var(--primary-color);
     outline-offset: 3px;
 }
 
-.contact-submit:disabled {
+.contato-envio:disabled {
     opacity: 0.7;
     cursor: wait;
 }
 
-.contact-success {
+.contato-sucesso {
     padding: 1.5rem;
     background: #edf7ee;
     border-radius: 10px;
 }
 
-.contact-success-kicker {
+.contato-sucesso-rotulo {
     color: var(--primary-color);
     font-size: 0.8rem;
     font-weight: 700;
@@ -232,22 +232,22 @@
     text-transform: uppercase;
 }
 
-.contact-success p {
+.contato-sucesso p {
     margin-bottom: 0.8rem;
 }
 
 /* Canais de contato e cartoes da equipe. */
-.contact-aside {
+.contato-lateral {
     padding: 2rem;
 }
 
-.contact-channels {
+.contato-canais {
     list-style: none;
     display: grid;
     gap: 1.15rem;
 }
 
-.contact-channels span {
+.contato-canais span {
     display: block;
     margin-bottom: 0.2rem;
     color: var(--primary-color);
@@ -257,36 +257,36 @@
     text-transform: uppercase;
 }
 
-.contact-channels a,
-.contact-channels address,
-.contact-channels p {
+.contato-canais a,
+.contato-canais address,
+.contato-canais p {
     color: var(--text-color);
     font-style: normal;
     text-decoration: none;
     font-weight: 600;
 }
 
-.contact-channels a:hover {
+.contato-canais a:hover {
     color: var(--primary-dark);
     text-decoration: underline;
 }
 
-.contact-team {
+.contato-equipe {
     margin-top: 4rem;
 }
 
-.contact-team .intro {
+.contato-equipe .introducao {
     margin-top: 0;
 }
 
-.team-grid {
+.equipe-grade {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1.25rem;
 }
 
-.team-card {
+.equipe-cartao {
     height: 100%;
     padding: 1.4rem;
     background: var(--white);
@@ -294,7 +294,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.team-role {
+.equipe-funcao {
     margin-bottom: 0.45rem;
     color: var(--primary-color);
     font-size: 0.78rem;
@@ -303,13 +303,13 @@
     text-transform: uppercase;
 }
 
-.team-card h3 {
+.equipe-cartao h3 {
     margin-bottom: 0.55rem;
     color: var(--primary-dark);
     font-size: 1.15rem;
 }
 
-.team-card p:last-child {
+.equipe-cartao p:last-child {
     color: #4b5563;
     font-size: 0.95rem;
 }

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/principal.css">
     <script src="../js/script.js" defer></script>
 </head>
-<body class="media-page">
+<body class="midia-pagina">
     <header>
         <nav class="navbar">
             <a href="index.html" class="logo">
@@ -28,7 +28,7 @@
                 <li><a href="projetos.html" class="nav-link">Projetos</a></li>
                 <li><a href="impacto.html" class="nav-link">Impacto</a></li>
                 <li><a href="acessibilidade.html" class="nav-link">Acessibilidade</a></li>
-                <li><a href="midia.html" class="nav-link active" aria-current="page">Mídia</a></li>
+                <li><a href="midia.html" class="nav-link ativo" aria-current="page">Mídia</a></li>
                 <li><a href="noticias.html" class="nav-link">Notícias</a></li>
                 <li><a href="contato.html" class="nav-link">Contato</a></li>
                 <li><a href="orcamento_hospedagem.html" class="nav-link">Hospedagem</a></li>
@@ -36,49 +36,89 @@
         </nav>
     </header>
 
-    <main class="page-shell">
+    <main class="pagina-conteudo">
         <section class="hero">
             <div>
-                <span class="badge">SafraX / mídia</span>
+                <span class="selo">SafraX / mídia</span>
                 <h1>A cidade cresce. A natureza sente.</h1>
                 <p>Reportagens e dados ajudam a entender o que muda quando o limite entre cidade e floresta desaparece.</p>
             </div>
 
-            <figure class="hero-figure">
+            <figure class="capa-figura">
                 <img src="../img/media-forest.jpg" alt="Luz atravessa a copa de uma floresta densa" fetchpriority="high">
             </figure>
         </section>
 
-        <div class="section-heading">
-            <span class="meta">Em pauta</span>
+        <div class="secao-cabecalho">
+            <span class="metadados">Em pauta</span>
             <h2>Causas, consequências e caminhos possíveis</h2>
         </div>
 
-        <section class="report-grid" aria-label="Causas, consequências e soluções da expansão urbana">
-            <article class="report-card">
-                <div class="media-art"><img src="../img/media-city.jpg" alt="Avenidas e edifícios em uma área urbana" loading="lazy"></div>
-                <div class="report-card-body">
-                    <span class="meta">Causas</span>
+        <section class="destaque-video" aria-labelledby="featured-video-title">
+            <div class="destaque-video-cabecalho">
+                <span class="metadados">Reportagem em vídeo</span>
+                <h2 id="featured-video-title">O desmatamento na Amazônia</h2>
+                <p>Uma reportagem do Profissão Repórter sobre o avanço do desmatamento e seus impactos.</p>
+            </div>
+            <div class="destaque-video-moldura">
+                <iframe
+                    src="https://www.youtube-nocookie.com/embed/8Qc3Mfr3wcc"
+                    title="O desmatamento na Amazônia — reportagem do Profissão Repórter"
+                    loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <p class="destaque-video-credito">Vídeo publicado no YouTube por E- Documentários. <a href="https://www.youtube.com/watch?v=8Qc3Mfr3wcc" target="_blank" rel="noopener noreferrer">Abrir no YouTube</a>.</p>
+        </section>
+
+        <section class="midia-mapa" aria-labelledby="mapa-titulo">
+            <div class="midia-mapa-titulo">
+                <span class="metadados">Mapa interativo</span>
+                <h2 id="mapa-titulo">Manaus e a floresta amazônica</h2>
+                <p>Explore a região no OpenStreetMap. O mapa mostra a localização e não representa dados de monitoramento em tempo real.</p>
+            </div>
+            <div class="midia-mapa-frame">
+                <iframe
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=-60.8%2C-3.5%2C-59.7%2C-2.5&amp;layer=mapnik&amp;marker=-3.119%2C-60.0217"
+                    title="Mapa interativo da região de Manaus no OpenStreetMap"
+                    loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin">
+                </iframe>
+            </div>
+            <p class="midia-mapa-credit">Mapa colaborativo do <a href="https://www.openstreetmap.org/?mlat=-3.119&amp;mlon=-60.0217#map=10/-3.119/-60.0217" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>.</p>
+        </section>
+
+
+          <div class="secao-cabecalho">
+            <h2>Possíveis impactos</h2>
+        </div>
+        <section class="reportagem-grade" aria-label="Causas, consequências e soluções da expansão urbana">
+            <article class="reportagem-cartao">
+                <div class="midia-imagem"><img src="../img/media-city.jpg" alt="Avenidas e edifícios em uma área urbana" loading="lazy"></div>
+                <div class="reportagem-cartao-corpo">
+                    <span class="metadados">Causas</span>
                     <h3>O avanço da cidade</h3>
                     <p>Expansões sem planejamento ocupam áreas naturais e fragmentam habitats.</p>
                     <a href="https://g1.globo.com/busca/?q=expans%C3%A3o+urbana+desmatamento" target="_blank" rel="noreferrer">Buscar reportagens no G1</a>
                 </div>
             </article>
 
-            <article class="report-card">
-                <div class="media-art"><img src="../img/media-soil.jpg" alt="Campo amplo sob a luz do fim da tarde" loading="lazy"></div>
-                <div class="report-card-body">
-                    <span class="meta">Consequências</span>
+            <article class="reportagem-cartao">
+                <div class="midia-imagem"><img src="../img/media-soil.jpg" alt="Campo amplo sob a luz do fim da tarde" loading="lazy"></div>
+                <div class="reportagem-cartao-corpo">
+                    <span class="metadados">Consequências</span>
                     <h3>O impacto no território</h3>
                     <p>A perda de vegetação pressiona o solo, altera a drenagem e intensifica o calor urbano.</p>
                     <a href="https://g1.globo.com/busca/?q=calor+urbano+enchentes+%C3%A1reas+verdes" target="_blank" rel="noreferrer">Buscar reportagens no G1</a>
                 </div>
             </article>
 
-            <article class="report-card">
-                <div class="media-art"><img src="../img/media-restoration.jpg" alt="Mudas crescendo em bandejas de cultivo" loading="lazy"></div>
-                <div class="report-card-body">
-                    <span class="meta">Soluções</span>
+            <article class="reportagem-cartao">
+                <div class="midia-imagem"><img src="../img/media-restoration.jpg" alt="Mudas crescendo em bandejas de cultivo" loading="lazy"></div>
+                <div class="reportagem-cartao-corpo">
+                    <span class="metadados">Soluções</span>
                     <h3>Recuperar para o futuro</h3>
                     <p>Proteger mananciais e recuperar áreas verdes torna as cidades mais resilientes.</p>
                     <a href="https://g1.globo.com/busca/?q=restaura%C3%A7%C3%A3o+ambiental+cidades+%C3%A1reas+verdes" target="_blank" rel="noreferrer">Buscar reportagens no G1</a>

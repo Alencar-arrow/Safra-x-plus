@@ -84,7 +84,7 @@ header {
 }
 
 .nav-link:hover,
-.nav-link.active {
+.nav-link.ativo {
     color: var(--primary-color);
     background: var(--light-bg);
 }

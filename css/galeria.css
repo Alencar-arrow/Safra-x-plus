@@ -1,15 +1,15 @@
 
 /* Capa da galeria, com imagem ao fundo e camada para contraste. */
-.gallery-page {
+.galeria-pagina {
   scroll-behavior: smooth;
   background: var(--gallery-paper);
 }
 
-.gallery-page main {
+.galeria-pagina main {
   width: 100%;
 }
 
-.gallery-hero {
+.galeria-capa {
   position: relative;
   display: flex;
   align-items: center;
@@ -20,20 +20,20 @@
   background: #18382c;
 }
 
-.gallery-page .gallery-hero::before {
+.galeria-pagina .galeria-capa::before {
   background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2000&q=85');
   background-position: center 48%;
 }
 
-.gallery-page .gallery-hero::after {
+.galeria-pagina .galeria-capa::after {
   background: linear-gradient(90deg, rgba(12, 34, 24, .84) 0%, rgba(12, 34, 24, .55) 48%, rgba(12, 34, 24, .08) 100%);
 }
 
-.gallery-hero-content {
+.galeria-capa-conteudo {
   width: min(680px, 100%);
 }
 
-.gallery-eyebrow {
+.galeria-rotulo {
   margin-bottom: .8rem;
   color: #d8b78a;
   font-size: .78rem;
@@ -42,7 +42,7 @@
   text-transform: uppercase;
 }
 
-.gallery-hero h1 {
+.galeria-capa h1 {
   margin: 0 0 1rem;
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 3.7rem;
@@ -50,14 +50,14 @@
   line-height: 1.04;
 }
 
-.gallery-hero-content > p:not(.gallery-eyebrow) {
+.galeria-capa-conteudo > p:not(.galeria-rotulo) {
   max-width: 500px;
   margin-bottom: 1.7rem;
   color: rgba(255, 255, 255, .88);
   font-size: 1.1rem;
 }
 
-.gallery-hero-link {
+.galeria-capa-link {
   display: inline-flex;
   align-items: center;
   gap: .8rem;
@@ -68,12 +68,12 @@
   text-decoration: none;
 }
 
-.gallery-hero-link span {
+.galeria-capa-link span {
   color: #d8b78a;
   font-size: 1.3rem;
 }
 
-.gallery-hero-index {
+.galeria-capa-indice {
   position: absolute;
   right: max(1.5rem, calc((100% - 1200px) / 2));
   bottom: 1.5rem;
@@ -84,14 +84,14 @@
 }
 
 /* Cabecalho da colecao e controles de filtro. */
-.gallery-collection {
+.galeria-colecao {
   max-width: 1260px;
   margin: 0 auto;
   padding: 5rem 2rem 6rem;
   scroll-margin-top: 5rem;
 }
 
-.gallery-heading {
+.galeria-cabecalho {
   display: flex;
   justify-content: space-between;
   align-items: end;
@@ -99,11 +99,11 @@
   margin-bottom: 2.2rem;
 }
 
-.gallery-heading .gallery-eyebrow {
+.galeria-cabecalho .galeria-rotulo {
   color: var(--gallery-clay);
 }
 
-.gallery-heading h2 {
+.galeria-cabecalho h2 {
   color: var(--gallery-ink);
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 2.4rem;
@@ -111,12 +111,12 @@
   line-height: 1.15;
 }
 
-.gallery-heading > p {
+.galeria-cabecalho > p {
   max-width: 370px;
   color: #5d655d;
 }
 
-.gallery-toolbar {
+.galeria-ferramentas {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -126,13 +126,13 @@
   border-bottom: 1px solid #d9d8ce;
 }
 
-.gallery-filters {
+.galeria-filtros {
   display: flex;
   flex-wrap: wrap;
   gap: .45rem;
 }
 
-.gallery-filter {
+.galeria-filtro {
   padding: .55rem .9rem;
   border: 1px solid transparent;
   border-radius: 3px;
@@ -143,32 +143,32 @@
   cursor: pointer;
 }
 
-.gallery-filter:hover,
-.gallery-filter.is-active {
+.galeria-filtro:hover,
+.galeria-filtro.ativo {
   border-color: var(--gallery-leaf);
   background: var(--gallery-leaf);
   color: #fff;
 }
 
-.gallery-count {
+.galeria-contador {
   flex: 0 0 auto;
   color: #687168;
   font-size: .85rem;
 }
 
 /* Grade de imagens e legenda visivel ao passar o mouse ou focar. */
-.gallery-grid {
+.galeria-grade {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.5rem;
 }
 
-.gallery-item {
+.galeria-item {
   min-width: 0;
   margin: 0;
 }
 
-.gallery-open {
+.galeria-abrir {
   position: relative;
   display: block;
   width: 100%;
@@ -180,7 +180,7 @@
   cursor: zoom-in;
 }
 
-.gallery-open img {
+.galeria-abrir img {
   display: block;
   width: 100%;
   height: 100%;
@@ -188,12 +188,12 @@
   transition: transform .45s ease;
 }
 
-.gallery-open:hover img,
-.gallery-open:focus-visible img {
+.galeria-abrir:hover img,
+.galeria-abrir:focus-visible img {
   transform: scale(1.045);
 }
 
-.gallery-open-label {
+.galeria-abrir-rotulo {
   position: absolute;
   right: .75rem;
   bottom: .75rem;
@@ -206,19 +206,19 @@
   transition: opacity .2s, transform .2s;
 }
 
-.gallery-open:hover .gallery-open-label,
-.gallery-open:focus-visible .gallery-open-label {
+.galeria-abrir:hover .galeria-abrir-rotulo,
+.galeria-abrir:focus-visible .galeria-abrir-rotulo {
   opacity: 1;
   transform: translateY(0);
 }
 
-.gallery-item figcaption {
+.galeria-item figcaption {
   display: grid;
   gap: .25rem;
   padding: .8rem .1rem 0;
 }
 
-.gallery-item figcaption span {
+.galeria-item figcaption span {
   color: var(--gallery-clay);
   font-size: .7rem;
   font-weight: 700;
@@ -226,7 +226,7 @@
   text-transform: uppercase;
 }
 
-.gallery-item figcaption strong {
+.galeria-item figcaption strong {
   color: var(--gallery-ink);
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 1.15rem;
@@ -234,7 +234,7 @@
 }
 
 /* Dialog mostra uma imagem ampliada sobre uma camada escura. */
-.gallery-dialog {
+.galeria-janela {
   position: fixed;
   width: min(1000px, calc(100% - 2rem));
   max-width: none;
@@ -245,21 +245,21 @@
   color: var(--gallery-ink);
 }
 
-.gallery-dialog[open] {
+.galeria-janela[open] {
   animation: gallery-dialog-in .2s ease-out;
 }
 
-.gallery-dialog::backdrop {
+.galeria-janela::backdrop {
   background: rgba(11, 24, 17, .82);
 }
 
-.gallery-dialog form {
+.galeria-janela form {
   display: flex;
   justify-content: flex-end;
   margin-bottom: .75rem;
 }
 
-.gallery-dialog-close {
+.galeria-janela-fechar {
   display: inline-flex;
   align-items: center;
   gap: .7rem;
@@ -271,29 +271,29 @@
   cursor: pointer;
 }
 
-.gallery-dialog-close span {
+.galeria-janela-fechar span {
   font-size: 1.2rem;
 }
 
-.gallery-dialog figure {
+.galeria-janela figure {
   margin: 0;
 }
 
-.gallery-dialog img {
+.galeria-janela img {
   display: block;
   width: 100%;
   max-height: calc(100vh - 8rem);
   object-fit: contain;
 }
 
-.gallery-dialog figcaption {
+.galeria-janela figcaption {
   padding: .75rem .1rem .1rem;
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 1.15rem;
 }
 
 /* Contorno consistente para navegacao por teclado. */
-.gallery-page :focus-visible {
+.galeria-pagina :focus-visible {
   outline: 3px solid #bd7658;
   outline-offset: 3px;
 }

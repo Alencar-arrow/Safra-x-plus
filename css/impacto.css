@@ -1,0 +1,361 @@
+/* Estilos da pagina de impactos e sua capa ilustrada. */
+.impacto-pagina {
+    background: #f4f3ec;
+    color: #18382c;
+}
+
+.impacto-capa {
+    position: relative;
+    display: flex;
+    align-items: center;
+    isolation: isolate;
+    min-height: var(--page-cover-height);
+    padding: 5rem max(1.5rem, calc((100% - 1200px) / 2));
+    overflow: hidden;
+    background: #18382c;
+    color: #fff;
+}
+
+.impacto-pagina .impacto-capa::before {
+    background-image: url('https://images.unsplash.com/photo-1536147116438-62679a5e01f2?auto=format&fit=crop&w=2000&q=85');
+    background-position: center 48%;
+}
+
+.impacto-pagina .impacto-capa::after {
+    background: linear-gradient(90deg, rgba(12, 31, 23, .86) 0%, rgba(12, 31, 23, .58) 52%, rgba(12, 31, 23, .1) 100%);
+}
+
+.impacto-capa-conteudo {
+    max-width: 760px;
+}
+
+.impacto-rotulo,
+.impacto-secao-rotulo {
+    color: #d8b78a;
+    font-size: .76rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.impacto-rotulo {
+    margin-bottom: 1rem;
+}
+
+.impacto-capa h1 {
+    max-width: 740px;
+    margin: 0 0 1rem;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 4.5rem;
+    font-weight: 400;
+    line-height: 1.04;
+}
+
+.impacto-capa-conteudo > p:not(.impacto-rotulo) {
+    max-width: 590px;
+    margin-bottom: 1.6rem;
+    color: rgba(255, 255, 255, .88);
+    font-size: 1.1rem;
+}
+
+.impacto-capa-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .7rem;
+    padding-bottom: .4rem;
+    border-bottom: 1px solid #d8b78a;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.impacto-capa-link span {
+    color: #d8b78a;
+    font-size: 1.2rem;
+}
+
+.impacto-capa-indice {
+    position: absolute;
+    right: max(1.5rem, calc((100% - 1200px) / 2));
+    bottom: 1.4rem;
+    color: rgba(255, 255, 255, .76);
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+}
+
+/* Resumo dos impactos, causas e alternativas de solucao. */
+.impacto-visao-geral,
+.impacto-cartoes,
+.impacto-resposta {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+
+.impacto-visao-geral {
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: 1rem 2rem;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+}
+
+.impacto-causas-solucoes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 2rem;
+}
+
+.impacto-causas-painel,
+.impacto-solucoes-painel {
+    padding: 1.5rem 1.3rem;
+    background: #f4f0e9;
+    border: 1px solid rgba(24, 56, 44, 0.08);
+    border-radius: 18px;
+}
+
+.impacto-causas-painel h2,
+.impacto-solucoes-painel h2 {
+    margin: 0.8rem 0 0.8rem;
+    color: #18382c;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2rem, 2vw + 1rem, 2.8rem);
+    font-weight: 400;
+    line-height: 1.1;
+}
+
+.impacto-causas-painel ul,
+.impacto-solucoes-painel ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: #58645a;
+    line-height: 1.8;
+}
+
+.impacto-causas-painel li,
+.impacto-solucoes-painel li {
+    margin-bottom: 0.55rem;
+}
+
+.impacto-secao-rotulo {
+    color: #a65e42;
+}
+
+.impacto-secao-rotulo span {
+    color: #18382c;
+}
+
+.impacto-visao-geral > .impacto-secao-rotulo {
+    padding-top: .7rem;
+}
+
+.impacto-visao-geral-texto h2,
+.impacto-resposta-cabecalho h2 {
+    max-width: 780px;
+    margin-bottom: .9rem;
+    color: #18382c;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.8rem;
+    font-weight: 400;
+    line-height: 1.12;
+}
+
+.impacto-visao-geral-texto p,
+.impacto-resposta-cabecalho > p:last-child {
+    max-width: 730px;
+    color: #58645a;
+    font-size: 1.03rem;
+}
+
+/* Cartoes que descrevem os principais efeitos da expansao urbana. */
+.impacto-cartoes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.3rem;
+    padding-top: 1rem;
+    padding-bottom: 6rem;
+    scroll-margin-top: 2rem;
+}
+
+.impacto-cartao {
+    min-width: 0;
+    padding: 1.3rem 1.2rem 1.4rem;
+    border-top: 1px solid #c9cfc5;
+    border-bottom: 1px solid #c9cfc5;
+}
+
+.impacto-cartao-indice {
+    display: flex;
+    gap: .75rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    color: #a65e42;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.impacto-cartao-indice span {
+    color: #667168;
+    font-weight: 500;
+}
+
+.impacto-cartao h3 {
+    margin-bottom: .65rem;
+    color: #18382c;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.55rem;
+    font-weight: 400;
+}
+
+.impacto-cartao > p:last-child {
+    color: #58645a;
+    font-size: .95rem;
+}
+
+.impacto-dados {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+}
+
+.impacto-dados-cabecalho {
+    max-width: 760px;
+    margin-bottom: 2rem;
+}
+
+.impacto-dados-cabecalho h2 {
+    margin: 1rem 0 .8rem;
+    color: #18382c;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    font-weight: 400;
+    line-height: 1.12;
+}
+
+.impacto-dados-cabecalho > p:last-child,
+.impacto-dados-nota,
+.impacto-dados-fonte {
+    color: #58645a;
+    font-size: .95rem;
+}
+
+.impacto-dados-cartoes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.2rem;
+}
+
+.impacto-dados-cartao {
+    min-width: 0;
+    padding: 1.4rem;
+    border: 1px solid #d8ddd4;
+    border-radius: 16px;
+    background: #fff;
+}
+
+.impacto-dados-regiao {
+    color: #667168;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.impacto-dados-valor {
+    margin: .55rem 0 .25rem;
+    color: #18382c;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2.5rem, 4vw, 3.4rem);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.impacto-dados-cartao meter {
+    display: block;
+    width: 100%;
+    height: .75rem;
+    margin: 1rem 0;
+    accent-color: #32634a;
+}
+
+.impacto-dados-cartao > p:last-child {
+    color: #58645a;
+    font-size: .92rem;
+}
+
+.impacto-dados-nota {
+    margin-top: 1.25rem;
+}
+
+.impacto-dados-fonte {
+    margin-top: .5rem;
+}
+
+.impacto-dados-fonte a {
+    color: #245b3a;
+    font-weight: 700;
+    text-underline-offset: .15em;
+}
+
+.impacto-resposta {
+    display: grid;
+    grid-template-columns: minmax(250px, .8fr) minmax(0, 1.2fr);
+    gap: 3rem 5rem;
+    padding-top: 6rem;
+    padding-bottom: 7rem;
+}
+
+.impacto-resposta-cabecalho h2 {
+    margin-top: 1.2rem;
+}
+
+.impacto-resposta-cabecalho > p:last-child {
+    max-width: 430px;
+}
+
+.impacto-acoes {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #c9cfc5;
+    list-style: none;
+}
+
+.impacto-acoes li {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr);
+    gap: 1rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid #c9cfc5;
+}
+
+.impacto-acoes li > span {
+    padding-top: .25rem;
+    color: #a65e42;
+    font-size: .72rem;
+    font-weight: 700;
+}
+
+.impacto-acoes h3 {
+    margin-bottom: .3rem;
+    color: #18382c;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+}
+
+.impacto-acoes p {
+    color: #58645a;
+    font-size: .93rem;
+}
+
+.impacto-pagina :focus-visible {
+    outline: 3px solid #bd7658;
+    outline-offset: 3px;
+}

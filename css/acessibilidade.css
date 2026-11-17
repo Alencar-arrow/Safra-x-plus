@@ -1,18 +1,18 @@
 /* Estes estilos ficam restritos a pagina de acessibilidade. */
-body.accessibility-page {
+body.acessibilidade-pagina {
     background: #f7f5f1;
     color: #1f2a24;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Apresentacao principal em duas colunas: texto e imagem. */
-body.accessibility-page .page-shell {
+body.acessibilidade-pagina .pagina-conteudo {
     max-width: 1180px;
     margin: 0 auto;
     padding: 3.5rem 1.5rem 5rem;
 }
 
-body.accessibility-page .hero {
+body.acessibilidade-pagina .hero {
     display: grid;
     grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
     align-items: center;
@@ -25,11 +25,11 @@ body.accessibility-page .hero {
     text-align: left;
 }
 
-body.accessibility-page .hero > div {
+body.acessibilidade-pagina .hero > div {
     animation: accessibility-enter .65s ease both;
 }
 
-body.accessibility-page .hero h1 {
+body.acessibilidade-pagina .hero h1 {
     max-width: 560px;
     margin: .5rem 0 1rem;
     color: #18382c;
@@ -39,18 +39,18 @@ body.accessibility-page .hero h1 {
     line-height: 1.05;
 }
 
-body.accessibility-page .hero p {
+body.acessibilidade-pagina .hero p {
     max-width: 670px;
     color: #4c5d55;
     font-size: 1.08rem;
     line-height: 1.8;
 }
 
-body.accessibility-page .hero > div > p:last-child {
+body.acessibilidade-pagina .hero > div > p:last-child {
     margin-bottom: 0;
 }
 
-body.accessibility-page .hero-visual {
+body.acessibilidade-pagina .capa-visual {
     position: relative;
     height: 420px;
     overflow: hidden;
@@ -60,7 +60,7 @@ body.accessibility-page .hero-visual {
     animation: accessibility-enter .75s .12s ease both;
 }
 
-body.accessibility-page .hero-visual img {
+body.acessibilidade-pagina .capa-visual img {
     display: block;
     width: 100%;
     height: 100%;
@@ -68,14 +68,14 @@ body.accessibility-page .hero-visual img {
     transition: transform .6s ease;
 }
 
-body.accessibility-page .hero-visual::after {
+body.acessibilidade-pagina .capa-visual::after {
     position: absolute;
     inset: 35% 0 0;
     background: linear-gradient(180deg, transparent, rgba(12, 31, 23, .72));
     content: "";
 }
 
-body.accessibility-page .hero-visual figcaption {
+body.acessibilidade-pagina .capa-visual figcaption {
     position: absolute;
     z-index: 1;
     right: 1.5rem;
@@ -86,7 +86,7 @@ body.accessibility-page .hero-visual figcaption {
     font-weight: 600;
 }
 
-body.accessibility-page .eyebrow {
+body.acessibilidade-pagina .rotulo {
     color: #2e7d32;
     font-size: .72rem;
     font-weight: 700;
@@ -95,7 +95,7 @@ body.accessibility-page .eyebrow {
 }
 
 /* Cards de orientacao e lista de praticas acessiveis. */
-body.accessibility-page .grid {
+body.acessibilidade-pagina .grade {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0;
@@ -103,7 +103,7 @@ body.accessibility-page .grid {
     border-top: 1px solid #cbd4c8;
 }
 
-body.accessibility-page .card {
+body.acessibilidade-pagina .cartao {
     padding: 1.5rem 1.5rem 1.5rem 0;
     border-bottom: 1px solid #cbd4c8;
     border-radius: 0;
@@ -113,25 +113,25 @@ body.accessibility-page .card {
     animation: accessibility-enter .5s ease both;
 }
 
-body.accessibility-page .card:nth-child(2) { animation-delay: .08s; }
-body.accessibility-page .card:nth-child(3) { animation-delay: .16s; }
-body.accessibility-page .card:nth-child(4) { animation-delay: .24s; }
+body.acessibilidade-pagina .cartao:nth-child(2) { animation-delay: .08s; }
+body.acessibilidade-pagina .cartao:nth-child(3) { animation-delay: .16s; }
+body.acessibilidade-pagina .cartao:nth-child(4) { animation-delay: .24s; }
 
-body.accessibility-page .card:hover {
+body.acessibilidade-pagina .cartao:hover {
     transform: none;
     box-shadow: none;
 }
 
-body.accessibility-page .card:nth-child(odd) {
+body.acessibilidade-pagina .cartao:nth-child(odd) {
     padding-right: 2rem;
 }
 
-body.accessibility-page .card:nth-child(even) {
+body.acessibilidade-pagina .cartao:nth-child(even) {
     padding-left: 2rem;
     border-left: 1px solid #cbd4c8;
 }
 
-body.accessibility-page .card h3 {
+body.acessibilidade-pagina .cartao h3 {
     margin: .7rem 0 .6rem;
     color: #18382c;
     font-family: Georgia, 'Times New Roman', serif;
@@ -140,18 +140,18 @@ body.accessibility-page .card h3 {
     transition: color .2s ease, transform .2s ease;
 }
 
-body.accessibility-page .card:hover h3 {
+body.acessibilidade-pagina .cartao:hover h3 {
     transform: translateX(4px);
     color: #32634a;
 }
 
-body.accessibility-page .card p,
-body.accessibility-page .checklist li {
+body.acessibilidade-pagina .cartao p,
+body.acessibilidade-pagina .verificacao li {
     color: #485953;
     line-height: 1.8;
 }
 
-body.accessibility-page .checklist {
+body.acessibilidade-pagina .verificacao {
     display: grid;
     gap: .8rem;
     margin: 0;
@@ -159,14 +159,14 @@ body.accessibility-page .checklist {
     list-style: none;
 }
 
-body.accessibility-page .checklist li {
+body.acessibilidade-pagina .verificacao li {
     display: flex;
     align-items: flex-start;
     gap: .8rem;
     transition: transform .2s ease;
 }
 
-body.accessibility-page .checklist li::before {
+body.acessibilidade-pagina .verificacao li::before {
     display: inline-flex;
     flex: 0 0 1.4rem;
     align-items: center;
@@ -181,7 +181,7 @@ body.accessibility-page .checklist li::before {
     font-weight: 700;
 }
 
-body.accessibility-page .principles {
+body.acessibilidade-pagina .principios {
     margin-top: 3rem;
     padding: 2rem;
     border-left: 5px solid #bd7658;
@@ -189,14 +189,43 @@ body.accessibility-page .principles {
     color: #fff;
 }
 
-body.accessibility-page .principles .eyebrow,
-body.accessibility-page .principles h2,
-body.accessibility-page .principles .checklist li {
+body.acessibilidade-pagina .principios .rotulo,
+body.acessibilidade-pagina .principios h2,
+body.acessibilidade-pagina .principios .verificacao li {
     color: #fff;
 }
 
-body.accessibility-page .principles-title {
+body.acessibilidade-pagina .principios-titulo {
     margin: .5rem 0 1.2rem;
     font-size: 2.4rem;
 }
 
+body.acessibilidade-pagina .acessibilidade-retorno {
+    margin-top: 2rem;
+    padding: 2rem;
+    border: 1px solid #cbd4c8;
+    background: #fff;
+}
+
+body.acessibilidade-pagina .acessibilidade-retorno h2 {
+    margin: .5rem 0;
+    color: #18382c;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+body.acessibilidade-pagina .acessibilidade-retorno > p:not(.rotulo) {
+    max-width: 680px;
+    margin-bottom: 1.2rem;
+    color: #485953;
+    line-height: 1.8;
+}
+
+body.acessibilidade-pagina .acessibilidade-retorno .btn {
+    background: #245b3a;
+}
+
+body.acessibilidade-pagina .acessibilidade-retorno .btn:hover {
+    background: #18382c;
+}

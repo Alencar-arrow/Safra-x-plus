@@ -1,447 +1,147 @@
-/* Cenario fixo durante a rolagem para mostrar o crescimento da arvore. */
-.tree-growth-section {
+/* A cena acompanha a rolagem sem prender o conteudo em telas pequenas. */
+.arvore-crescimento-secao {
     position: relative;
-    height: 300vh;
+    height: 280vh;
     background: #102917;
 }
 
-.tree-growth-scene {
+.arvore-crescimento-cena {
     position: sticky;
     top: 0;
     display: grid;
-    min-height: 520px;
     height: 100vh;
     height: 100svh;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+    min-height: 32rem;
+    min-height: min(100svh, 32rem);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: center;
-    gap: clamp(1rem, 4vw, 3.5rem);
-    padding: 2rem max(1.5rem, 8vw);
+    gap: clamp(1rem, 5vw, 4rem);
+    padding: clamp(1rem, 4vw, 3rem) max(1.25rem, 8vw);
     overflow: hidden;
-    background: radial-gradient(ellipse at 30% 50%, #24552c 0%, #112d18 62%, #0b1c10 100%);
+    background: radial-gradient(ellipse at 30% 50%, #315b3a, #173720 58%, #0b1c10);
     color: var(--white);
 }
 
-/* Desenho SVG e seus elementos sao preparados para animacao por etapas. */
-.tree-growth {
+.arvore-crescimento {
     display: block;
-    width: min(100%, 440px);
-    height: auto;
+    width: min(100%, 27rem);
     justify-self: center;
-    filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.18));
+    filter: drop-shadow(0 1rem 2rem #0003);
 }
 
-.tree-growth > * {
+.arvore-tronco,
+.arvore-copa,
+.arvore-floresta {
     transform-box: fill-box;
-    transform-origin: 50% 100%;
+    transform-origin: center bottom;
 }
 
-.tree-growth-section.is-animated .tree-trunk,
-.tree-growth-section.is-animated .tree-canopy,
-.tree-growth-section.is-animated .tree-forest {
+.arvore-crescimento-secao.animada :is(.arvore-tronco, .arvore-copa, .arvore-floresta) {
     transform: scale(0);
 }
 
-.tree-seed {
+.arvore-semente {
     transform-box: fill-box;
     transform-origin: center;
-    opacity: 0;
 }
 
-/* Texto, indicador de progresso e etapas sincronizadas com a animacao. */
-.tree-growth-copy {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr;
-    align-content: center;
+.arvore-crescimento-texto {
+    align-self: center;
 }
 
-.tree-growth-eyebrow {
-    margin-bottom: 1rem;
+.arvore-crescimento-rotulo {
+    margin-bottom: .75rem;
     color: #b8e6bd;
-    font-size: 0.8rem;
+    font-size: .8rem;
     font-weight: 700;
-    letter-spacing: 0.14em;
+    letter-spacing: .14em;
     text-transform: uppercase;
 }
 
-.tree-growth-copy h2 {
-    max-width: 580px;
-    margin-bottom: 1rem;
+.arvore-crescimento-texto h2 {
+    max-width: 18ch;
+    margin-bottom: .75rem;
     color: var(--white);
-    font-size: clamp(2rem, 4.2vw, 3.7rem);
+    font-size: clamp(2rem, 4.5vw, 3.7rem);
     line-height: 1.08;
 }
 
-.tree-growth-instruction {
-    margin-bottom: 2rem;
+.arvore-crescimento-instrucao {
+    margin-bottom: 1.5rem;
     color: rgba(255, 255, 255, 0.76);
-    font-size: 1rem;
 }
 
-.tree-growth-progress {
-    height: 2px;
+.arvore-crescimento-progresso {
+    height: 3px;
     overflow: hidden;
+    border-radius: 99px;
     background: rgba(255, 255, 255, 0.25);
 }
 
-.tree-growth-progress span {
+.arvore-crescimento-progresso span {
     display: block;
     width: 100%;
     height: 100%;
+    border-radius: inherit;
     background: #b8e6bd;
     transform: scaleX(0);
     transform-origin: left center;
-    transition: transform 0.15s linear;
+    transition: transform .15s linear;
 }
 
-.tree-growth-step-count {
-    margin-top: 0.75rem;
+.arvore-crescimento-etapa-contador {
+    margin-top: .75rem;
     color: var(--white);
-    font-size: 0.85rem;
+    font-size: .85rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
-}
-
-.tree-growth-step-count span {
-    color: rgba(255, 255, 255, 0.56);
-}
-
-.tree-growth-steps {
-    position: relative;
-    display: grid;
-    min-height: 13rem;
-    margin-top: 1.25rem;
-    align-items: center;
-}
-
-.tree-growth-steps p {
-    grid-area: 1 / 1;
-    max-width: 580px;
-    color: var(--white);
-    font-size: clamp(1.2rem, 2.1vw, 1.65rem);
-    line-height: 1.55;
-    opacity: 0;
-    transform: translateY(18px);
-    filter: blur(5px);
-    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-        filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.tree-growth-steps p.is-active {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-}
-
-/* Estilos da pagina de impactos e sua capa ilustrada. */
-.impact-page {
-    background: #f4f3ec;
-    color: #18382c;
-}
-
-.impact-hero {
-    position: relative;
-    display: flex;
-    align-items: center;
-    isolation: isolate;
-    min-height: var(--page-cover-height);
-    padding: 5rem max(1.5rem, calc((100% - 1200px) / 2));
-    overflow: hidden;
-    background: #18382c;
-    color: #fff;
-}
-
-.impact-page .impact-hero::before {
-    background-image: url('https://images.unsplash.com/photo-1536147116438-62679a5e01f2?auto=format&fit=crop&w=2000&q=85');
-    background-position: center 48%;
-}
-
-.impact-page .impact-hero::after {
-    background: linear-gradient(90deg, rgba(12, 31, 23, .86) 0%, rgba(12, 31, 23, .58) 52%, rgba(12, 31, 23, .1) 100%);
-}
-
-.impact-hero-content {
-    max-width: 760px;
-}
-
-.impact-eyebrow,
-.impact-section-label {
-    color: #d8b78a;
-    font-size: .76rem;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-}
-
-.impact-eyebrow {
-    margin-bottom: 1rem;
-}
-
-.impact-hero h1 {
-    max-width: 740px;
-    margin: 0 0 1rem;
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 4.5rem;
-    font-weight: 400;
-    line-height: 1.04;
-}
-
-.impact-hero-content > p:not(.impact-eyebrow) {
-    max-width: 590px;
-    margin-bottom: 1.6rem;
-    color: rgba(255, 255, 255, .88);
-    font-size: 1.1rem;
-}
-
-.impact-hero-link {
-    display: inline-flex;
-    align-items: center;
-    gap: .7rem;
-    padding-bottom: .4rem;
-    border-bottom: 1px solid #d8b78a;
-    color: #fff;
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.impact-hero-link span {
-    color: #d8b78a;
-    font-size: 1.2rem;
-}
-
-.impact-hero-index {
-    position: absolute;
-    right: max(1.5rem, calc((100% - 1200px) / 2));
-    bottom: 1.4rem;
-    color: rgba(255, 255, 255, .76);
-    font-size: .7rem;
-    font-weight: 700;
-    letter-spacing: .1em;
-}
-
-/* Resumo dos impactos, causas e alternativas de solucao. */
-.impact-overview,
-.impact-cards,
-.impact-response {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-right: 2rem;
-    padding-left: 2rem;
-}
-
-.impact-overview {
-    display: grid;
-    grid-template-columns: 180px minmax(0, 1fr);
-    gap: 1rem 2rem;
-    padding-top: 5rem;
-    padding-bottom: 2rem;
-}
-
-.impact-cause-solution {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.3rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem 2rem;
-}
-
-.impact-cause-panel,
-.impact-solution-panel {
-    padding: 1.5rem 1.3rem;
-    background: #f4f0e9;
-    border: 1px solid rgba(24, 56, 44, 0.08);
-    border-radius: 18px;
-}
-
-.impact-cause-panel h2,
-.impact-solution-panel h2 {
-    margin: 0.8rem 0 0.8rem;
-    color: #18382c;
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(2rem, 2vw + 1rem, 2.8rem);
-    font-weight: 400;
-    line-height: 1.1;
-}
-
-.impact-cause-panel ul,
-.impact-solution-panel ul {
-    margin: 0;
-    padding-left: 1.1rem;
-    color: #58645a;
-    line-height: 1.8;
-}
-
-.impact-cause-panel li,
-.impact-solution-panel li {
-    margin-bottom: 0.55rem;
-}
-
-.impact-section-label {
-    color: #a65e42;
-}
-
-.impact-section-label span {
-    color: #18382c;
-}
-
-.impact-overview > .impact-section-label {
-    padding-top: .7rem;
-}
-
-.impact-overview-copy h2,
-.impact-response-heading h2 {
-    max-width: 780px;
-    margin-bottom: .9rem;
-    color: #18382c;
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 2.8rem;
-    font-weight: 400;
-    line-height: 1.12;
-}
-
-.impact-overview-copy p,
-.impact-response-heading > p:last-child {
-    max-width: 730px;
-    color: #58645a;
-    font-size: 1.03rem;
-}
-
-/* Cartoes que descrevem os principais efeitos da expansao urbana. */
-.impact-cards {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.3rem;
-    padding-top: 1rem;
-    padding-bottom: 6rem;
-    scroll-margin-top: 2rem;
-}
-
-.impact-card {
-    min-width: 0;
-    padding: 1.3rem 1.2rem 1.4rem;
-    border-top: 1px solid #c9cfc5;
-    border-bottom: 1px solid #c9cfc5;
-}
-
-.impact-card-index {
-    display: flex;
-    gap: .75rem;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    color: #a65e42;
-    font-size: .72rem;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-}
-
-.impact-card-index span {
-    color: #667168;
-    font-weight: 500;
-}
-
-.impact-card h3 {
-    margin-bottom: .65rem;
-    color: #18382c;
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.55rem;
-    font-weight: 400;
-}
-
-.impact-card > p:last-child {
-    color: #58645a;
-    font-size: .95rem;
-}
-
-/* Ajustes finais da animacao da arvore e do bloco de resposta. */
-.tree-growth-section {
-    scroll-margin-top: 0;
-}
-
-.tree-growth-instruction {
-    display: flex;
-    align-items: center;
-    gap: .6rem;
-}
-
-.tree-growth-instruction::before {
-    width: 1.4rem;
-    height: 1px;
-    background: #b8e6bd;
-    content: "";
-}
-
-.tree-growth-step-count {
     font-variant-numeric: tabular-nums;
 }
 
-.tree-growth-progress {
-    border-radius: 99px;
-}
-
-.tree-growth-progress span {
-    border-radius: inherit;
-}
-
-.tree-growth-scene {
-    background: radial-gradient(ellipse at 30% 50%, #315b3a 0%, #173720 58%, #0b1c10 100%);
-}
-
-.impact-response {
+.arvore-crescimento-etapas {
     display: grid;
-    grid-template-columns: minmax(250px, .8fr) minmax(0, 1.2fr);
-    gap: 3rem 5rem;
-    padding-top: 6rem;
-    padding-bottom: 7rem;
+    min-height: 10rem;
+    margin-top: 1rem;
+    align-items: center;
 }
 
-.impact-response-heading h2 {
-    margin-top: 1.2rem;
+.arvore-crescimento-etapas p {
+    grid-area: 1 / 1;
+    max-width: 38ch;
+    color: var(--white);
+    font-size: clamp(1.1rem, 2.2vw, 1.55rem);
+    line-height: 1.55;
+    opacity: 0;
+    transform: translateY(.75rem);
+    transition: opacity .45s ease, transform .45s ease;
 }
 
-.impact-response-heading > p:last-child {
-    max-width: 430px;
+.arvore-crescimento-etapas p.ativo {
+    opacity: 1;
+    transform: none;
 }
 
-.impact-actions {
-    margin: 0;
-    padding: 0;
-    border-top: 1px solid #c9cfc5;
-    list-style: none;
+@media (max-width: 800px) {
+    .arvore-crescimento-secao { height: 260vh; }
+
+    .arvore-crescimento-cena {
+        min-height: 100vh;
+        min-height: 100svh;
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(9rem, 35svh) minmax(0, 1fr);
+        align-content: center;
+        gap: .5rem;
+        padding: 1rem max(1.25rem, 6vw);
+    }
+
+    .arvore-crescimento { width: min(100%, 19rem); max-height: 35svh; }
+    .arvore-crescimento-texto { align-self: start; }
+    .arvore-crescimento-texto h2 { font-size: clamp(1.8rem, 7vw, 2.6rem); }
+    .arvore-crescimento-instrucao { margin-bottom: .8rem; }
+    .arvore-crescimento-etapas { min-height: 6rem; margin-top: .5rem; }
+    .arvore-crescimento-etapas p { font-size: clamp(1.05rem, 4.5vw, 1.35rem); }
 }
 
-.impact-actions li {
-    display: grid;
-    grid-template-columns: 36px minmax(0, 1fr);
-    gap: 1rem;
-    padding: 1.2rem 0;
-    border-bottom: 1px solid #c9cfc5;
+@media (prefers-reduced-motion: reduce) {
+    .arvore-crescimento-progresso span,
+    .arvore-crescimento-etapas p { transition: none; }
 }
-
-.impact-actions li > span {
-    padding-top: .25rem;
-    color: #a65e42;
-    font-size: .72rem;
-    font-weight: 700;
-}
-
-.impact-actions h3 {
-    margin-bottom: .3rem;
-    color: #18382c;
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.35rem;
-    font-weight: 400;
-}
-
-.impact-actions p {
-    color: #58645a;
-    font-size: .93rem;
-}
-
-.impact-page :focus-visible {
-    outline: 3px solid #bd7658;
-    outline-offset: 3px;
-}
-

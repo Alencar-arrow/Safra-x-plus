@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="../css/principal.css">
     <script src="../js/script.js" defer></script>
 </head>
-<body class="page-contact">
+<body class="pagina-contato">
 
-    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <a class="pular-link" href="#conteudo">Pular para o conteúdo</a>
 
     <header>
         <nav class="navbar" aria-label="Principal">
@@ -33,59 +33,59 @@
                 <li><a href="acessibilidade.html" class="nav-link">Acessibilidade</a></li>
                 <li><a href="midia.html" class="nav-link">Mídia</a></li>
                 <li><a href="noticias.html" class="nav-link">Notícias</a></li>
-                <li><a href="contato.html" class="nav-link active" aria-current="page">Contato</a></li>
+                <li><a href="contato.html" class="nav-link ativo" aria-current="page">Contato</a></li>
                 <li><a href="orcamento_hospedagem.html" class="nav-link">Hospedagem</a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="hero contact-hero">
-        <div class="hero-content">
-            <p class="contact-kicker">Contato e equipe</p>
+    <section class="hero contato-capa">
+        <div class="capa-conteudo">
+            <p class="contato-rotulo">Contato e equipe</p>
             <h1>Fale com a gente</h1>
             <p>Quer apoiar o SafraX, tirar uma dúvida ou apontar uma barreira de acesso? Envie uma mensagem e retornamos em até dois dias úteis.</p>
         </div>
     </section>
 
-    <main id="conteudo" class="container contact-page">
-        <div class="contact-layout">
-            <section class="contact-panel" aria-labelledby="form-title">
-                <div class="contact-panel-header">
+    <main id="conteudo" class="conteudo-central contato-pagina">
+        <div class="contato-estrutura">
+            <section class="contato-painel" aria-labelledby="form-title">
+                <div class="contato-painel-cabecalho">
                     <h2 id="form-title">Envie uma mensagem</h2>
                     <p>Campos com asterisco são obrigatórios. A validação acontece ao sair do campo e ao enviar.</p>
                 </div>
 
-                <div class="contact-success" id="contact-success" hidden>
-                    <p class="contact-success-kicker">Mensagem enviada</p>
+                <div class="contato-sucesso" id="contact-success" hidden>
+                    <p class="contato-sucesso-rotulo">Mensagem enviada</p>
                     <h3 tabindex="-1">Obrigado pelo contato.</h3>
                     <p id="contact-success-text">Recebemos sua mensagem e retornamos em breve pelo e-mail informado.</p>
                     <button type="button" class="btn" id="contact-reset">Enviar outra mensagem</button>
                 </div>
 
-                <form class="contact-form" id="contact-form" action="#" method="post" novalidate>
-                    <div class="form-status" id="form-status" role="alert" aria-live="assertive"></div>
+                <form class="contato-formulario" id="contact-form" action="#" method="post" novalidate>
+                    <div class="formulario-status" id="form-status" role="alert" aria-live="assertive"></div>
 
-                    <div class="form-row">
-                        <div class="form-field">
+                    <div class="formulario-linha">
+                        <div class="formulario-campo">
                             <label for="nome">Nome completo <span aria-hidden="true">*</span></label>
                             <input type="text" id="nome" name="nome" autocomplete="name" required minlength="3" aria-describedby="nome-error">
-                            <p class="field-error" id="nome-error"></p>
+                            <p class="campo-erro" id="nome-error"></p>
                         </div>
-                        <div class="form-field">
+                        <div class="formulario-campo">
                             <label for="email">E-mail <span aria-hidden="true">*</span></label>
                             <input type="email" id="email" name="email" autocomplete="email" required aria-describedby="email-error">
-                            <p class="field-error" id="email-error"></p>
+                            <p class="campo-erro" id="email-error"></p>
                         </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-field">
+                    <div class="formulario-linha">
+                        <div class="formulario-campo">
                             <label for="telefone">Telefone</label>
                             <input type="tel" id="telefone" name="telefone" autocomplete="tel" inputmode="tel" placeholder="(11) 90000-0000" aria-describedby="telefone-hint telefone-error">
-                            <p class="field-hint" id="telefone-hint">Opcional. Use DDD e número, com ou sem formatação.</p>
-                            <p class="field-error" id="telefone-error"></p>
+                            <p class="campo-orientacao" id="telefone-hint">Opcional. Use DDD e número, com ou sem formatação.</p>
+                            <p class="campo-erro" id="telefone-error"></p>
                         </div>
-                        <div class="form-field">
+                        <div class="formulario-campo">
                             <label for="ajuda">Assunto <span aria-hidden="true">*</span></label>
                             <select id="ajuda" name="ajuda" required aria-describedby="ajuda-error">
                                 <option value="">Selecione uma opção</option>
@@ -96,30 +96,30 @@
                                 <option value="acessibilidade">Reportar barreira de acessibilidade</option>
                                 <option value="outro">Outro</option>
                             </select>
-                            <p class="field-error" id="ajuda-error"></p>
+                            <p class="campo-erro" id="ajuda-error"></p>
                         </div>
                     </div>
 
-                    <div class="form-field">
+                    <div class="formulario-campo">
                         <label for="mensagem">Mensagem <span aria-hidden="true">*</span></label>
                         <textarea id="mensagem" name="mensagem" rows="5" required minlength="20" aria-describedby="mensagem-hint mensagem-error" placeholder="Conte um pouco sobre como você quer contribuir"></textarea>
-                        <p class="field-hint" id="mensagem-hint">Mínimo de 20 caracteres.</p>
-                        <p class="field-error" id="mensagem-error"></p>
+                        <p class="campo-orientacao" id="mensagem-hint">Mínimo de 20 caracteres.</p>
+                        <p class="campo-erro" id="mensagem-error"></p>
                     </div>
 
-                    <label class="checkbox-label">
+                    <label class="caixa-selecao-rotulo">
                         <input type="checkbox" id="newsletter" name="newsletter">
                         <span>Quero receber novidades do projeto por e-mail</span>
                     </label>
 
-                    <button type="submit" class="btn contact-submit">Enviar mensagem</button>
+                    <button type="submit" class="btn contato-envio">Enviar mensagem</button>
                 </form>
             </section>
 
-            <aside class="contact-aside" aria-labelledby="canais-title">
+            <aside class="contato-lateral" aria-labelledby="canais-title">
                 <h2 id="canais-title">Canais institucionais</h2>
                 <p>Informações fictícias para o projeto educativo, usadas apenas para demonstrar o fluxo de contato.</p>
-                <ul class="contact-channels">
+                <ul class="contato-canais">
                     <li>
                         <span>E-mail</span>
                         <a href="mailto:contato@safrax.org">contato@safrax.org</a>
@@ -140,36 +140,36 @@
             </aside>
         </div>
 
-        <section class="contact-team" aria-labelledby="equipe-title">
-            <div class="intro">
+        <section class="contato-equipe" aria-labelledby="equipe-title">
+            <div class="introducao">
                 <h2 id="equipe-title">Quem constrói o SafraX</h2>
                 <p>A equipe reúne pesquisa, design, front-end, back-end e dados para transformar o tema da expansão urbana em uma plataforma educativa.</p>
             </div>
-            <ul class="team-grid">
+            <ul class="equipe-grade">
                 <li>
-                    <article class="team-card">
-                        <p class="team-role">Pesquisa e design</p>
+                    <article class="equipe-cartao">
+                        <p class="equipe-funcao">Pesquisa e design</p>
                         <h3>Bruno Guedes</h3>
                         <p>Pesquisa do trabalho e direção visual do projeto.</p>
                     </article>
                 </li>
                 <li>
-                    <article class="team-card">
-                        <p class="team-role">Back-end</p>
+                    <article class="equipe-cartao">
+                        <p class="equipe-funcao">Back-end</p>
                         <h3>Gilberto Alencar</h3>
                         <p>Estrutura, fluxos e comportamento da plataforma.</p>
                     </article>
                 </li>
                 <li>
-                    <article class="team-card">
-                        <p class="team-role">Front-end</p>
+                    <article class="equipe-cartao">
+                        <p class="equipe-funcao">Front-end</p>
                         <h3>Pedro Penedo</h3>
                         <p>Interface, layout e experiência de navegação.</p>
                     </article>
                 </li>
                 <li>
-                    <article class="team-card">
-                        <p class="team-role">Pesquisa e SQL</p>
+                    <article class="equipe-cartao">
+                        <p class="equipe-funcao">Pesquisa e SQL</p>
                         <h3>Rafael Bertelli</h3>
                         <p>Levantamento de conteúdo e organização dos dados.</p>
                     </article>

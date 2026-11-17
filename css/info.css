@@ -1,5 +1,5 @@
  /* Bloco de informacao com destaque lateral e conteudo flexivel. */
- .info {
+ .informacao {
             background-color: var(--light-bg);
             border-left: 10px solid var(--primary-color);
             padding: 2rem;
@@ -12,7 +12,7 @@
         }
 
         /* Texto pode crescer e quebrar linha junto aos botoes. */
-        .info-text {
+        .informacao-texto {
             flex: 1 1 500px;
         }
 

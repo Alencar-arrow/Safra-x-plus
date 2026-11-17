@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/principal.css">
     <script src="../js/script.js" defer></script>
 </head>
-<body class="hosting-page">
+<body class="hospedagem-pagina">
     <header>
         <nav class="navbar">
             <a href="index.html" class="logo">
@@ -31,66 +31,101 @@
                 <li><a href="midia.html" class="nav-link">Mídia</a></li>
                 <li><a href="noticias.html" class="nav-link">Notícias</a></li>
                 <li><a href="contato.html" class="nav-link">Contato</a></li>
-                <li><a href="orcamento_hospedagem.html" class="nav-link active" aria-current="page">Hospedagem</a></li>
+                <li><a href="orcamento_hospedagem.html" class="nav-link ativo" aria-current="page">Hospedagem</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="page-shell">
+    <main class="pagina-conteudo">
         <section class="hero">
             <div>
-                <p class="eyebrow">SafraX / hospedagem</p>
-                <h1>Uma base forte para o SafraX.</h1>
-                <p>Escolha o nível de hospedagem e suporte para manter o projeto online. Valores mensais estimados.</p>
+                <p class="rotulo">SafraX / hospedagem</p>
+                <h1>Hospedagem consciente para um site leve.</h1>
+                <p>Compare provedores reais para publicar um site estático como o SafraX, considerando custo, recursos e transparência sobre energia.</p>
             </div>
-            <figure class="hosting-visual">
+            <figure class="hospedagem-visual">
                 <img src="../img/hosting-network.jpg" alt="A Terra vista do espaço com cidades iluminadas à noite" fetchpriority="high">
-                <figcaption>Presença digital confiável começa com uma boa infraestrutura.</figcaption>
+                <figcaption>Uma presença digital mais leve começa por escolher bem onde hospedar.</figcaption>
             </figure>
         </section>
 
-        <div class="section-heading">
-            <p class="eyebrow">Opções mensais</p>
-            <h2>Escolha o nível de suporte</h2>
-            <p>Os valores abaixo são estimativas para fins de apresentação.</p>
+        <div class="secao-cabecalho">
+            <p class="rotulo">Comparativo técnico e financeiro</p>
+            <h2>Provedores para publicar o SafraX</h2>
+            <p>Preços e limites conferidos em 16/11/2026. Planos, promoções, câmbio e condições podem mudar; confira os detalhes nos sites oficiais antes de contratar.</p>
         </div>
 
-        <section class="pricing-grid" aria-label="Planos mensais de hospedagem">
-            <article class="plan">
-                <p class="eyebrow">Plano 01</p>
-                <h3>Essencial</h3>
-                <div class="price"><span>R$</span><strong>199</strong><span>/mês</span></div>
-                <ul>
-                    <li>Hospedagem estável</li>
-                    <li>Domínio e certificado SSL</li>
-                    <li>Manutenção básica</li>
-                    <li>Suporte mensal</li>
-                </ul>
-            </article>
+        <div class="provedor-tabela-area" role="region" aria-label="Comparação de provedores de hospedagem" tabindex="0">
+            <table class="provedor-tabela">
+                <caption>Comparação de preço, recursos e informações ambientais dos planos consultados</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Provedor / plano</th>
+                        <th scope="col">Custo de hospedagem</th>
+                        <th scope="col">Recursos e adequação</th>
+                        <th scope="col">Informação ambiental consultada</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages" target="_blank" rel="noopener noreferrer">GitHub Pages</a></th>
+                        <td>US$ 0/mês para site em repositório público no plano GitHub Free.</td>
+                        <td>Hospedagem estática direto de um repositório; aceita domínio próprio. Boa opção para o SafraX em HTML, CSS e JavaScript.</td>
+                        <td>A documentação consultada não declara energia renovável para o serviço. Verifique a hospedagem e a infraestrutura antes de atribuir um selo verde.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="https://www.netlify.com/pricing/" target="_blank" rel="noopener noreferrer">Netlify Free</a></th>
+                        <td>US$ 0/mês, com limite de 300 créditos por mês.</td>
+                        <td>Publicação via Git, prévias de deploy, CDN global, domínio próprio e SSL no plano grátis; uso acima da franquia pode exigir outro plano.</td>
+                        <td>A página de preços consultada não informa compromisso específico de energia renovável para essa hospedagem.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="https://vercel.com/pricing" target="_blank" rel="noopener noreferrer">Vercel Hobby</a></th>
+                        <td>US$ 0/mês; limites de uso se aplicam.</td>
+                        <td>Publicação de sites e aplicações com rede global e HTTPS. O plano Hobby é voltado a projetos pessoais; confira os termos e limites para o uso pretendido.</td>
+                        <td>A página de preços consultada não informa compromisso específico de energia renovável para essa hospedagem.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="https://www.greengeeks.com/shared-hosting/" target="_blank" rel="noopener noreferrer">GreenGeeks Lite</a></th>
+                        <td>A partir de US$ 1,95/mês na oferta consultada, em contratação de 12 meses; confirme valor de renovação e moeda.</td>
+                        <td>Hospedagem compartilhada tradicional, voltada a sites e CMS como WordPress; domínio grátis no primeiro ano conforme as condições do provedor.</td>
+                        <td>O provedor anuncia <a href="https://www.greengeeks.com/" target="_blank" rel="noopener noreferrer">“300% Renewable Energy Match”</a>. É uma alegação de compensação por energia renovável do próprio provedor; consulte a metodologia e os comprovantes.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="https://www.hostinger.com/br/hospedagem-de-sites" target="_blank" rel="noopener noreferrer">Hostinger Single</a></th>
+                        <td>Oferta consultada: R$ 5,99/mês em 48 meses (R$ 287,52 antecipados); renovação informada de R$ 23,99/mês.</td>
+                        <td>Um site, 10 GB SSD, backups semanais e domínio grátis conforme a oferta. Opção paga em reais com mais recursos de hospedagem convencional.</td>
+                        <td>A página consultada descreve o plano, mas não confirma energia renovável para a hospedagem.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-            <article class="plan highlight">
-                <p class="eyebrow">Mais escolhido</p>
-                <h3>Presença</h3>
-                <div class="price"><span>R$</span><strong>349</strong><span>/mês</span></div>
-                <ul>
-                    <li>Hospedagem premium</li>
-                    <li>Backup semanal</li>
-                    <li>Atualizações e ajustes</li>
-                    <li>Suporte prioritário</li>
-                </ul>
-            </article>
+        <p class="provedor-nota">Comparação indicativa, não endosso dos provedores. Um plano “grátis” tem limites e regras de uso. Preços promocionais podem exigir pagamento antecipado e renovar por outro valor.</p>
 
-            <article class="plan">
-                <p class="eyebrow">Plano 03</p>
-                <h3>Completo</h3>
-                <div class="price"><span>R$</span><strong>599</strong><span>/mês</span></div>
-                <ul>
-                    <li>Hospedagem e suporte avançado</li>
-                    <li>Conteúdo e campanhas</li>
-                    <li>Monitoramento e analytics</li>
-                    <li>Aprimoramento contínuo</li>
-                </ul>
-            </article>
+        <section class="verde-hospedagem" aria-labelledby="green-hosting-title">
+            <p class="rotulo">Sustentabilidade digital</p>
+            <h2 id="green-hosting-title">Como avaliar uma hospedagem mais verde</h2>
+            <p>Peça informações sobre a energia usada pelos data centers, a localização das instalações, a eficiência e a metodologia de qualquer programa de compensação. Uma alegação comercial de energia renovável não significa necessariamente que cada servidor funcione diretamente com energia renovável.</p>
+            <p>Depois de publicar o site, consulte a <a href="https://www.thegreenwebfoundation.org/green-web-check/" target="_blank" rel="noopener noreferrer">ferramenta Green Web Check</a> pelo domínio real e confira a documentação do provedor. Independentemente da hospedagem, imagens comprimidas, páginas leves, cache e menos scripts reduzem dados transferidos e processamento.</p>
+        </section>
+
+        <section class="dominio-guia" aria-labelledby="domain-guide-title">
+            <p class="rotulo">Pesquisa e registro</p>
+            <h2 id="domain-guide-title">Escolha e registre seu domínio</h2>
+            <div class="dominio-opcoes">
+                <article>
+                    <h3>.com.br</h3>
+                    <p>Uma opção familiar para um projeto voltado ao público brasileiro. O Registro.br informa registro por R$ 40,00 ao ano para domínios .br; pesquise a disponibilidade e confira o preço vigente no momento do registro.</p>
+                    <a href="https://registro.br/" target="_blank" rel="noopener noreferrer">Pesquisar no Registro.br</a>
+                </article>
+                <article>
+                    <h3>.org</h3>
+                    <p>Uma extensão genérica usada por diferentes tipos de organizações e projetos. O preço depende do registrador e da renovação; compare o valor inicial e o recorrente em um registrador credenciado pela ICANN.</p>
+                    <a href="https://www.icann.org/resources/pages/register-domain-name-2017-06-20-en" target="_blank" rel="noopener noreferrer">Entender como registrar um domínio (.org)</a>
+                </article>
+            </div>
+            <p>O domínio é um endereço e não inclui necessariamente hospedagem. Você pode registrar o domínio em uma empresa e apontar o DNS para outro provedor. Exemplo para o site atual: mantendo o GitHub Pages gratuito e registrando um .com.br pelo preço informado pelo Registro.br, o custo-base é R$ 40,00 por ano, sujeito a confirmação no registro.</p>
         </section>
     </main>
 

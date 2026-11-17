@@ -1,17 +1,17 @@
 /* Estilos da pagina de hospedagem, isolados da estrutura compartilhada. */
-body.hosting-page {
+body.hospedagem-pagina {
     background: #f4f3ef;
     color: #1f2a24;
 }
 
 /* Apresentacao com texto e imagem lado a lado. */
-body.hosting-page .page-shell {
+body.hospedagem-pagina .pagina-conteudo {
     max-width: 1240px;
     margin: 0 auto;
     padding: 3.5rem 1.5rem 5rem;
 }
 
-body.hosting-page .hero {
+body.hospedagem-pagina .hero {
     display: grid;
     grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
     align-items: center;
@@ -24,11 +24,11 @@ body.hosting-page .hero {
     text-align: left;
 }
 
-body.hosting-page .hero > div {
+body.hospedagem-pagina .hero > div {
     animation: hosting-enter .65s ease both;
 }
 
-body.hosting-page .eyebrow {
+body.hospedagem-pagina .rotulo {
     color: #9c573e;
     font-size: .75rem;
     font-weight: 700;
@@ -36,7 +36,7 @@ body.hosting-page .eyebrow {
     text-transform: uppercase;
 }
 
-body.hosting-page .hero h1 {
+body.hospedagem-pagina .hero h1 {
     max-width: 580px;
     margin: .75rem 0 1rem;
     color: #18382c;
@@ -46,14 +46,14 @@ body.hosting-page .hero h1 {
     line-height: 1.05;
 }
 
-body.hosting-page .hero p:last-child {
+body.hospedagem-pagina .hero p:last-child {
     max-width: 540px;
     margin-bottom: 0;
     color: #4b5a54;
     line-height: 1.8;
 }
 
-body.hosting-page .hosting-visual {
+body.hospedagem-pagina .hospedagem-visual {
     position: relative;
     height: 390px;
     margin: 0;
@@ -63,7 +63,7 @@ body.hosting-page .hosting-visual {
     animation: hosting-enter .75s .12s ease both;
 }
 
-body.hosting-page .hosting-visual img {
+body.hospedagem-pagina .hospedagem-visual img {
     display: block;
     width: 100%;
     height: 100%;
@@ -72,7 +72,7 @@ body.hosting-page .hosting-visual img {
     transition: transform .6s cubic-bezier(.2, .7, .2, 1);
 }
 
-body.hosting-page .hosting-visual figcaption {
+body.hospedagem-pagina .hospedagem-visual figcaption {
     position: absolute;
     right: 1.25rem;
     bottom: 1.25rem;
@@ -84,12 +84,12 @@ body.hosting-page .hosting-visual figcaption {
     font-size: .9rem;
 }
 
-body.hosting-page .section-heading {
+body.hospedagem-pagina .secao-titulo {
     padding-top: 1.5rem;
     border-top: 1px solid #cbd4c8;
 }
 
-body.hosting-page .section-heading h2 {
+body.hospedagem-pagina .secao-titulo h2 {
     margin-top: .5rem;
     color: #18382c;
     font-family: Georgia, 'Times New Roman', serif;
@@ -97,85 +97,151 @@ body.hosting-page .section-heading h2 {
     font-weight: 400;
 }
 
-body.hosting-page .section-heading > p:last-child {
+body.hospedagem-pagina .secao-titulo > p:last-child {
     margin-top: .4rem;
     color: #4b5a54;
 }
 
-/* Opcoes de hospedagem, valores e plano em destaque. */
-body.hosting-page .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.2rem;
+body.hospedagem-pagina .provedor-tabela-area {
     margin-top: 1.5rem;
-}
-
-body.hosting-page .plan {
-    padding: 1.5rem;
+    overflow-x: auto;
     border: 1px solid #d5ddd2;
-    border-top: 4px solid #32634a;
     border-radius: 6px;
     background: #fff;
-    transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
-    animation: hosting-enter .55s ease both;
 }
 
-body.hosting-page .plan:nth-child(2) { animation-delay: .1s; }
-body.hosting-page .plan:nth-child(3) { animation-delay: .2s; }
+body.hospedagem-pagina .provedor-tabela {
+    width: 100%;
+    min-width: 860px;
+    border-collapse: collapse;
+    text-align: left;
+}
 
-body.hosting-page .plan.highlight {
-    border-color: #18382c;
+body.hospedagem-pagina .provedor-tabela-area:focus-visible {
+    outline: 3px solid #bd7658;
+    outline-offset: 3px;
+}
+
+body.hospedagem-pagina .provedor-tabela caption {
+    padding: 1rem 1.2rem;
+    color: #4b5a54;
+    text-align: left;
+}
+
+body.hospedagem-pagina .provedor-tabela th,
+body.hospedagem-pagina .provedor-tabela td {
+    padding: 1rem 1.2rem;
+    border-top: 1px solid #d5ddd2;
+    vertical-align: top;
+    line-height: 1.65;
+}
+
+body.hospedagem-pagina .provedor-tabela thead th {
+    border-top: 0;
     background: #18382c;
     color: #fff;
+    font-size: .88rem;
 }
 
-body.hosting-page .plan h3 {
-    margin: .4rem 0 .8rem;
+body.hospedagem-pagina .provedor-tabela tbody th {
+    min-width: 140px;
+    color: #18382c;
+    font-weight: 700;
+}
+
+body.hospedagem-pagina .provedor-tabela tbody tr:nth-child(even) {
+    background: #f4f3ef;
+}
+
+body.hospedagem-pagina .provedor-tabela a,
+body.hospedagem-pagina .verde-hospedagem a,
+body.hospedagem-pagina .dominio-opcoes a {
+    color: #245b3a;
+    font-weight: 700;
+    text-underline-offset: .18em;
+}
+
+body.hospedagem-pagina .provedor-nota {
+    margin-top: .75rem;
+    color: #4b5a54;
+    font-size: .9rem;
+    line-height: 1.7;
+}
+
+body.hospedagem-pagina .verde-hospedagem,
+body.hospedagem-pagina .dominio-guia {
+    margin-top: 3rem;
+    padding: 2rem;
+    border: 1px solid #d5ddd2;
+    background: #fff;
+}
+
+body.hospedagem-pagina .verde-hospedagem {
+    border-left: 5px solid #32634a;
+}
+
+body.hospedagem-pagina .verde-hospedagem h2,
+body.hospedagem-pagina .dominio-guia h2 {
+    margin: .5rem 0 1rem;
+    color: #18382c;
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: 1.7rem;
+    font-size: 2rem;
     font-weight: 400;
 }
 
-body.hosting-page .price {
-    display: flex;
-    align-items: baseline;
-    gap: .4rem;
-    margin: 1rem 0;
-    font-weight: 700;
+body.hospedagem-pagina .verde-hospedagem > p:not(.rotulo),
+body.hospedagem-pagina .dominio-guia > p:last-child {
+    color: #4b5a54;
+    line-height: 1.8;
 }
 
-body.hosting-page .price strong {
-    font-size: 2.5rem;
-    line-height: 1;
+body.hospedagem-pagina .verde-hospedagem > p + p {
+    margin-top: .8rem;
 }
 
-body.hosting-page .plan ul {
+body.hospedagem-pagina .dominio-opcoes {
     display: grid;
-    gap: .8rem;
-    margin: 1.2rem 0 0;
-    padding: 1rem 0 0;
-    border-top: 1px solid rgba(24, 56, 44, .14);
-    list-style: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
 }
 
-body.hosting-page .plan.highlight ul { border-color: rgba(255, 255, 255, .22); }
-
-body.hosting-page .plan li {
-    color: inherit;
-    line-height: 1.6;
+body.hospedagem-pagina .dominio-opcoes article {
+    padding: 1.3rem;
+    border: 1px solid #d5ddd2;
+    background: #f4f3ef;
 }
 
-body.hosting-page .plan li::before {
-    margin-right: .55rem;
-    color: #32634a;
-    content: "\2713";
-    font-weight: 700;
+body.hospedagem-pagina .dominio-opcoes h3 {
+    margin-bottom: .5rem;
+    color: #18382c;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
 }
 
-body.hosting-page .plan.highlight li::before,
-body.hosting-page .plan.highlight .eyebrow { color: #d8b78a; }
+body.hospedagem-pagina .dominio-opcoes p {
+    margin-bottom: .8rem;
+    color: #4b5a54;
+    line-height: 1.7;
+}
 
-/* Entrada dos conteudos e interacoes dos cards de planos. */
+body.hospedagem-pagina .dominio-guia > p:last-child {
+    padding-top: 1rem;
+    border-top: 1px solid #d5ddd2;
+}
+
+@media (max-width: 700px) {
+    body.hospedagem-pagina .verde-hospedagem,
+    body.hospedagem-pagina .dominio-guia {
+        padding: 1.25rem;
+    }
+
+    body.hospedagem-pagina .dominio-opcoes {
+        grid-template-columns: 1fr;
+    }
+}
+
 @keyframes hosting-enter {
     from { opacity: 0; transform: translateY(16px); }
     to { opacity: 1; transform: translateY(0); }

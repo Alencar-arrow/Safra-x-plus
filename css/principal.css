@@ -10,10 +10,10 @@
 @import url(contato.css);
 @import url(galeria.css);
 @import url(hospedagem.css);
+@import url(impacto.css);
 @import url(midia.css);
 @import url(sobre.css);
 @import url(tree-growth.css);
-@import url(responsibilidade.css);
 
 /* Reset comum para manter medidas e espacamentos. */
 * {
@@ -51,4 +51,542 @@ html {
     --about-leaf: #32634a;
     --about-paper: #f4f3ec;
     --about-clay: #bd7658;
+}
+
+/* Regras responsivas consolidadas das paginas. */
+/* Altura base das capas, ajustada nos breakpoints abaixo. */
+:root {
+    --page-cover-height: 560px;
+}
+
+/* Reduz o titulo da capa em telas menores. */
+@media (max-width: 900px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Capas ficam mais baixas conforme a tela diminui. */
+@media (max-width: 850px) {
+    :root {
+        --page-cover-height: 520px;
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --page-cover-height: 500px;
+    }
+}
+
+@media (max-width: 800px) {
+    .impacto-capa {
+        min-height: var(--page-cover-height);
+        padding: 4rem 1.25rem;
+    }
+
+    .impacto-pagina .impacto-capa::before {
+        background-position: 58% center;
+    }
+
+    .impacto-capa h1 {
+        font-size: 3.2rem;
+    }
+
+    .impacto-capa-conteudo > p:not(.impacto-rotulo) {
+        font-size: 1rem;
+    }
+
+    .impacto-capa-indice {
+        right: 1.25rem;
+        bottom: 1rem;
+    }
+
+    .impacto-visao-geral,
+    .impacto-cartoes,
+    .impacto-dados,
+    .impacto-resposta,
+    .impacto-causas-solucoes {
+        padding-right: 1.25rem;
+        padding-left: 1.25rem;
+    }
+
+    .impacto-visao-geral {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding-top: 3.5rem;
+    }
+
+    .impacto-causas-solucoes {
+        grid-template-columns: 1fr;
+        padding-bottom: 1.25rem;
+    }
+
+    .impacto-visao-geral > .impacto-secao-rotulo {
+        padding-top: 0;
+    }
+
+    .impacto-visao-geral-texto h2,
+    .impacto-resposta-cabecalho h2 {
+        font-size: 2.25rem;
+    }
+
+    .impacto-cartoes {
+        grid-template-columns: 1fr;
+        gap: .8rem;
+        padding-bottom: 4rem;
+    }
+
+    .impacto-dados-cartoes {
+        grid-template-columns: 1fr;
+        gap: .8rem;
+    }
+
+    .impacto-dados {
+        padding-bottom: 4rem;
+    }
+
+    .impacto-cartao {
+        padding: 1rem .2rem 1.2rem;
+        border-bottom: 0;
+    }
+
+    .impacto-cartao:last-child {
+        border-bottom: 1px solid #c9cfc5;
+    }
+
+    .impacto-cartao-indice {
+        margin-bottom: .8rem;
+    }
+
+    .impacto-resposta {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding-top: 4rem;
+        padding-bottom: 5rem;
+    }
+}
+
+/* Tablet: empilha origem e princípios e reduz os espaços entre colunas. */
+@media (max-width: 850px) {
+    .sobre-origem {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+
+    .sobre-origem > .sobre-secao-marcador {
+        padding-top: 0;
+    }
+
+    .sobre-tese {
+        grid-column: 1;
+    }
+
+    .sobre-principios {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .sobre-perspectiva {
+        gap: 2.5rem;
+    }
+}
+
+/* Celular: uma coluna, tipografia menor e espaçamentos mais compactos. */
+@media (max-width: 600px) {
+    .sobre-capa {
+        padding: 3rem 1.25rem;
+    }
+
+    .sobre-capa-imagem {
+        object-position: 62% center;
+    }
+
+    .sobre-capa h1 {
+        font-size: 5rem;
+    }
+
+    .sobre-capa-resumo {
+        font-size: 1.45rem;
+    }
+
+    .sobre-capa-nota {
+        right: 1.25rem;
+        bottom: 1rem;
+    }
+
+    .sobre-origem {
+        padding: 4rem 1.25rem;
+    }
+
+    .sobre-origem-texto h2 {
+        margin-bottom: 1.3rem;
+        font-size: 2.35rem;
+    }
+
+    .sobre-origem-detalhe {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .sobre-tese {
+        margin-top: 1.5rem;
+        font-size: 1.3rem;
+    }
+
+    .sobre-principios {
+        gap: 2rem;
+        padding: 4rem 1.25rem;
+    }
+
+    .sobre-principios-cabecalho h2 {
+        font-size: 2.8rem;
+    }
+
+    .sobre-principio {
+        grid-template-columns: 28px minmax(0, 1fr);
+        gap: .8rem;
+    }
+
+    .sobre-principio-palavra {
+        grid-column: 2;
+        grid-row: 2;
+        text-align: left;
+    }
+
+    .sobre-perspectiva {
+        grid-template-columns: 1fr;
+        padding: 4rem 1.25rem;
+    }
+
+    .sobre-perspectiva-imagem {
+        width: calc(100% - .8rem);
+    }
+
+    .sobre-perspectiva-imagem img {
+        aspect-ratio: 4 / 3;
+    }
+
+    .sobre-perspectiva-imagem span {
+        right: -.8rem;
+        font-size: 1rem;
+    }
+
+    .sobre-perspectiva-texto h2,
+    .sobre-contato h2 {
+        font-size: 2.35rem;
+    }
+
+    .sobre-contato {
+        padding: 3.5rem 1.25rem;
+    }
+}
+
+@media (hover: hover) {
+    body.midia-pagina .capa-figura:hover img,
+    body.midia-pagina .reportagem-cartao:hover img { transform: scale(1.045); }
+
+    body.midia-pagina .reportagem-cartao:hover {
+        transform: translateY(-4px);
+        border-color: #9fb6a2;
+        box-shadow: 0 12px 26px rgba(24, 56, 44, .12);
+    }
+}
+
+/* Reduz colunas e espaçamentos em telas menores. */
+@media (max-width: 850px) {
+    body.midia-pagina .pagina-conteudo { padding: 2.5rem 1rem 3.5rem; }
+
+    body.midia-pagina .hero {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    body.midia-pagina .capa-figura {
+        aspect-ratio: 16 / 9;
+        max-height: 360px;
+    }
+
+    body.midia-pagina .reportagem-grade { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* No celular, reportagens aparecem em uma coluna. */
+@media (max-width: 600px) {
+    body.midia-pagina .hero h1 { font-size: 2.8rem; }
+    body.midia-pagina .secao-cabecalho h2 { font-size: 1.8rem; }
+    body.midia-pagina .reportagem-grade { grid-template-columns: 1fr; gap: 1rem; }
+}
+
+/* Desativa animacoes quando o movimento reduzido e preferido. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+@media (hover: hover) {
+    body.acessibilidade-pagina .capa-visual:hover img {
+        transform: scale(1.04);
+    }
+}
+
+/* No tablet, o texto e os cards passam para colunas mais estreitas. */
+@media (max-width: 850px) {
+    .inicio-pagina .inicio-introducao {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .inicio-pagina .inicio-cartoes {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* No celular, capa, cards e chamada final usam uma coluna. */
+@media (max-width: 600px) {
+    .inicio-pagina .inicio-capa {
+        min-height: var(--page-cover-height);
+        padding: 4rem 1.25rem;
+    }
+
+    .inicio-pagina .inicio-capa::before {
+        background-position: 58% center;
+    }
+
+    .inicio-pagina .inicio-capa h1 {
+        font-size: 4rem;
+    }
+
+    .inicio-pagina .inicio-capa .inicio-resumo {
+        font-size: 1rem;
+    }
+
+    .inicio-pagina .inicio-principal {
+        padding: 3rem 1.25rem 4rem;
+    }
+
+    .inicio-pagina .inicio-introducao h2 {
+        font-size: 2rem;
+    }
+
+    .inicio-pagina .inicio-cartoes {
+        grid-template-columns: 1fr;
+    }
+
+    .inicio-pagina .inicio-chamada {
+        align-items: flex-start;
+        padding: 1.5rem;
+    }
+
+    .inicio-pagina .inicio-chamada .informacao-texto {
+        flex-basis: 100%;
+    }
+
+    .inicio-pagina .inicio-chamada h2 {
+        font-size: 1.7rem;
+    }
+}
+
+@media (hover: hover) {
+    body.hospedagem-pagina .hospedagem-visual:hover img { transform: scale(1.04); }
+}
+
+/* Em telas menores, empilha a apresentacao; a tabela pode rolar horizontalmente. */
+@media (max-width: 850px) {
+    body.hospedagem-pagina .pagina-conteudo { padding: 2.5rem 1rem 3.5rem; }
+
+    body.hospedagem-pagina .hero {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    body.hospedagem-pagina .hospedagem-visual { height: 320px; }
+}
+
+/* Em celulares, reduz a apresentacao e os titulos. */
+@media (max-width: 600px) {
+    body.hospedagem-pagina .hero h1 { font-size: 2.8rem; }
+    body.hospedagem-pagina .hospedagem-visual { height: 250px; }
+    body.hospedagem-pagina .secao-titulo h2 { font-size: 1.8rem; }
+}
+
+/* Respeita a preferencia de movimento reduzido do sistema. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+/* Em telas menores, os links abrem em uma lista vertical. */
+@media (max-width: 1200px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        padding: 1rem 0;
+        background: var(--white);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-menu.ativo {
+        display: flex;
+    }
+
+    .nav-menu li,
+    .nav-link {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Em tablet e celular, reduz colunas e compacta os controles. */
+@media (max-width: 800px) {
+  .galeria-capa {
+    min-height: var(--page-cover-height);
+    padding: 4rem 1.5rem;
+  }
+
+  .galeria-pagina .galeria-capa::before {
+    background-position: 58% center;
+  }
+
+  .galeria-cabecalho {
+    align-items: start;
+    flex-direction: column;
+    gap: .8rem;
+  }
+
+  .galeria-cabecalho > p {
+    max-width: 560px;
+  }
+
+  .galeria-grade {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+/* Mantem imagens e filtros utilizaveis em telas pequenas. */
+@media (max-width: 560px) {
+  .galeria-capa {
+    min-height: var(--page-cover-height);
+    padding: 3.5rem 1.25rem;
+  }
+
+  .galeria-capa h1 {
+    font-size: 2.8rem;
+  }
+
+  .galeria-capa-conteudo > p:not(.galeria-rotulo) {
+    font-size: 1rem;
+  }
+
+  .galeria-capa-indice {
+    right: 1.25rem;
+    bottom: 1rem;
+  }
+
+  .galeria-colecao {
+    padding: 3.5rem 1.25rem 4rem;
+  }
+
+  .galeria-cabecalho h2 {
+    font-size: 2rem;
+  }
+
+  .galeria-ferramentas {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .galeria-filtros {
+    gap: .3rem;
+  }
+
+  .galeria-filtro {
+    padding: .45rem .65rem;
+    font-size: .82rem;
+  }
+
+  .galeria-grade {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .galeria-abrir-rotulo {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Reorganiza paineis e campos em telas estreitas. */
+@media (max-width: 980px) {
+    .contato-estrutura,
+    .formulario-linha {
+        grid-template-columns: 1fr;
+    }
+
+    .equipe-grade {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Evita transicoes de formulario para quem prefere menos movimento. */
+@media (prefers-reduced-motion: reduce) {
+    .contato-formulario input,
+    .contato-formulario select,
+    .contato-formulario textarea,
+    .btn {
+        transition: none;
+    }
+}
+
+/* Ajusta o layout para telas menores e empilha o conteudo. */
+@media (max-width: 850px) {
+    body.acessibilidade-pagina .pagina-conteudo { padding: 2.5rem 1rem 3.5rem; }
+
+    body.acessibilidade-pagina .hero {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    body.acessibilidade-pagina .capa-visual { height: 300px; }
+    body.acessibilidade-pagina .grade { grid-template-columns: 1fr; }
+
+    body.acessibilidade-pagina .cartao,
+    body.acessibilidade-pagina .cartao:nth-child(odd),
+    body.acessibilidade-pagina .cartao:nth-child(even) {
+        padding: 1.25rem 0;
+        border-left: 0;
+    }
+}
+
+/* Reduz titulos e espacamentos em celulares. */
+@media (max-width: 600px) {
+    body.acessibilidade-pagina .hero h1 { font-size: 2.8rem; }
+    body.acessibilidade-pagina .capa-visual { height: 250px; }
+    body.acessibilidade-pagina .principios { padding: 1.4rem; }
+    body.acessibilidade-pagina .principios-titulo { font-size: 2rem; }
+    .equipe-grade { grid-template-columns: 1fr; }
 }

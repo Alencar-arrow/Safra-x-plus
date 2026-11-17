@@ -1,0 +1,163 @@
+  body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f3ee;
+            color: #1f2a24;
+        }
+
+        .pagina-conteudo {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem 5rem;
+        }
+
+        .pagina-capa {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem 0 4rem;
+        }
+
+        .pagina-capa-imagem {
+            min-width: 0;
+            margin: 0;
+            overflow: hidden;
+            border-radius: 24px;
+            box-shadow: 0 18px 45px rgba(17, 39, 29, 0.12);
+        }
+
+        .pagina-capa-imagem img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            object-fit: cover;
+        }
+
+        .rotulo {
+            margin-bottom: 1rem;
+            color: #2e7d32;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(2.6rem, 5vw, 5rem);
+            line-height: 1;
+            margin-bottom: 1rem;
+            color: #18382c;
+        }
+
+        .resumo {
+            max-width: 620px;
+            font-size: 1.08rem;
+            color: #4a5a52;
+            line-height: 1.8;
+        }
+
+        .secao-titulo {
+            margin: 3rem 0 1.5rem;
+            font-size: clamp(2rem, 3vw, 3rem);
+            color: #18382c;
+        }
+
+        .cartao-grade {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.3rem;
+        }
+
+        .conteudo-cartao {
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid rgba(21, 40, 32, 0.08);
+            border-radius: 18px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px rgba(24, 56, 44, 0.04);
+        }
+
+        .conteudo-cartao > img {
+            display: block;
+            width: calc(100% + 3rem);
+            height: auto;
+            aspect-ratio: 16 / 9;
+            margin: -1.5rem -1.5rem 1.25rem;
+            object-fit: cover;
+        }
+
+        .conteudo-cartao h3 {
+            margin: 0.6rem 0 0.8rem;
+            color: #18382c;
+            font-size: 1.5rem;
+        }
+
+        .conteudo-cartao p {
+            color: #4d5c56;
+            line-height: 1.8;
+        }
+
+        .etiqueta {
+            display: inline-block;
+            padding: 0.42rem 0.7rem;
+            border-radius: 999px;
+            background: #eaf7eb;
+            color: #2e7d32;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .impacto-caixa {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            background: #e9f1ea;
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid rgba(46, 125, 50, 0.12);
+        }
+
+        .impacto-caixa ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0;
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        .impacto-caixa li {
+            display: flex;
+            gap: 0.75rem;
+            color: #294635;
+            line-height: 1.6;
+        }
+
+        .impacto-caixa li::before {
+            content: '✓';
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.2rem;
+            height: 1.2rem;
+            background: #2e7d32;
+            color: #fff;
+            border-radius: 50%;
+            font-size: 0.78rem;
+            margin-top: 0.2rem;
+        }
+
+        @media (max-width: 850px) {
+            .pagina-capa,
+            .impacto-caixa,
+            .cartao-grade {
+                grid-template-columns: 1fr;
+            }
+
+            .pagina-capa-imagem img {
+                max-height: 360px;
+            }
+        }

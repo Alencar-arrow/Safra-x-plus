@@ -38,13 +38,13 @@ A aplicação é composta por 10 páginas integradas por uma barra de navegaçã
 1. **`index.html` (Página Inicial):** Apresentação visual de alto impacto (*Hero Section*) introduzindo a urgência da harmonia entre urbanismo e meio ambiente.
 2. **`sobre.html` (Sobre o Projeto):** História, Missão, Visão e Valores institucionais da iniciativa.
 3. **`projetos.html` (Projetos e Iniciativas):** Exposição de soluções práticas como cinturões verdes (*green belts*), parques lineares e ações de reflorestamento.
-4. **`impacto.html` (Dados e Resultados):** Estatísticas reais, tabelas comparativas sobre desmatamento urbano e análise de ilhas de calor e enchentes.
+4. **`impacto.html` (Dados e Resultados):** Indicadores comparativos de arborização urbana, com dados do Censo 2022 e fontes oficiais, além de uma análise de impactos ambientais.
 5. **`acessibilidade.html` (Acessibilidade e Inclusão):** Recursos para PCD, compatibilidade com leitores de tela (padrões ARIA), navegação por teclado e canal de feedback.
 6. **`galeria.html` (Galeria Visual):** Fotografias e imagens de satélite comparativas (*antes e depois*) com legendas e fontes oficiais.
-7. **`midia.html` (Mídia e Multimídia):** Integração de conteúdos audiovisuais (iframes), player de áudio/podcast e mapas interativos de monitoramento.
+7. **`midia.html` (Mídia e Multimídia):** Reportagem sobre desmatamento em vídeo incorporado, mapa interativo da região amazônica e links para conteúdos relacionados.
 8. **`noticias.html` (Notícias, Artigos ou Blog):** Atualizações periódicas sobre zoneamento, uso do solo e artigos analíticos.
 9. **`contato.html` (Contato e Equipe):** Informações de suporte, formulário validado via JavaScript/HTML5 e apresentação dos membros.
-10. **`orcamento_hospedagem.html` (Orçamento e Hospedagem):** Análise técnica e financeira de provedores de *hosting*, foco em hospedagem verde e pesquisa de domínio.
+10. **`orcamento_hospedagem.html` (Orçamento e Hospedagem):** Comparação técnica e financeira de provedores reais, critérios de hospedagem sustentável e orientação para registrar domínios .org e .com.br.
 
 ## 💻 Tecnologias Utilizadas
 - **HTML5** — Estruturação semântica do conteúdo
