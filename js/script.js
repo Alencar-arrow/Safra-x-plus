@@ -3,15 +3,16 @@
 
    Este JavaScript é carregado em TODAS as páginas do site
    (<script src="../js/script.js" defer></script>), mas cada página
-   usa só uma parte dele. Por isso o arquivo está dividido em 4 funções,
+   usa só uma parte dele. Por isso o arquivo está dividido em 5 funções,
    uma para cada recurso:
 
      1. iniciarMenu()       -> menu hambúrguer (todas as páginas)
-     2. iniciarArvore()     -> animação da árvore (página Impacto)
-     3. iniciarFormulario() -> formulário de contato (página Contato)
-     4. iniciarGaleria()    -> filtros e janela de imagem (página Galeria)
+     2. iniciarAltoContraste() -> alternância de contraste (todas as páginas)
+     3. iniciarArvore()        -> animação da árvore (página Impacto)
+     4. iniciarFormulario()    -> formulário de contato (página Contato)
+     5. iniciarGaleria()       -> filtros e janela de imagem (página Galeria)
 
-   No final do arquivo, as 4 funções são chamadas.
+   No final do arquivo, as 5 funções são chamadas.
 
    -------------------------------------------------------------
    A IDEIA MAIS IMPORTANTE: A "GUARDA"
@@ -98,9 +99,55 @@ function iniciarMenu() {
     });
 }
 
+/* =====================================================================
+   2. ALTO CONTRASTE (todas as páginas)
+   ===================================================================== */
+
+function iniciarAltoContraste() {
+    const menu = document.getElementById('nav-menu');
+    if (!menu) return;
+
+    const botao = document.createElement('button');
+    const itemMenu = document.createElement('li');
+    const classeContraste = 'alto-contraste';
+    const chavePreferencia = 'safrax-alto-contraste';
+
+    botao.type = 'button';
+    botao.className = 'alto-contraste-toggle';
+    botao.setAttribute('aria-pressed', 'false');
+    itemMenu.append(botao);
+
+    function definirContraste(ativado, salvarPreferencia = false) {
+        document.body.classList.toggle(classeContraste, ativado);
+        botao.setAttribute('aria-pressed', String(ativado));
+        botao.textContent = ativado ? 'Desativar alto contraste' : 'Ativar alto contraste';
+
+        if (salvarPreferencia) {
+            try {
+                localStorage.setItem(chavePreferencia, String(ativado));
+            } catch (erro) {
+                console.error('Não foi possível salvar a preferência de alto contraste.', erro);
+            }
+        }
+    }
+
+    let contrasteAtivado = false;
+    try {
+        contrasteAtivado = localStorage.getItem(chavePreferencia) === 'true';
+    } catch (erro) {
+        console.error('Não foi possível carregar a preferência de alto contraste.', erro);
+    }
+
+    definirContraste(contrasteAtivado);
+    botao.addEventListener('click', () => {
+        definirContraste(botao.getAttribute('aria-pressed') !== 'true', true);
+    });
+    menu.append(itemMenu);
+}
+
 
 /* =====================================================================
-   2. ANIMAÇÃO DA ÁRVORE (página Impacto)
+   3. ANIMAÇÃO DA ÁRVORE (página Impacto)
 
    COMO FUNCIONA:
    O CSS deixa a seção muito alta e a cena "grudada" na tela (sticky).
@@ -251,7 +298,7 @@ function iniciarArvore() {
 
 
 /* =====================================================================
-   3. FORMULÁRIO DE CONTATO (página Contato)
+   4. FORMULÁRIO DE CONTATO (página Contato)
 
    Fluxo:
      1. A pessoa preenche os campos.
@@ -507,7 +554,7 @@ function iniciarFormulario() {
 
 
 /* =====================================================================
-   4. GALERIA (página Galeria)
+   5. GALERIA (página Galeria)
 
    Dois recursos:
      a) Filtros: mostram só as imagens de uma categoria.
@@ -591,12 +638,13 @@ function iniciarGaleria() {
 
 
 /* =====================================================================
-   5. COLOCANDO TUDO PARA FUNCIONAR
-   Chama as 4 funções. Cada uma decide sozinha se tem algo a fazer
+   6. COLOCANDO TUDO PARA FUNCIONAR
+   Chama as 5 funções. Cada uma decide sozinha se tem algo a fazer
    na página atual (a "guarda" do início de cada função).
    ===================================================================== */
 
 iniciarMenu();
+iniciarAltoContraste();
 iniciarArvore();
 iniciarFormulario();
 iniciarGaleria();
