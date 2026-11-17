@@ -40,6 +40,8 @@
    elemento.hidden = true         -> esconde o elemento
    elemento.style.transform = ... -> muda o CSS direto pelo JavaScript
    const x = () => { ... }        -> função "de seta" (mesma coisa que function)
+   sessionStorage                 -> "gaveta" do navegador onde guardamos texto
+                                     enquanto a aba estiver aberta
    ===================================================================== */
 
 
@@ -253,10 +255,13 @@ function iniciarArvore() {
 
    Fluxo:
      1. A pessoa preenche os campos.
+        (NOVO) Cada letra digitada é guardada como "rascunho" no navegador.
+        Se a pessoa mudar de página e voltar, o rascunho é restaurado.
      2. Cada campo é validado ao SAIR dele (blur) e, se estiver com erro,
         a cada letra digitada (input).
      3. Ao enviar, valida tudo. Se houver erro, mostra e foca no 1º campo ruim.
-     4. Se estiver tudo certo, simula o envio e mostra a mensagem de sucesso.
+     4. Se estiver tudo certo, simula o envio, apaga o rascunho e mostra
+        a mensagem de sucesso.
         (Não há servidor: o envio é só uma demonstração com setTimeout.)
    ===================================================================== */
 
@@ -280,6 +285,69 @@ function iniciarFormulario() {
         ajuda: formulario.querySelector('#ajuda'),
         mensagem: formulario.querySelector('#mensagem')
     };
+
+    // ---------- (NOVO) Rascunho: não perder o que foi digitado ----------
+    // Ao trocar de página, o navegador descarta o que estava nos campos.
+    // Para evitar isso, guardamos os valores no "sessionStorage" (uma gaveta
+    // do navegador que dura enquanto a aba estiver aberta) e os devolvemos
+    // aos campos quando a página do formulário carrega de novo.
+    //
+    // Se quiser que o rascunho sobreviva até depois de fechar o navegador,
+    // troque "sessionStorage" por "localStorage" (mas em computadores
+    // compartilhados isso é pior para a privacidade).
+
+    // Nome da "etiqueta" usada para achar o rascunho na gaveta
+    const CHAVE_RASCUNHO = 'contato-rascunho';
+
+    // Guarda o valor atual dos 5 campos.
+    // O try/catch evita erro caso o navegador bloqueie o armazenamento
+    // (modo privado, configurações de privacidade etc.).
+    function salvarRascunho() {
+        try {
+            const dados = {};
+            Object.keys(campos).forEach((nome) => {
+                dados[nome] = campos[nome].value;
+            });
+            // O armazenamento só guarda TEXTO, então convertemos o objeto
+            // para texto com JSON.stringify
+            sessionStorage.setItem(CHAVE_RASCUNHO, JSON.stringify(dados));
+        } catch (erro) {
+            // Sem armazenamento: o formulário continua funcionando normalmente
+        }
+    }
+
+    // Lê o rascunho guardado e devolve cada valor ao seu campo
+    function restaurarRascunho() {
+        try {
+            // JSON.parse faz o caminho inverso: transforma o texto em objeto
+            const salvo = JSON.parse(sessionStorage.getItem(CHAVE_RASCUNHO));
+            if (!salvo) return;   // não há rascunho: nada a fazer
+
+            Object.keys(campos).forEach((nome) => {
+                // Só restaura se o valor guardado for mesmo um texto
+                if (typeof salvo[nome] === 'string') {
+                    campos[nome].value = salvo[nome];
+                }
+            });
+        } catch (erro) {
+            // Rascunho corrompido: ignora e deixa o formulário vazio
+        }
+    }
+
+    // Apaga o rascunho. Chamamos quando ele não é mais necessário
+    // (mensagem enviada ou formulário reiniciado), senão a mensagem
+    // já enviada reapareceria depois.
+    function apagarRascunho() {
+        try {
+            sessionStorage.removeItem(CHAVE_RASCUNHO);
+        } catch (erro) {
+            // Ignora
+        }
+    }
+
+    // Restaura ANTES de ler o assunto da URL (bloco logo abaixo), para que
+    // o "?ajuda=..." continue tendo prioridade: foi uma escolha explícita.
+    restaurarRascunho();
 
     // ---------- Assunto vindo da URL ----------
     // Na página de acessibilidade, o botão leva para:
@@ -366,9 +434,15 @@ function iniciarFormulario() {
         // "blur" = a pessoa saiu do campo: valida
         campo.addEventListener('blur', () => validarCampo(campo));
 
-        // "input" = a pessoa digitou algo. Só revalida se o campo JÁ está com erro,
-        // para o erro sumir assim que a pessoa corrigir (sem incomodar antes disso).
+        // "input" = a pessoa digitou algo.
         campo.addEventListener('input', () => {
+            // (NOVO) Guarda o rascunho a cada alteração.
+            // O <select> também dispara "input", então o assunto escolhido
+            // também é guardado.
+            salvarRascunho();
+
+            // Só revalida se o campo JÁ está com erro,
+            // para o erro sumir assim que a pessoa corrigir (sem incomodar antes disso).
             if (campo.classList.contains('invalido')) {
                 validarCampo(campo);
             }
@@ -407,6 +481,10 @@ function iniciarFormulario() {
             // Troca o formulário pela mensagem de sucesso
             formulario.hidden = true;
             painelSucesso.hidden = false;
+
+            // (NOVO) A mensagem foi enviada: o rascunho não serve mais
+            apagarRascunho();
+
             painelSucesso.querySelector('h3').focus();   // leitores de tela anunciam o sucesso
 
             // Devolve o botão ao estado normal (para o caso de enviar outra mensagem)
@@ -418,6 +496,7 @@ function iniciarFormulario() {
     // ---------- Botão "Enviar outra mensagem" ----------
     botaoReiniciar.addEventListener('click', () => {
         formulario.reset();   // limpa o que foi digitado
+        apagarRascunho();     // (NOVO) garante que nada antigo volte depois
         Object.values(campos).forEach((campo) => definirErroDoCampo(campo, ''));
         areaStatus.textContent = '';
         painelSucesso.hidden = true;
