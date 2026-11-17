@@ -1,46 +1,108 @@
-/* Estilos da pagina de midia, limitados ao body correspondente. */
-body.midia-pagina {
-    background: #f4f3ef;
-    color: #1d2a23;
+/* =====================================================
+   COMO LER ESTE ARQUIVO
+
+   Todas as regras começam com "body.midia-pagina".
+   Isso quer dizer: "só vale se o <body> tiver a classe
+   midia-pagina". Assim, os estilos daqui não afetam as
+   outras páginas do site.
+
+   Esta página também REUTILIZA classes do principal.css
+   (como .hero). Por isso, algumas regras abaixo servem para
+   DESFAZER o visual padrão dessas classes (por exemplo,
+   "background: none"). Como o seletor aqui é mais específico,
+   ele vence.
+   ===================================================== */
+
+
+/* =====================================================
+   0. CORES DA PÁGINA (variáveis)
+   Cada cor ganha um nome. Para mudar uma cor em toda a
+   página, basta alterar aqui em cima.
+   O prefixo "midia-" evita conflito com outras páginas.
+   ===================================================== */
+:root {
+    --midia-papel: #f4f3ef;          /* fundo da página */
+    --midia-texto: #1d2a23;          /* texto geral */
+    --midia-verde-escuro: #18382c;   /* títulos e fundos escuros */
+    --midia-verde-link: #32634a;     /* links */
+    --midia-terracota: #9c573e;      /* rótulos e link no hover */
+    --midia-foco: #bd7658;           /* contorno do teclado */
+    --midia-texto-resumo: #465651;   /* parágrafo da capa */
+    --midia-texto-cartao: #4d5c56;   /* parágrafos dos cartões e do vídeo */
+    --midia-linha: #cbd4c8;          /* linha acima dos títulos de seção */
+    --midia-borda: #d5ddd2;          /* borda dos cartões */
+    --midia-fundo-imagem: #dcebd8;   /* cor enquanto a imagem carrega */
 }
 
-/* Apresentacao da pagina e imagem de destaque. */
+
+/* =====================================================
+   1. BASE DA PÁGINA E ANIMAÇÃO
+   ===================================================== */
+
+body.midia-pagina {
+    background: var(--midia-papel);
+    color: var(--midia-texto);
+}
+
+/* Caixa central: o conteúdo nunca passa de 1240px de largura */
 body.midia-pagina .pagina-conteudo {
     max-width: 1240px;
-    margin: 0 auto;
+    margin: 0 auto;      /* auto nas laterais = centralizar */
     padding: 3.5rem 1.5rem 5rem;
 }
 
-body.midia-pagina .hero {
-    display: grid;
-    grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr);
-    align-items: center;
-    gap: 3rem;
-    min-height: 0;
-    margin: 0 0 4rem;
-    padding: 1rem 0 0;
-    background: none;
-    color: inherit;
-    text-align: left;
+/* Animação de entrada: o elemento começa invisível e 16px mais
+   abaixo, e sobe até a posição normal enquanto aparece.
+   É usada na capa e nos cartões de reportagem. */
+@keyframes media-rise-in {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
-body.midia-pagina .hero > div {
-    animation: media-rise-in .65s ease both;
-}
-
+/* Rótulos pequenos em maiúsculas (ex.: "SAFRAX / MÍDIA", "CAUSAS") */
 body.midia-pagina .selo,
 body.midia-pagina .metadados {
-    color: #9c573e;
-    font-size: .75rem;
+    color: var(--midia-terracota);
+    font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: .1em;
+    letter-spacing: 0.1em;   /* espaço entre as letras */
     text-transform: uppercase;
+}
+
+
+/* =====================================================
+   2. CAPA: TEXTO À ESQUERDA, IMAGEM À DIREITA
+   A classe .hero vem do principal.css (uma capa com foto de
+   fundo e texto centralizado). Aqui ela é "reaproveitada" e
+   transformada em uma seção de duas colunas.
+   ===================================================== */
+
+body.midia-pagina .hero {
+    /* Duas colunas: texto (0.88fr) e imagem (1.12fr, um pouco maior) */
+    display: grid;
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+    align-items: center;
+    gap: 3rem;
+
+    margin: 0 0 4rem;
+    padding: 1rem 0 0;
+
+    /* DESFAZENDO o visual padrão do .hero */
+    min-height: 0;        /* remove a altura mínima da capa grande */
+    background: none;     /* remove a foto de fundo */
+    color: inherit;       /* volta a usar a cor de texto da página */
+    text-align: left;     /* o .hero original é centralizado */
+}
+
+/* O bloco de texto aparece com a animação de entrada */
+body.midia-pagina .hero > div {
+    animation: media-rise-in 0.65s ease both;
 }
 
 body.midia-pagina .hero h1 {
     max-width: 560px;
-    margin: .75rem 0 1rem;
-    color: #18382c;
+    margin: 0.75rem 0 1rem;
+    color: var(--midia-verde-escuro);
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 4rem;
     font-weight: 400;
@@ -50,147 +112,130 @@ body.midia-pagina .hero h1 {
 body.midia-pagina .hero p {
     max-width: 550px;
     margin-bottom: 0;
-    color: #465651;
+    color: var(--midia-texto-resumo);
     line-height: 1.8;
 }
 
+/* A moldura da imagem da capa (<figure>) */
 body.midia-pagina .capa-figura {
     width: 100%;
-    aspect-ratio: 1.2;
+    aspect-ratio: 1.2;     /* largura ÷ altura = 1.2 (proporção fixa) */
     margin: 0;
-    overflow: hidden;
+    overflow: hidden;      /* corta a imagem nos cantos arredondados */
     border-radius: 6px;
-    background: #18382c;
-    animation: media-rise-in .75s .12s ease both;
+    background: var(--midia-verde-escuro);   /* cor exibida enquanto a imagem carrega */
+    animation: media-rise-in 0.75s 0.12s ease both;   /* 0.12s = pequeno atraso */
 }
 
+/* Imagens da capa e dos cartões: preenchem a caixa sem distorcer.
+   (O "transition" está pronto para um efeito de zoom, mas nenhuma
+   regra de hover usa isso ainda.) */
 body.midia-pagina .capa-figura img,
 body.midia-pagina .midia-imagem img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform .6s cubic-bezier(.2, .7, .2, 1);
+    transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-body.midia-pagina .capa-figura img { object-position: center 54%; }
+/* Enquadramento da foto da capa: um pouco abaixo do centro */
+body.midia-pagina .capa-figura img {
+    object-position: center 54%;
+}
+
+
+/* =====================================================
+   3. CABEÇALHO DE SEÇÃO ("Causas, consequências e caminhos possíveis")
+   ===================================================== */
 
 body.midia-pagina .secao-cabecalho {
     padding-top: 1.5rem;
-    border-top: 1px solid #cbd4c8;
+    border-top: 1px solid var(--midia-linha);   /* linha acima do título */
 }
 
 body.midia-pagina .secao-cabecalho h2 {
-    margin-top: .5rem;
-    color: #18382c;
+    margin-top: 0.5rem;
+    color: var(--midia-verde-escuro);
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 2.2rem;
     font-weight: 400;
 }
 
+
+/* =====================================================
+   4. VÍDEO EM DESTAQUE
+
+   A caixa é uma grade de 2 colunas:
+     coluna 1 (0.7fr): título + crédito, um embaixo do outro
+     coluna 2 (1.3fr): o vídeo, ocupando as 2 linhas
+
+   No HTML, os 3 filhos aparecem nesta ordem:
+     1) cabeçalho  -> vai para coluna 1, linha 1
+     2) moldura    -> colocada à força na coluna 2, linhas 1 e 2
+     3) crédito    -> como a coluna 2 está ocupada, vai para coluna 1, linha 2
+   ===================================================== */
+
 body.midia-pagina .destaque-video {
     display: grid;
-    grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr);
-    gap: 1rem 2rem;
-    align-items: end;
+    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+    gap: 1rem 2rem;           /* 1rem entre linhas, 2rem entre colunas */
+    align-items: end;         /* alinha o conteúdo pela base de cada linha */
     margin: 1.5rem 0 3rem;
     padding: 1.5rem;
-    border: 1px solid #d5ddd2;
+    border: 1px solid var(--midia-borda);
     border-radius: 6px;
     background: #fff;
 }
 
 body.midia-pagina .destaque-video-cabecalho h2 {
-    margin: .5rem 0;
-    color: #18382c;
+    margin: 0.5rem 0;
+    color: var(--midia-verde-escuro);
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 2rem;
     font-weight: 400;
     line-height: 1.15;
 }
 
+/* Parágrafo do cabeçalho (:last-child = o último filho) e o crédito */
 body.midia-pagina .destaque-video-cabecalho > p:last-child,
 body.midia-pagina .destaque-video-credito {
-    color: #4d5c56;
-    font-size: .94rem;
+    color: var(--midia-texto-cartao);
+    font-size: 0.94rem;
     line-height: 1.7;
 }
 
+/* A moldura do vídeo */
 body.midia-pagina .destaque-video-moldura {
-    grid-column: 2;
-    grid-row: 1 / span 2;
+    grid-column: 2;           /* fica na 2ª coluna */
+    grid-row: 1 / span 2;     /* começa na linha 1 e ocupa 2 linhas */
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16 / 9;     /* proporção padrão de vídeo */
     overflow: hidden;
     border-radius: 4px;
-    background: #18382c;
+    background: var(--midia-verde-escuro);
 }
 
+/* O vídeo (iframe) preenche a moldura inteira */
 body.midia-pagina .destaque-video-moldura iframe {
     display: block;
     width: 100%;
     height: 100%;
-    border: 0;
+    border: 0;                /* remove a borda padrão do iframe */
 }
 
 body.midia-pagina .destaque-video-credito a {
-    color: #32634a;
+    color: var(--midia-verde-link);
     font-weight: 700;
-    text-underline-offset: .2em;
+    text-underline-offset: 0.2em;   /* distância do sublinhado ao texto */
 }
 
-body.midia-pagina .midia-mapa {
-    display: grid;
-    grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr);
-    gap: 1rem 2rem;
-    align-items: end;
-    margin: 0 0 3rem;
-    padding: 1.5rem;
-    border: 1px solid #d5ddd2;
-    border-radius: 6px;
-    background: #fff;
-}
 
-body.midia-pagina .midia-mapa-titulo h2 {
-    margin: .5rem 0;
-    color: #18382c;
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 2rem;
-    font-weight: 400;
-    line-height: 1.15;
-}
+/* =====================================================
+   5. REPORTAGENS (3 cartões)
+   ===================================================== */
 
-body.midia-pagina .midia-mapa-titulo > p:last-child,
-body.midia-pagina .midia-mapa-credit {
-    color: #4d5c56;
-    font-size: .94rem;
-    line-height: 1.7;
-}
-
-body.midia-pagina .midia-mapa-frame {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    border-radius: 4px;
-    background: #dcebd8;
-}
-
-body.midia-pagina .midia-mapa-frame iframe {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
-body.midia-pagina .midia-mapa-credit a {
-    color: #32634a;
-    font-weight: 700;
-    text-underline-offset: .2em;
-}
-
-/* Grade de reportagens com imagem, texto e link de leitura. */
+/* 3 colunas de tamanhos iguais */
 body.midia-pagina .reportagem-grade {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -198,28 +243,35 @@ body.midia-pagina .reportagem-grade {
     margin-top: 1.5rem;
 }
 
+/* O cartão é uma coluna vertical: imagem em cima e texto embaixo */
 body.midia-pagina .reportagem-cartao {
     display: flex;
-    min-width: 0;
     flex-direction: column;
+    min-width: 0;             /* evita que o cartão estoure a coluna */
     overflow: hidden;
-    border: 1px solid #d5ddd2;
+    border: 1px solid var(--midia-borda);
     border-radius: 6px;
     background: #fff;
-    transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
-    animation: media-rise-in .55s ease both;
+    transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+    animation: media-rise-in 0.55s ease both;
 }
 
-body.midia-pagina .reportagem-cartao:nth-child(2) { animation-delay: .1s; }
-body.midia-pagina .reportagem-cartao:nth-child(3) { animation-delay: .2s; }
+/* Efeito "cascata": cada cartão aparece um pouco depois do anterior.
+   :nth-child(2) = o 2º cartão, :nth-child(3) = o 3º. */
+body.midia-pagina .reportagem-cartao:nth-child(2) { animation-delay: 0.1s; }
+body.midia-pagina .reportagem-cartao:nth-child(3) { animation-delay: 0.2s; }
 
+/* Caixa da imagem do cartão */
 body.midia-pagina .midia-imagem {
     width: 100%;
     aspect-ratio: 1.55;
     overflow: hidden;
-    background: #dcebd8;
+    background: var(--midia-fundo-imagem);
 }
 
+/* Corpo do cartão: também é uma coluna vertical.
+   flex: 1 faz o corpo ocupar todo o espaço que sobrar, então os 3 cartões
+   ficam com a mesma altura, mesmo com textos de tamanhos diferentes. */
 body.midia-pagina .reportagem-cartao-corpo {
     display: flex;
     flex: 1;
@@ -228,62 +280,62 @@ body.midia-pagina .reportagem-cartao-corpo {
 }
 
 body.midia-pagina .reportagem-cartao-corpo h3 {
-    margin: .5rem 0;
-    color: #18382c;
+    margin: 0.5rem 0;
+    color: var(--midia-verde-escuro);
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 1.5rem;
     font-weight: 400;
     line-height: 1.2;
 }
 
+/* flex: 1 no parágrafo "empurra" o link para o final do cartão,
+   então os links ficam alinhados na mesma altura nos 3 cartões */
 body.midia-pagina .reportagem-cartao-corpo p {
     flex: 1;
-    color: #4d5c56;
-    font-size: .96rem;
+    color: var(--midia-texto-cartao);
+    font-size: 0.96rem;
     line-height: 1.7;
 }
 
+/* Link "Buscar reportagens no G1" */
 body.midia-pagina .reportagem-cartao-corpo a {
-    align-self: flex-start;
-    margin-top: .7rem;
-    color: #32634a;
+    align-self: flex-start;   /* o link não estica: ocupa só a largura do texto */
+    margin-top: 0.7rem;
+    color: var(--midia-verde-link);
     font-weight: 700;
     text-decoration: underline;
-    text-underline-offset: .2em;
-    transition: color .2s ease;
+    text-underline-offset: 0.2em;
+    transition: color 0.2s ease;
 }
 
-body.midia-pagina .reportagem-cartao-corpo a:hover { color: #9c573e; }
+body.midia-pagina .reportagem-cartao-corpo a:hover {
+    color: var(--midia-terracota);
+}
 
+/* Contorno visível quando alguém navega pelo teclado (Tab).
+   Importante para acessibilidade! */
 body.midia-pagina .reportagem-cartao-corpo a:focus-visible {
-    outline: 3px solid #bd7658;
+    outline: 3px solid var(--midia-foco);
     outline-offset: 4px;
 }
 
+
+/* =====================================================
+   6. TELAS PEQUENAS (celular e tablet)
+   Tudo aqui dentro só vale quando a tela tem 760px ou menos.
+   ===================================================== */
+
 @media (max-width: 760px) {
+
+    /* O vídeo passa a ficar embaixo do texto (1 coluna só) */
     body.midia-pagina .destaque-video {
         grid-template-columns: 1fr;
         padding: 1.1rem;
     }
 
+    /* Desfaz o posicionamento forçado: o vídeo volta ao fluxo normal */
     body.midia-pagina .destaque-video-moldura {
         grid-column: 1;
         grid-row: auto;
     }
-
-    body.midia-pagina .midia-mapa {
-        grid-template-columns: 1fr;
-        padding: 1.1rem;
-    }
-
-    body.midia-pagina .midia-mapa-frame {
-        grid-column: 1;
-        grid-row: auto;
-    }
-}
-
-/* Entrada suave e destaque ao interagir com imagem ou reportagem. */
-@keyframes media-rise-in {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
 }

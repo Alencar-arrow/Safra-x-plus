@@ -1,45 +1,114 @@
-/* Estilos da pagina de impactos e sua capa ilustrada. */
+/* =====================================================
+   0. CORES DA PÁGINA "IMPACTO" (variáveis)
+   Cada cor ganha um nome. Para mudar uma cor em toda a
+   página, basta alterar aqui em cima.
+   O prefixo "imp-" evita conflito com variáveis de
+   outras páginas.
+   ===================================================== */
+:root {
+    --imp-papel: #f4f3ec;           /* fundo da página */
+    --imp-verde-escuro: #18382c;    /* títulos e textos fortes */
+    --imp-verde-medio: #32634a;     /* barra do medidor */
+    --imp-verde-link: #245b3a;      /* link da fonte */
+    --imp-dourado: #d8b78a;         /* detalhes sobre fundo escuro */
+    --imp-terracota: #a65e42;       /* rótulos e números */
+    --imp-foco: #bd7658;            /* contorno do teclado */
+    --imp-texto: #58645a;           /* parágrafos */
+    --imp-cinza: #667168;           /* textos pequenos */
+    --imp-linha: #c9cfc5;           /* linhas divisórias */
+    --imp-borda-dados: #d8ddd4;     /* borda dos cartões de dados */
+    --imp-fundo-painel: #f4f0e9;    /* fundo dos painéis causas/soluções */
+}
+
+
+/* =====================================================
+   1. BASE DA PÁGINA
+   ===================================================== */
+
 .impacto-pagina {
-    background: #f4f3ec;
-    color: #18382c;
+    background: var(--imp-papel);
+    color: var(--imp-verde-escuro);
 }
 
-.impacto-capa {
-    position: relative;
-    display: flex;
-    align-items: center;
-    isolation: isolate;
-    min-height: var(--page-cover-height);
-    padding: 5rem max(1.5rem, calc((100% - 1200px) / 2));
-    overflow: hidden;
-    background: #18382c;
-    color: #fff;
+/* Contorno visível quando alguém navega pelo teclado (Tab).
+   Importante para acessibilidade! */
+.impacto-pagina :focus-visible {
+    outline: 3px solid var(--imp-foco);
+    outline-offset: 3px;
 }
 
-.impacto-pagina .impacto-capa::before {
-    background-image: url('https://images.unsplash.com/photo-1536147116438-62679a5e01f2?auto=format&fit=crop&w=2000&q=85');
-    background-position: center 48%;
-}
-
-.impacto-pagina .impacto-capa::after {
-    background: linear-gradient(90deg, rgba(12, 31, 23, .86) 0%, rgba(12, 31, 23, .58) 52%, rgba(12, 31, 23, .1) 100%);
-}
-
-.impacto-capa-conteudo {
-    max-width: 760px;
-}
-
+/* Rótulos pequenos em maiúsculas (ex.: "01 / CAUSAS").
+   Aqui ficam tamanho e estilo; a cor muda conforme o fundo. */
 .impacto-rotulo,
 .impacto-secao-rotulo {
-    color: #d8b78a;
-    font-size: .76rem;
+    color: var(--imp-dourado);
+    font-size: 0.76rem;
     font-weight: 700;
-    letter-spacing: .1em;
+    letter-spacing: 0.1em;      /* espaço entre as letras */
     text-transform: uppercase;
 }
 
 .impacto-rotulo {
     margin-bottom: 1rem;
+}
+
+/* ATENÇÃO À ORDEM: esta regra vem DEPOIS da anterior e tem a mesma
+   força, então a cor terracota vence o dourado.
+   Resultado: o rótulo da capa (.impacto-rotulo) fica dourado e os rótulos
+   das seções (.impacto-secao-rotulo), sobre fundo claro, ficam terracota. */
+.impacto-secao-rotulo {
+    color: var(--imp-terracota);
+}
+
+.impacto-secao-rotulo span {   /* o número "01", "02" */
+    color: var(--imp-verde-escuro);
+}
+
+
+/* =====================================================
+   2. CAPA
+   Usa o mesmo sistema de 3 camadas da página inicial:
+     foto (::before) -> véu (::after) -> texto.
+   As regras compartilhadas (position, inset, z-index, animation...)
+   estão no arquivo de capas, na seção 3. Aqui definimos só
+   o que é específico desta página.
+   ===================================================== */
+
+.impacto-capa {
+    position: relative;   /* referência para as camadas e para o índice */
+    isolation: isolate;   /* mantém as camadas dentro da capa */
+    overflow: hidden;     /* corta o que passar dos limites (zoom da foto) */
+
+    display: flex;
+    align-items: center;
+    min-height: var(--page-cover-height);
+    background: var(--imp-verde-escuro);   /* cor de reserva enquanto a foto carrega */
+    color: #fff;
+
+    /* Margem lateral: mínimo de 1.5rem, mas em telas grandes
+       alinha o texto com uma coluna central de 1200px */
+    padding: 5rem max(1.5rem, calc((100% - 1200px) / 2));
+}
+
+/* A foto da capa */
+.impacto-pagina .impacto-capa::before {
+    background-image: url('https://images.unsplash.com/photo-1536147116438-62679a5e01f2?auto=format&fit=crop&w=2000&q=85');
+    background-position: center 48%;
+}
+
+/* O véu: escuro à esquerda (onde fica o texto) e
+   quase transparente à direita (para a foto aparecer) */
+.impacto-pagina .impacto-capa::after {
+    background: linear-gradient(
+        90deg,
+        rgba(12, 31, 23, 0.86) 0%,
+        rgba(12, 31, 23, 0.58) 52%,
+        rgba(12, 31, 23, 0.1) 100%
+    );
+}
+
+.impacto-capa-conteudo {
+    max-width: 760px;
 }
 
 .impacto-capa h1 {
@@ -51,57 +120,94 @@
     line-height: 1.04;
 }
 
+/* Parágrafo da capa (o :not exclui o rótulo, que também é um <p>) */
 .impacto-capa-conteudo > p:not(.impacto-rotulo) {
     max-width: 590px;
     margin-bottom: 1.6rem;
-    color: rgba(255, 255, 255, .88);
+    color: rgba(255, 255, 255, 0.88);
     font-size: 1.1rem;
 }
 
+/* Link "Conheça os impactos ↓" com linha dourada embaixo */
 .impacto-capa-link {
     display: inline-flex;
     align-items: center;
-    gap: .7rem;
-    padding-bottom: .4rem;
-    border-bottom: 1px solid #d8b78a;
+    gap: 0.7rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--imp-dourado);
     color: #fff;
     font-weight: 700;
     text-decoration: none;
 }
 
-.impacto-capa-link span {
-    color: #d8b78a;
+.impacto-capa-link span {   /* a setinha */
+    color: var(--imp-dourado);
     font-size: 1.2rem;
 }
 
+/* Texto "01 — 03 SOLO · ÁGUA · VIDA" no canto inferior direito */
 .impacto-capa-indice {
     position: absolute;
     right: max(1.5rem, calc((100% - 1200px) / 2));
     bottom: 1.4rem;
-    color: rgba(255, 255, 255, .76);
-    font-size: .7rem;
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 0.7rem;
     font-weight: 700;
-    letter-spacing: .1em;
+    letter-spacing: 0.1em;
 }
 
-/* Resumo dos impactos, causas e alternativas de solucao. */
+
+/* =====================================================
+   3. VISÃO GERAL, CAUSAS E SOLUÇÕES
+   ===================================================== */
+
+/* Seções que compartilham a mesma caixa central de 1200px.
+   O espaçamento de cima e de baixo é definido em cada uma. */
 .impacto-visao-geral,
 .impacto-cartoes,
 .impacto-resposta {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto;           /* auto nas laterais = centralizar */
     padding-right: 2rem;
     padding-left: 2rem;
 }
 
+/* Grade de 2 colunas: rótulo à esquerda (180px) e texto à direita */
 .impacto-visao-geral {
     display: grid;
     grid-template-columns: 180px minmax(0, 1fr);
-    gap: 1rem 2rem;
+    gap: 1rem 2rem;           /* 1rem entre linhas, 2rem entre colunas */
     padding-top: 5rem;
     padding-bottom: 2rem;
 }
 
+/* ">" = só o rótulo que é filho direto da visão geral */
+.impacto-visao-geral > .impacto-secao-rotulo {
+    padding-top: 0.7rem;
+}
+
+/* Títulos grandes da visão geral e da seção "Proteger também é planejar" */
+.impacto-visao-geral-texto h2,
+.impacto-resposta-cabecalho h2 {
+    max-width: 780px;
+    margin-bottom: 0.9rem;
+    color: var(--imp-verde-escuro);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.8rem;
+    font-weight: 400;
+    line-height: 1.12;
+}
+
+/* Parágrafos desses dois blocos.
+   :last-child = o parágrafo que é o último filho do cabeçalho. */
+.impacto-visao-geral-texto p,
+.impacto-resposta-cabecalho > p:last-child {
+    max-width: 730px;
+    color: var(--imp-texto);
+    font-size: 1.03rem;
+}
+
+/* ---- Painéis de causas e soluções, lado a lado ---- */
 .impacto-causas-solucoes {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -114,15 +220,17 @@
 .impacto-causas-painel,
 .impacto-solucoes-painel {
     padding: 1.5rem 1.3rem;
-    background: #f4f0e9;
+    background: var(--imp-fundo-painel);
     border: 1px solid rgba(24, 56, 44, 0.08);
     border-radius: 18px;
 }
 
+/* clamp(mínimo, ideal, máximo): a fonte cresce com a tela,
+   mas nunca fica menor que 2rem nem maior que 2.8rem */
 .impacto-causas-painel h2,
 .impacto-solucoes-painel h2 {
-    margin: 0.8rem 0 0.8rem;
-    color: #18382c;
+    margin: 0.8rem 0;
+    color: var(--imp-verde-escuro);
     font-family: Georgia, 'Times New Roman', serif;
     font-size: clamp(2rem, 2vw + 1rem, 2.8rem);
     font-weight: 400;
@@ -133,7 +241,7 @@
 .impacto-solucoes-painel ul {
     margin: 0;
     padding-left: 1.1rem;
-    color: #58645a;
+    color: var(--imp-texto);
     line-height: 1.8;
 }
 
@@ -142,82 +250,64 @@
     margin-bottom: 0.55rem;
 }
 
-.impacto-secao-rotulo {
-    color: #a65e42;
-}
 
-.impacto-secao-rotulo span {
-    color: #18382c;
-}
+/* =====================================================
+   4. CARTÕES DOS IMPACTOS (Biodiversidade, Solo e água, Clima)
+   ===================================================== */
 
-.impacto-visao-geral > .impacto-secao-rotulo {
-    padding-top: .7rem;
-}
-
-.impacto-visao-geral-texto h2,
-.impacto-resposta-cabecalho h2 {
-    max-width: 780px;
-    margin-bottom: .9rem;
-    color: #18382c;
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 2.8rem;
-    font-weight: 400;
-    line-height: 1.12;
-}
-
-.impacto-visao-geral-texto p,
-.impacto-resposta-cabecalho > p:last-child {
-    max-width: 730px;
-    color: #58645a;
-    font-size: 1.03rem;
-}
-
-/* Cartoes que descrevem os principais efeitos da expansao urbana. */
+/* 3 colunas de tamanhos iguais */
 .impacto-cartoes {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.3rem;
     padding-top: 1rem;
     padding-bottom: 6rem;
-    scroll-margin-top: 2rem;
+    scroll-margin-top: 2rem;   /* ao rolar até aqui (link "Conheça os impactos"),
+                                  deixa 2rem livres no topo */
 }
 
 .impacto-cartao {
-    min-width: 0;
+    min-width: 0;              /* evita que o cartão estoure a coluna */
     padding: 1.3rem 1.2rem 1.4rem;
-    border-top: 1px solid #c9cfc5;
-    border-bottom: 1px solid #c9cfc5;
+    border-top: 1px solid var(--imp-linha);
+    border-bottom: 1px solid var(--imp-linha);
 }
 
+/* "01 Ecossistemas": número em terracota e nome em cinza, lado a lado */
 .impacto-cartao-indice {
     display: flex;
-    gap: .75rem;
+    gap: 0.75rem;
     align-items: center;
     margin-bottom: 1.5rem;
-    color: #a65e42;
-    font-size: .72rem;
+    color: var(--imp-terracota);
+    font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: .1em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
 }
 
 .impacto-cartao-indice span {
-    color: #667168;
+    color: var(--imp-cinza);
     font-weight: 500;
 }
 
 .impacto-cartao h3 {
-    margin-bottom: .65rem;
-    color: #18382c;
+    margin-bottom: 0.65rem;
+    color: var(--imp-verde-escuro);
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 1.55rem;
     font-weight: 400;
 }
 
 .impacto-cartao > p:last-child {
-    color: #58645a;
-    font-size: .95rem;
+    color: var(--imp-texto);
+    font-size: 0.95rem;
 }
+
+
+/* =====================================================
+   5. DADOS DO CENSO (cartões com medidor)
+   ===================================================== */
 
 .impacto-dados {
     max-width: 1200px;
@@ -231,21 +321,23 @@
 }
 
 .impacto-dados-cabecalho h2 {
-    margin: 1rem 0 .8rem;
-    color: #18382c;
+    margin: 1rem 0 0.8rem;
+    color: var(--imp-verde-escuro);
     font-family: Georgia, 'Times New Roman', serif;
     font-size: clamp(2rem, 3vw, 2.8rem);
     font-weight: 400;
     line-height: 1.12;
 }
 
+/* Textos pequenos desta seção: parágrafo, nota e fonte */
 .impacto-dados-cabecalho > p:last-child,
 .impacto-dados-nota,
 .impacto-dados-fonte {
-    color: #58645a;
-    font-size: .95rem;
+    color: var(--imp-texto);
+    font-size: 0.95rem;
 }
 
+/* 3 cartões lado a lado (Brasil, Norte, Sul) */
 .impacto-dados-cartoes {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -255,39 +347,43 @@
 .impacto-dados-cartao {
     min-width: 0;
     padding: 1.4rem;
-    border: 1px solid #d8ddd4;
-    border-radius: 16px;
     background: #fff;
+    border: 1px solid var(--imp-borda-dados);
+    border-radius: 16px;
 }
 
-.impacto-dados-regiao {
-    color: #667168;
-    font-size: .8rem;
+.impacto-dados-regiao {   /* "BRASIL", "REGIÃO NORTE" */
+    color: var(--imp-cinza);
+    font-size: 0.8rem;
     font-weight: 700;
-    letter-spacing: .08em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
 }
 
+/* Número grande (ex.: 66,0%).
+   tabular-nums faz todos os dígitos terem a mesma largura,
+   o que deixa os números alinhados e mais fáceis de comparar. */
 .impacto-dados-valor {
-    margin: .55rem 0 .25rem;
-    color: #18382c;
+    margin: 0.55rem 0 0.25rem;
+    color: var(--imp-verde-escuro);
     font-family: Georgia, 'Times New Roman', serif;
     font-size: clamp(2.5rem, 4vw, 3.4rem);
     line-height: 1;
     font-variant-numeric: tabular-nums;
 }
 
+/* Barra de progresso (<meter>); accent-color define a cor da barra */
 .impacto-dados-cartao meter {
     display: block;
     width: 100%;
-    height: .75rem;
+    height: 0.75rem;
     margin: 1rem 0;
-    accent-color: #32634a;
+    accent-color: var(--imp-verde-medio);
 }
 
 .impacto-dados-cartao > p:last-child {
-    color: #58645a;
-    font-size: .92rem;
+    color: var(--imp-texto);
+    font-size: 0.92rem;
 }
 
 .impacto-dados-nota {
@@ -295,18 +391,24 @@
 }
 
 .impacto-dados-fonte {
-    margin-top: .5rem;
+    margin-top: 0.5rem;
 }
 
 .impacto-dados-fonte a {
-    color: #245b3a;
+    color: var(--imp-verde-link);
     font-weight: 700;
-    text-underline-offset: .15em;
+    text-underline-offset: 0.15em;   /* distância do sublinhado ao texto */
 }
+
+
+/* =====================================================
+   6. SEÇÃO "PROTEGER TAMBÉM É PLANEJAR"
+   Duas colunas: título à esquerda, lista de ações à direita.
+   ===================================================== */
 
 .impacto-resposta {
     display: grid;
-    grid-template-columns: minmax(250px, .8fr) minmax(0, 1.2fr);
+    grid-template-columns: minmax(250px, 0.8fr) minmax(0, 1.2fr);
     gap: 3rem 5rem;
     padding-top: 6rem;
     padding-bottom: 7rem;
@@ -316,46 +418,47 @@
     margin-top: 1.2rem;
 }
 
+/* Esta regra vem depois da regra compartilhada da seção 3,
+   então o max-width de 430px vence o de 730px */
 .impacto-resposta-cabecalho > p:last-child {
     max-width: 430px;
 }
 
+/* Lista numerada sem os números padrão do navegador
+   (os números "01", "02" estão escritos no HTML) */
 .impacto-acoes {
     margin: 0;
     padding: 0;
-    border-top: 1px solid #c9cfc5;
+    border-top: 1px solid var(--imp-linha);
     list-style: none;
 }
 
+/* Cada ação: número (36px) | texto (resto) */
 .impacto-acoes li {
     display: grid;
     grid-template-columns: 36px minmax(0, 1fr);
     gap: 1rem;
     padding: 1.2rem 0;
-    border-bottom: 1px solid #c9cfc5;
+    border-bottom: 1px solid var(--imp-linha);
 }
 
+/* ">" = só o span que é filho direto do li (o número) */
 .impacto-acoes li > span {
-    padding-top: .25rem;
-    color: #a65e42;
-    font-size: .72rem;
+    padding-top: 0.25rem;
+    color: var(--imp-terracota);
+    font-size: 0.72rem;
     font-weight: 700;
 }
 
 .impacto-acoes h3 {
-    margin-bottom: .3rem;
-    color: #18382c;
+    margin-bottom: 0.3rem;
+    color: var(--imp-verde-escuro);
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 1.35rem;
     font-weight: 400;
 }
 
 .impacto-acoes p {
-    color: #58645a;
-    font-size: .93rem;
-}
-
-.impacto-pagina :focus-visible {
-    outline: 3px solid #bd7658;
-    outline-offset: 3px;
+    color: var(--imp-texto);
+    font-size: 0.93rem;
 }

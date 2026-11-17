@@ -1,163 +1,232 @@
-  body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f3ee;
-            color: #1f2a24;
-        }
+/* =====================================================
+   0. CORES DA PÁGINA "PROJETOS" (variáveis)
+   Cada cor ganha um nome. Para mudar uma cor em toda a
+   página, basta alterar aqui em cima.
+   O prefixo "proj-" evita conflito com variáveis de
+   outras páginas.
+   ===================================================== */
+:root {
+    --proj-verde-escuro: #18382c;   /* títulos */
+    --proj-verde: #2e7d32;          /* rótulo, etiqueta e ícone ✓ */
+    --proj-verde-claro: #eaf7eb;    /* fundo da etiqueta */
+    --proj-fundo-caixa: #e9f1ea;    /* fundo da caixa de impacto */
+    --proj-texto-resumo: #4a5a52;
+    --proj-texto-cartao: #4d5c56;
+    --proj-texto-lista: #294635;
+}
 
-        .pagina-conteudo {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 1.5rem 5rem;
-        }
 
-        .pagina-capa {
-            display: grid;
-            grid-template-columns: 1.1fr .9fr;
-            align-items: center;
-            gap: 2rem;
-            padding: 2rem 0 4rem;
-        }
+/* =====================================================
+   1. ESTRUTURA GERAL DA PÁGINA
+   ===================================================== */
 
-        .pagina-capa-imagem {
-            min-width: 0;
-            margin: 0;
-            overflow: hidden;
-            border-radius: 24px;
-            box-shadow: 0 18px 45px rgba(17, 39, 29, 0.12);
-        }
+/* Caixa central: o conteúdo nunca passa de 1200px de largura */
+.pagina-conteudo {
+    max-width: 1200px;
+    margin: 0 auto;      /* auto nas laterais = centralizar */
+    padding: 4rem 1.5rem 5rem;
+}
 
-        .pagina-capa-imagem img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            min-height: 320px;
-            object-fit: cover;
-        }
+/* Rótulo pequeno em maiúsculas (ex.: "SAFRAX / PROJETOS") */
+.rotulo {
+    margin-bottom: 1rem;
+    color: var(--proj-verde);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;   /* espaço entre as letras */
+    text-transform: uppercase;
+}
 
-        .rotulo {
-            margin-bottom: 1rem;
-            color: #2e7d32;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-        }
+/* Título principal.
+   clamp(mínimo, ideal, máximo): a fonte cresce com a tela (5vw),
+   mas nunca fica menor que 2.6rem nem maior que 5rem. */
+h1 {
+    margin-bottom: 1rem;
+    color: var(--proj-verde-escuro);
+    font-size: clamp(2.6rem, 5vw, 5rem);
+    line-height: 1;
+}
 
-        h1 {
-            font-size: clamp(2.6rem, 5vw, 5rem);
-            line-height: 1;
-            margin-bottom: 1rem;
-            color: #18382c;
-        }
+/* Título de cada seção ("Causas do problema", "O que o SafraX propõe") */
+.secao-titulo {
+    margin: 3rem 0 1.5rem;
+    color: var(--proj-verde-escuro);
+    font-size: clamp(2rem, 3vw, 3rem);
+}
 
-        .resumo {
-            max-width: 620px;
-            font-size: 1.08rem;
-            color: #4a5a52;
-            line-height: 1.8;
-        }
 
-        .secao-titulo {
-            margin: 3rem 0 1.5rem;
-            font-size: clamp(2rem, 3vw, 3rem);
-            color: #18382c;
-        }
+/* =====================================================
+   2. CAPA: TEXTO À ESQUERDA, IMAGEM À DIREITA
+   ===================================================== */
 
-        .cartao-grade {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 1.3rem;
-        }
+/* Grade de 2 colunas: a da esquerda (1.1fr) é um pouco
+   maior que a da direita (0.9fr) */
+.pagina-capa {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;   /* centraliza texto e imagem na vertical */
+    gap: 3rem;
+    padding: 2rem 0 4rem;
+}
 
-        .conteudo-cartao {
-            overflow: hidden;
-            background: #fff;
-            border: 1px solid rgba(21, 40, 32, 0.08);
-            border-radius: 18px;
-            padding: 1.5rem;
-            box-shadow: 0 10px 25px rgba(24, 56, 44, 0.04);
-        }
+.resumo {
+    max-width: 620px;
+    color: var(--proj-texto-resumo);
+    font-size: 1.08rem;
+    line-height: 1.8;
+}
 
-        .conteudo-cartao > img {
-            display: block;
-            width: calc(100% + 3rem);
-            height: auto;
-            aspect-ratio: 16 / 9;
-            margin: -1.5rem -1.5rem 1.25rem;
-            object-fit: cover;
-        }
+/* A moldura da imagem principal */
+.pagina-capa-imagem {
+    min-width: 0;          /* evita que a imagem estoure a coluna */
+    margin: 0;
+    overflow: hidden;      /* corta a imagem nos cantos arredondados */
+    border-radius: 24px;
+    box-shadow: 0 18px 45px rgba(17, 39, 29, 0.12);
+}
 
-        .conteudo-cartao h3 {
-            margin: 0.6rem 0 0.8rem;
-            color: #18382c;
-            font-size: 1.5rem;
-        }
+/* A imagem principal.
+   CORREÇÃO DO TAMANHO: antes ela usava "height: 100%", então a
+   altura dependia do tamanho original da foto (que é alta, então
+   a imagem ficava enorme). Agora:
+     - aspect-ratio: 4 / 3  -> a altura vira 3/4 da largura (proporção fixa)
+     - max-height: 420px    -> mesmo em telas gigantes, nunca passa disso
+     - object-fit: cover    -> a foto preenche a caixa sem ficar esticada */
+.pagina-capa-imagem img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    max-height: 420px;
+    object-fit: cover;
+}
 
-        .conteudo-cartao p {
-            color: #4d5c56;
-            line-height: 1.8;
-        }
 
-        .etiqueta {
-            display: inline-block;
-            padding: 0.42rem 0.7rem;
-            border-radius: 999px;
-            background: #eaf7eb;
-            color: #2e7d32;
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
+/* =====================================================
+   3. CARTÕES (Causas e Soluções)
+   ===================================================== */
 
-        .impacto-caixa {
-            display: grid;
-            grid-template-columns: 1.2fr .8fr;
-            gap: 1.5rem;
-            margin-top: 3rem;
-            background: #e9f1ea;
-            border-radius: 24px;
-            padding: 2rem;
-            border: 1px solid rgba(46, 125, 50, 0.12);
-        }
+/* 2 colunas de tamanhos iguais */
+.cartao-grade {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.3rem;
+}
 
-        .impacto-caixa ul {
-            list-style: none;
-            padding: 0;
-            margin: 1rem 0 0;
-            display: grid;
-            gap: 0.9rem;
-        }
+.conteudo-cartao {
+    overflow: hidden;      /* corta a foto nos cantos arredondados */
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid rgba(21, 40, 32, 0.08);
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(24, 56, 44, 0.04);
+}
 
-        .impacto-caixa li {
-            display: flex;
-            gap: 0.75rem;
-            color: #294635;
-            line-height: 1.6;
-        }
+/* Foto do cartão: ocupa a largura toda, inclusive por cima do padding.
+   Como o cartão tem 1.5rem de padding em cada lado:
+     - width: calc(100% + 3rem)  -> soma o padding dos dois lados (1.5 + 1.5)
+     - margin negativa           -> "puxa" a foto para colar nas bordas do cartão
+   O "1.25rem" no final é o espaço entre a foto e a etiqueta. */
+.conteudo-cartao > img {
+    display: block;
+    width: calc(100% + 3rem);
+    height: auto;
+    aspect-ratio: 16 / 9;
+    margin: -1.5rem -1.5rem 1.25rem;
+    object-fit: cover;
+}
 
-        .impacto-caixa li::before {
-            content: '✓';
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 1.2rem;
-            height: 1.2rem;
-            background: #2e7d32;
-            color: #fff;
-            border-radius: 50%;
-            font-size: 0.78rem;
-            margin-top: 0.2rem;
-        }
+.conteudo-cartao h3 {
+    margin: 0.6rem 0 0.8rem;
+    color: var(--proj-verde-escuro);
+    font-size: 1.5rem;
+}
 
-        @media (max-width: 850px) {
-            .pagina-capa,
-            .impacto-caixa,
-            .cartao-grade {
-                grid-template-columns: 1fr;
-            }
+.conteudo-cartao p {
+    color: var(--proj-texto-cartao);
+    line-height: 1.8;
+}
 
-            .pagina-capa-imagem img {
-                max-height: 360px;
-            }
-        }
+/* Etiqueta "Causa 01" / "Solução 01" (formato de pílula) */
+.etiqueta {
+    display: inline-block;
+    padding: 0.42rem 0.7rem;
+    border-radius: 999px;   /* número enorme = cantos totalmente redondos */
+    background: var(--proj-verde-claro);
+    color: var(--proj-verde);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+
+/* =====================================================
+   4. CAIXA DE IMPACTO (texto + lista com ✓)
+   ===================================================== */
+
+/* 2 colunas: texto (1.2fr) e lista (0.8fr) */
+.impacto-caixa {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    padding: 2rem;
+    background: var(--proj-fundo-caixa);
+    border: 1px solid rgba(46, 125, 50, 0.12);
+    border-radius: 24px;
+}
+
+/* A lista: tira as bolinhas padrão e espaça os itens */
+.impacto-caixa ul {
+    display: grid;
+    gap: 0.9rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;   /* remove as bolinhas */
+}
+
+/* Cada item: ícone ✓ de um lado e texto do outro */
+.impacto-caixa li {
+    display: flex;
+    gap: 0.75rem;
+    color: var(--proj-texto-lista);
+    line-height: 1.6;
+}
+
+/* O ícone ✓ é criado com ::before (não existe no HTML!).
+   É um círculo verde com o símbolo dentro. */
+.impacto-caixa li::before {
+    content: '✓';          /* o texto que aparece dentro do círculo */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-top: 0.2rem;
+    background: var(--proj-verde);
+    color: #fff;
+    border-radius: 50%;    /* 50% = círculo perfeito */
+    font-size: 0.78rem;
+}
+
+
+/* =====================================================
+   5. TELAS PEQUENAS (tablet e celular)
+   Tudo aqui dentro só vale quando a tela tem 850px ou menos.
+   ===================================================== */
+
+@media (max-width: 850px) {
+
+    /* As 3 grades passam de 2 colunas para 1 (uma embaixo da outra) */
+    .pagina-capa,
+    .impacto-caixa,
+    .cartao-grade {
+        grid-template-columns: 1fr;
+    }
+
+    /* Na coluna única a imagem fica larga, então limitamos a altura */
+    .pagina-capa-imagem img {
+        max-height: 360px;
+    }
+}

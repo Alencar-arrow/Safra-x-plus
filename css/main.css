@@ -1,25 +1,55 @@
-/* Estilos gerais para capas, botoes, conteudo e introducoes. */
-.hero {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: var(--page-cover-height);
-    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), 
-                url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-    color: var(--white);
-    text-align: center;
-    padding: 6rem 1.5rem;
+/* =====================================================
+   0. CORES DO PROJETO (variáveis)
+   Em vez de repetir códigos como #18382c várias vezes,
+   damos um nome para cada cor. Para mudar a cor do site
+   inteiro, basta mudar aqui em cima.
+   ===================================================== */
+:root {
+    --verde-escuro: #18382c;
+    --verde-medio: #32634a;
+    --dourado: #d8b78a;
+    --dourado-claro: #e7cda8;
+    --terracota: #a65e42;
+    --terracota-borda: #bd7658;
+    --cinza-texto: #505b53;
+    --borda-cartao: #e1e4dc;
 }
 
+
+/* =====================================================
+   1. ESTILOS GERAIS (valem para todas as páginas)
+   ===================================================== */
+
+/* ---- Capa genérica (a "hero") ---- */
+.hero {
+    /* Centraliza o conteúdo no meio da capa */
+    display: flex;
+    align-items: center;       /* centro na vertical */
+    justify-content: center;   /* centro na horizontal */
+
+    min-height: var(--page-cover-height);
+    padding: 6rem 1.5rem;
+    text-align: center;
+    color: var(--white);
+
+    /* Foto de fundo + camada preta transparente por cima
+       (para o texto branco ficar fácil de ler) */
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80')
+        center / cover no-repeat;
+}
+
+/* Caixa que guarda o texto da capa */
 .capa-conteudo {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0 auto;   /* auto nas laterais = centralizar */
 }
 
 .hero h1 {
     font-size: 2.8rem;
-    margin-bottom: 1rem;
     line-height: 1.2;
+    margin-bottom: 1rem;
 }
 
 .hero p {
@@ -27,18 +57,19 @@
     margin-bottom: 2rem;
 }
 
+/* ---- Botão ---- */
 .btn {
     display: inline-block;
+    padding: 0.8rem 1.8rem;
     background-color: var(--primary-color);
     color: var(--white);
-    padding: 0.8rem 1.8rem;
+    font-weight: bold;
     text-decoration: none;
     border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s;   /* troca de cor suave */
 }
 
-
+/* ---- Conteúdo principal e introdução ---- */
 .conteudo-central {
     max-width: var(--max-width);
     margin: 0 auto;
@@ -46,9 +77,9 @@
 }
 
 .introducao {
-    text-align: center;
     max-width: 800px;
     margin: 0 auto 3rem auto;
+    text-align: center;
 }
 
 .introducao h2 {
@@ -57,75 +88,128 @@
     margin-bottom: 1rem;
 }
 
-/* Capa da pagina inicial e imagens compartilhadas com outras capas. */
-.inicio-pagina .inicio-capa {
-    position: relative;
-    display: flex;
-    align-items: center;
-    isolation: isolate;
-    min-height: var(--page-cover-height);
-    padding: 6rem max(1.5rem, calc((100% - 1200px) / 2));
-    text-align: left;
-    background: #18382c;
+
+/* =====================================================
+   2. ANIMAÇÕES
+   Uma animação tem duas partes:
+   (1) @keyframes: define o "de onde" e o "para onde"
+   (2) animation: usa essa animação em um elemento
+   ===================================================== */
+
+/* A imagem começa um pouco maior e volta ao tamanho normal */
+@keyframes cover-image-in {
+    from { transform: scale(1.04); }
+    to   { transform: scale(1); }
 }
 
+/* O texto começa invisível e mais para baixo, e sobe aparecendo */
+@keyframes cover-copy-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* =====================================================
+   3. PEÇAS COMPARTILHADAS ENTRE AS CAPAS
+   (início, galeria e impacto usam o mesmo "truque")
+
+   Cada capa tem 3 camadas, de trás para frente:
+     ::before  -> a foto            (z-index: -2)
+     ::after   -> o véu escuro      (z-index: -1)
+     conteúdo  -> o texto           (z-index:  1)
+   ===================================================== */
+
+/* Camada 1: a foto (cada página define a sua imagem depois) */
 .inicio-pagina .inicio-capa::before,
 .galeria-pagina .galeria-capa::before,
 .impacto-pagina .impacto-capa::before {
+    content: "";           /* obrigatório para o ::before aparecer */
     position: absolute;
-    z-index: -2;
-    animation: cover-image-in 1.1s ease-out both;
+    inset: 0;              /* inset: 0 = colar nas 4 bordas (cobre tudo) */
+    z-index: -2;           /* fica no fundo */
     background-repeat: no-repeat;
     background-size: cover;
-    content: "";
-    inset: 0;
+    animation: cover-image-in 1.1s ease-out both;
 }
 
+/* Camada 2: o véu escuro (cada página define a sua cor depois) */
 .inicio-pagina .inicio-capa::after,
 .galeria-pagina .galeria-capa::after,
 .impacto-pagina .impacto-capa::after {
-    position: absolute;
-    z-index: -1;
     content: "";
+    position: absolute;
     inset: 0;
-    pointer-events: none;
+    z-index: -1;           /* entre a foto e o texto */
+    pointer-events: none;  /* o clique atravessa o véu e chega nos botões */
 }
 
-.inicio-pagina .inicio-capa::before {
-    background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2000&q=85');
-    background-position: center 48%;
-}
-
-.inicio-pagina .inicio-capa::after {
-    background: linear-gradient(90deg, rgba(12, 34, 24, .84) 0%, rgba(12, 34, 24, .56) 48%, rgba(12, 34, 24, .08) 100%);
-}
-
-.inicio-pagina .inicio-capa .capa-conteudo {
-    position: relative;
-    z-index: 1;
-    width: min(760px, 100%);
-    margin: 0;
-}
-
+/* Animação de entrada do texto em todas as capas */
 .inicio-pagina .inicio-capa .capa-conteudo,
 .pagina-contato .contato-capa .capa-conteudo,
 .galeria-pagina .galeria-capa-conteudo,
 .impacto-pagina .impacto-capa-conteudo,
 .sobre-pagina .sobre-capa-conteudo {
-    animation: cover-copy-in .7s .12s ease-out both;
+    animation: cover-copy-in 0.7s 0.12s ease-out both;
 }
 
+/* Rótulos pequenos em maiúsculas (ex.: "O DESAFIO") */
 .inicio-rotulo,
 .inicio-secao-rotulo {
-    margin-bottom: .75rem;
-    color: #d8b78a;
-    font-size: .78rem;
+    margin-bottom: 0.75rem;
+    color: var(--dourado);
+    font-size: 0.78rem;
     font-weight: 700;
     text-transform: uppercase;
 }
 
+
+/* =====================================================
+   4. PÁGINA INICIAL: CAPA
+   ===================================================== */
+
+/* A seção da capa */
+.inicio-pagina .inicio-capa {
+    position: relative;   /* referência para ::before e ::after */
+    isolation: isolate;   /* mantém as camadas dentro da capa
+                             (evita a foto "sumir" atrás da página) */
+    display: flex;
+    align-items: center;
+    min-height: var(--page-cover-height);
+    text-align: left;
+    background: var(--verde-escuro);   /* cor de reserva enquanto a foto carrega */
+
+    /* Margem lateral: no mínimo 1.5rem, mas em telas grandes
+       alinha o texto com uma coluna central de 1200px */
+    padding: 6rem max(1.5rem, calc((100% - 1200px) / 2));
+}
+
+/* A foto da capa */
+.inicio-pagina .inicio-capa::before {
+    background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2000&q=85');
+    background-position: center 48%;   /* enquadramento da foto */
+}
+
+/* O véu: escuro à esquerda (onde fica o texto) e
+   quase transparente à direita (para a foto aparecer) */
+.inicio-pagina .inicio-capa::after {
+    background: linear-gradient(
+        90deg,
+        rgba(12, 34, 24, 0.84) 0%,
+        rgba(12, 34, 24, 0.56) 48%,
+        rgba(12, 34, 24, 0.08) 100%
+    );
+}
+
+/* O texto fica na frente das camadas */
+.inicio-pagina .inicio-capa .capa-conteudo {
+    position: relative;
+    z-index: 1;
+    width: min(760px, 100%);   /* até 760px, mas nunca maior que a tela */
+    margin: 0;                 /* colado à esquerda */
+}
+
 .inicio-pagina .inicio-capa h1 {
-    margin-bottom: .8rem;
+    margin-bottom: 0.8rem;
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 5.5rem;
     font-weight: 400;
@@ -135,146 +219,151 @@
 .inicio-pagina .inicio-capa .inicio-resumo {
     max-width: 620px;
     margin-bottom: 1.8rem;
-    color: rgba(255, 255, 255, .9);
+    color: rgba(255, 255, 255, 0.9);
     font-size: 1.15rem;
 }
 
+/* Linha com o botão e o link ao lado */
 .inicio-acoes {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 1.2rem;
+    flex-wrap: wrap;   /* em telas pequenas, desce para a linha de baixo */
+    gap: 1.2rem;       /* espaço entre os itens */
 }
 
+/* Botão dourado da capa */
 .inicio-pagina .inicio-capa .btn {
-    background: #d8b78a;
-    color: #18382c;
+    background: var(--dourado);
+    color: var(--verde-escuro);
 }
 
 .inicio-pagina .inicio-capa .btn:hover {
-    background: #e7cda8;
+    background: var(--dourado-claro);   /* clareia quando o mouse passa */
 }
 
+/* Link "Conheça o projeto →" */
 .inicio-secundario-link {
     display: inline-flex;
     align-items: center;
-    gap: .6rem;
+    gap: 0.6rem;
     color: #fff;
     font-weight: 700;
     text-decoration: none;
 }
 
-.inicio-secundario-link span {
-    color: #d8b78a;
+.inicio-secundario-link span {   /* a setinha */
+    color: var(--dourado);
     font-size: 1.2rem;
 }
 
-/* Animacoes de entrada da imagem e do texto da capa. */
-@keyframes cover-image-in {
-    from { transform: scale(1.04); }
-    to { transform: scale(1); }
-}
 
-@keyframes cover-copy-in {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+/* =====================================================
+   5. PÁGINA INICIAL: INTRODUÇÃO E CARTÕES
+   ===================================================== */
 
-/* Conteudo inicial e cards apresentados na pagina inicial. */
 .inicio-pagina .inicio-principal {
     padding-top: 4.5rem;
     padding-bottom: 5rem;
 }
 
+/* Introdução em 2 colunas: título à esquerda, parágrafo à direita */
 .inicio-pagina .inicio-introducao {
     display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
-    align-items: end;
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+    align-items: end;      /* alinha as duas colunas pela base */
     gap: 2.5rem;
     max-width: none;
     margin: 0 0 2.5rem;
     text-align: left;
 }
 
-.inicio-pagina .inicio-introducao .inicio-secao-rotulo,
-.inicio-pagina .inicio-cartao-rotulo {
-    color: #a65e42;
-}
-
 .inicio-pagina .inicio-introducao h2 {
     max-width: 680px;
     margin: 0;
-    color: #18382c;
+    color: var(--verde-escuro);
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 2.5rem;
     font-weight: 400;
     line-height: 1.15;
 }
 
+/* ">" = só o parágrafo que é filho direto da introdução */
 .inicio-pagina .inicio-introducao > p {
-    margin-bottom: .25rem;
-    color: #505b53;
+    margin-bottom: 0.25rem;
+    color: var(--cinza-texto);
     font-size: 1.05rem;
 }
 
+/* Rótulos sobre fundo claro usam terracota (o dourado só funciona no escuro) */
+.inicio-pagina .inicio-introducao .inicio-secao-rotulo,
+.inicio-pagina .inicio-cartao-rotulo {
+    color: var(--terracota);
+}
+
+.inicio-pagina .inicio-cartao-rotulo {
+    margin-bottom: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* ---- Grade com os 3 cartões ---- */
 .inicio-pagina .inicio-cartoes {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));   /* 3 colunas iguais */
     gap: 1.25rem;
     margin-top: 0;
 }
 
 .inicio-pagina .inicio-cartoes .cartao {
-    border: 1px solid #e1e4dc;
+    border: 1px solid var(--borda-cartao);
     border-radius: 6px;
-    box-shadow: 0 5px 16px rgba(24, 56, 44, .06);
+    box-shadow: 0 5px 16px rgba(24, 56, 44, 0.06);
 }
 
 .inicio-pagina .inicio-cartoes .cartao-imagem {
     height: 220px;
 }
 
-.inicio-pagina .inicio-cartao-rotulo {
-    margin-bottom: .4rem;
-    font-size: .72rem;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
 .inicio-pagina .inicio-cartoes .cartao-titulo {
-    color: #18382c;
+    color: var(--verde-escuro);
 }
 
 .inicio-pagina .inicio-cartoes .cartao-link {
     display: inline-flex;
     align-items: center;
-    gap: .5rem;
-    color: #32634a;
+    gap: 0.5rem;
+    color: var(--verde-medio);
 }
 
-/* Chamada final da pagina inicial para acessar o contato. */
+
+/* =====================================================
+   6. PÁGINA INICIAL: FAIXA FINAL (chamada para contato)
+   ===================================================== */
+
 .inicio-pagina .inicio-chamada {
-    justify-content: space-between;
+    justify-content: space-between;   /* texto de um lado, botão do outro */
     align-items: center;
     gap: 2rem;
     margin: 4rem 0 0;
     padding: 2.5rem;
-    border-left: 6px solid #bd7658;
-    border-radius: 6px;
-    background: #18382c;
+    background: var(--verde-escuro);
     color: #fff;
+    border-left: 6px solid var(--terracota-borda);   /* barra colorida lateral */
+    border-radius: 6px;
 }
 
+/* Texto ocupa o espaço que sobrar (mínimo ideal de 500px) */
 .inicio-pagina .inicio-chamada .informacao-texto {
     flex: 1 1 500px;
 }
 
 .inicio-pagina .inicio-chamada .inicio-secao-rotulo {
-    color: #d8b78a;
+    color: var(--dourado);
 }
 
 .inicio-pagina .inicio-chamada h2 {
     max-width: 680px;
-    margin-bottom: .6rem;
+    margin-bottom: 0.6rem;
     color: #fff;
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 2rem;
@@ -282,18 +371,19 @@
     line-height: 1.2;
 }
 
+/* Parágrafo normal (o :not exclui o rótulo, que também é um <p>) */
 .inicio-pagina .inicio-chamada p:not(.inicio-secao-rotulo) {
     margin-bottom: 0;
-    color: rgba(255, 255, 255, .82);
+    color: rgba(255, 255, 255, 0.82);
 }
 
 .inicio-pagina .inicio-chamada .btn {
-    flex: 0 0 auto;
+    flex: 0 0 auto;   /* o botão não estica nem encolhe */
     margin-top: 0;
-    background: #d8b78a;
-    color: #18382c;
+    background: var(--dourado);
+    color: var(--verde-escuro);
 }
 
 .inicio-pagina .inicio-chamada .btn:hover {
-    background: #e7cda8;
+    background: var(--dourado-claro);
 }

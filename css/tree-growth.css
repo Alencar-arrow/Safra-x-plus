@@ -1,34 +1,96 @@
-/* A cena acompanha a rolagem sem prender o conteudo em telas pequenas. */
-.arvore-crescimento-secao {
-    position: relative;
-    height: 280vh;
-    background: #102917;
+/* =====================================================
+   COMO ESSA ANIMAÇÃO FUNCIONA (visão geral)
+
+   1. A seção é MUITO alta (280vh = 2,8 telas de altura).
+      Isso cria "espaço para rolar".
+   2. Dentro dela, a cena fica "grudada" na tela (position: sticky).
+      Então, enquanto você rola, a cena parece parada.
+   3. O JavaScript (em outro arquivo) mede o quanto você rolou
+      e vai mudando a árvore, a barra de progresso e o texto.
+      O CSS só prepara as peças: o JavaScript é quem as move.
+   ===================================================== */
+
+
+/* =====================================================
+   0. CORES DA ANIMAÇÃO (variáveis)
+   O prefixo "arv-" evita conflito com outras páginas.
+   ===================================================== */
+:root {
+    --arv-fundo: #102917;           /* verde bem escuro da seção */
+    --arv-verde-claro: #b8e6bd;     /* rótulo e barra de progresso */
+    --arv-cena-centro: #315b3a;     /* gradiente da cena: centro */
+    --arv-cena-meio: #173720;       /* gradiente da cena: meio */
+    --arv-cena-borda: #0b1c10;      /* gradiente da cena: bordas */
 }
 
+
+/* =====================================================
+   1. A SEÇÃO E A CENA
+   ===================================================== */
+
+/* A seção alta que cria o espaço de rolagem */
+.arvore-crescimento-secao {
+    position: relative;
+    height: 280vh;     /* 1vh = 1% da altura da tela, então 280vh = 2,8 telas */
+    background: var(--arv-fundo);
+}
+
+/* A cena: uma "tela" que fica grudada no topo enquanto você rola */
 .arvore-crescimento-cena {
-    position: sticky;
+    position: sticky;   /* gruda no topo ao rolar */
     top: 0;
-    display: grid;
+
+    /* Altura de uma tela inteira.
+       Duas linhas de propósito: navegadores antigos usam a 1ª (vh);
+       navegadores novos entendem "svh" e usam a 2ª. svh = altura "pequena"
+       da tela no celular (com a barra do navegador visível), o que evita
+       que a cena fique cortada. A última declaração válida vence. */
     height: 100vh;
     height: 100svh;
+
+    /* Mesma ideia: altura mínima de 32rem. A 2ª linha usa min() para
+       nunca passar de uma tela inteira em telas muito baixas. */
     min-height: 32rem;
     min-height: min(100svh, 32rem);
+
+    /* Duas colunas iguais: árvore à esquerda, texto à direita */
+    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: center;
+
+    /* clamp(mínimo, ideal, máximo): o espaço cresce com a tela
+       (5vw), mas fica entre 1rem e 4rem */
     gap: clamp(1rem, 5vw, 4rem);
     padding: clamp(1rem, 4vw, 3rem) max(1.25rem, 8vw);
-    overflow: hidden;
-    background: radial-gradient(ellipse at 30% 50%, #315b3a, #173720 58%, #0b1c10);
+
+    overflow: hidden;   /* corta o que sair da cena */
+    background: radial-gradient(
+        ellipse at 30% 50%,           /* o "brilho" fica em 30% da largura, no meio da altura */
+        var(--arv-cena-centro),
+        var(--arv-cena-meio) 58%,
+        var(--arv-cena-borda)
+    );
     color: var(--white);
 }
 
+
+/* =====================================================
+   2. O DESENHO DA ÁRVORE (SVG)
+   ===================================================== */
+
 .arvore-crescimento {
     display: block;
-    width: min(100%, 27rem);
+    width: min(100%, 27rem);   /* até 27rem, mas nunca maior que a coluna */
     justify-self: center;
-    filter: drop-shadow(0 1rem 2rem #0003);
+    filter: drop-shadow(0 1rem 2rem rgba(0, 0, 0, 0.2));   /* sombra que segue o formato do desenho */
 }
 
+/* As partes que "crescem" (tronco, copa e floresta).
+   Para o crescimento parecer natural, o ponto de origem do
+   zoom precisa ser a BASE de cada peça:
+     transform-box: fill-box  -> mede a origem pelo tamanho da própria peça
+                                 (e não pelo SVG inteiro)
+     transform-origin: center bottom -> centro horizontal, parte de baixo */
 .arvore-tronco,
 .arvore-copa,
 .arvore-floresta {
@@ -36,31 +98,43 @@
     transform-origin: center bottom;
 }
 
-.arvore-crescimento-secao.animada :is(.arvore-tronco, .arvore-copa, .arvore-floresta) {
-    transform: scale(0);
-}
-
+/* A semente cresce a partir do centro dela mesma */
 .arvore-semente {
     transform-box: fill-box;
     transform-origin: center;
 }
 
+/* O JavaScript adiciona a classe "animada" na seção. Só então as peças
+   começam com tamanho 0 (invisíveis) para poderem crescer.
+   Por quê? Se o JavaScript falhar, a classe não existe e a árvore
+   continua visível, completa.
+   :is(...) é um atalho: significa "qualquer um destes três". */
+.arvore-crescimento-secao.animada :is(.arvore-tronco, .arvore-copa, .arvore-floresta) {
+    transform: scale(0);
+}
+
+
+/* =====================================================
+   3. TEXTO E BARRA DE PROGRESSO
+   ===================================================== */
+
 .arvore-crescimento-texto {
     align-self: center;
 }
 
+/* Rótulo pequeno em maiúsculas: "DA SEMENTE À FLORESTA" */
 .arvore-crescimento-rotulo {
-    margin-bottom: .75rem;
-    color: #b8e6bd;
-    font-size: .8rem;
+    margin-bottom: 0.75rem;
+    color: var(--arv-verde-claro);
+    font-size: 0.8rem;
     font-weight: 700;
-    letter-spacing: .14em;
+    letter-spacing: 0.14em;   /* espaço entre as letras */
     text-transform: uppercase;
 }
 
 .arvore-crescimento-texto h2 {
-    max-width: 18ch;
-    margin-bottom: .75rem;
+    max-width: 18ch;          /* ch = largura de um caractere; limita a ~18 letras por linha */
+    margin-bottom: 0.75rem;
     color: var(--white);
     font-size: clamp(2rem, 4.5vw, 3.7rem);
     line-height: 1.08;
@@ -71,6 +145,7 @@
     color: rgba(255, 255, 255, 0.76);
 }
 
+/* A "trilha" da barra de progresso (a parte cinza clara de fundo) */
 .arvore-crescimento-progresso {
     height: 3px;
     overflow: hidden;
@@ -78,70 +153,132 @@
     background: rgba(255, 255, 255, 0.25);
 }
 
+/* O preenchimento da barra.
+   Ele sempre tem 100% de largura, mas é "encolhido" com scaleX(0)
+   (largura zero). O JavaScript aumenta o scaleX de 0 até 1
+   conforme você rola.
+   transform-origin: left center faz a barra crescer da esquerda para a direita. */
 .arvore-crescimento-progresso span {
     display: block;
     width: 100%;
     height: 100%;
-    border-radius: inherit;
-    background: #b8e6bd;
+    border-radius: inherit;   /* herda o arredondamento da trilha */
+    background: var(--arv-verde-claro);
     transform: scaleX(0);
     transform-origin: left center;
-    transition: transform .15s linear;
+    transition: transform 0.15s linear;   /* suaviza o movimento */
 }
 
+/* Contador "01 / 04" */
 .arvore-crescimento-etapa-contador {
-    margin-top: .75rem;
+    margin-top: 0.75rem;
     color: var(--white);
-    font-size: .85rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    font-variant-numeric: tabular-nums;
+    font-variant-numeric: tabular-nums;   /* todos os dígitos com a mesma largura (o número não "pula") */
 }
 
+
+/* =====================================================
+   4. AS 4 FRASES (aparecem uma de cada vez)
+   ===================================================== */
+
+/* Truque: as 4 frases ficam EMPILHADAS no mesmo lugar da grade
+   (grid-area: 1 / 1 = linha 1, coluna 1). Só a que tem a classe
+   "ativo" fica visível; as outras ficam transparentes. */
 .arvore-crescimento-etapas {
     display: grid;
-    min-height: 10rem;
-    margin-top: 1rem;
     align-items: center;
+    min-height: 10rem;   /* altura reservada para o texto não "pular" quando a frase troca */
+    margin-top: 1rem;
 }
 
 .arvore-crescimento-etapas p {
-    grid-area: 1 / 1;
+    grid-area: 1 / 1;    /* todas as frases ocupam a mesma célula */
     max-width: 38ch;
     color: var(--white);
     font-size: clamp(1.1rem, 2.2vw, 1.55rem);
     line-height: 1.55;
+
+    /* Estado normal: invisível e 0.75rem mais abaixo */
     opacity: 0;
-    transform: translateY(.75rem);
-    transition: opacity .45s ease, transform .45s ease;
+    transform: translateY(0.75rem);
+    transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
+/* A frase ativa (a classe "ativo" é trocada pelo JavaScript):
+   aparece e sobe até a posição normal. "none" = sem transformação. */
 .arvore-crescimento-etapas p.ativo {
     opacity: 1;
     transform: none;
 }
 
-@media (max-width: 800px) {
-    .arvore-crescimento-secao { height: 260vh; }
 
+/* =====================================================
+   5. TELAS PEQUENAS (celular e tablet)
+   Tudo aqui dentro só vale quando a tela tem 800px ou menos.
+   ===================================================== */
+
+@media (max-width: 800px) {
+
+    /* A seção fica um pouco mais curta (menos rolagem) */
+    .arvore-crescimento-secao {
+        height: 260vh;
+    }
+
+    /* Em vez de 2 colunas lado a lado, a árvore fica EM CIMA
+       e o texto EMBAIXO */
     .arvore-crescimento-cena {
         min-height: 100vh;
         min-height: 100svh;
-        grid-template-columns: 1fr;
-        grid-template-rows: minmax(9rem, 35svh) minmax(0, 1fr);
+        grid-template-columns: 1fr;                          /* 1 coluna só */
+        grid-template-rows: minmax(9rem, 35svh) minmax(0, 1fr);  /* linha da árvore: 9rem a 35% da tela; texto: o resto */
         align-content: center;
-        gap: .5rem;
+        gap: 0.5rem;
         padding: 1rem max(1.25rem, 6vw);
     }
 
-    .arvore-crescimento { width: min(100%, 19rem); max-height: 35svh; }
-    .arvore-crescimento-texto { align-self: start; }
-    .arvore-crescimento-texto h2 { font-size: clamp(1.8rem, 7vw, 2.6rem); }
-    .arvore-crescimento-instrucao { margin-bottom: .8rem; }
-    .arvore-crescimento-etapas { min-height: 6rem; margin-top: .5rem; }
-    .arvore-crescimento-etapas p { font-size: clamp(1.05rem, 4.5vw, 1.35rem); }
+    /* A árvore fica menor para dar espaço ao texto */
+    .arvore-crescimento {
+        width: min(100%, 19rem);
+        max-height: 35svh;
+    }
+
+    /* O texto começa logo abaixo da árvore (e não centralizado) */
+    .arvore-crescimento-texto {
+        align-self: start;
+    }
+
+    .arvore-crescimento-texto h2 {
+        font-size: clamp(1.8rem, 7vw, 2.6rem);
+    }
+
+    .arvore-crescimento-instrucao {
+        margin-bottom: 0.8rem;
+    }
+
+    .arvore-crescimento-etapas {
+        min-height: 6rem;
+        margin-top: 0.5rem;
+    }
+
+    .arvore-crescimento-etapas p {
+        font-size: clamp(1.05rem, 4.5vw, 1.35rem);
+    }
 }
+
+
+/* =====================================================
+   6. ACESSIBILIDADE: MOVIMENTO REDUZIDO
+   Algumas pessoas ativam, no celular ou computador, a opção
+   "reduzir movimento" (por exemplo, quem sente enjoo com animações).
+   Quando essa opção está ativa, desligamos as transições suaves:
+   a barra e as frases mudam instantaneamente.
+   ===================================================== */
 
 @media (prefers-reduced-motion: reduce) {
     .arvore-crescimento-progresso span,
-    .arvore-crescimento-etapas p { transition: none; }
+    .arvore-crescimento-etapas p {
+        transition: none;
+    }
 }

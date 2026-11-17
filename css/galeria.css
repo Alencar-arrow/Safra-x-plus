@@ -1,305 +1,385 @@
+/* =====================================================
+   0. CORES DA GALERIA (variáveis)
+   Cada cor ganha um nome. Para mudar uma cor em toda a
+   galeria, basta alterar aqui em cima.
 
-/* Capa da galeria, com imagem ao fundo e camada para contraste. */
+   Obs.: --gallery-paper, --gallery-clay, --gallery-ink e
+   --gallery-leaf já existem em outro arquivo do projeto,
+   então continuam sendo usadas daqui.
+   ===================================================== */
+:root {
+    --verde-escuro: #18382c;
+    --dourado: #d8b78a;
+    --terracota-borda: #bd7658;
+    --cinza-texto: #5d655d;
+    --cinza-contador: #687168;
+    --verde-filtro: #4f5d53;
+    --linha-clara: #d9d8ce;
+    --fundo-imagem: #d5ddd2;
+    --papel-janela: #f4f3ec;
+    --borda-janela: #bdc8ba;
+}
+
+
+/* =====================================================
+   1. PÁGINA E ANIMAÇÃO
+   ===================================================== */
+
 .galeria-pagina {
-  scroll-behavior: smooth;
-  background: var(--gallery-paper);
+    scroll-behavior: smooth;          /* ao clicar em um link âncora, a página "desliza" */
+    background: var(--gallery-paper);
 }
 
 .galeria-pagina main {
-  width: 100%;
+    width: 100%;
 }
 
+/* Animação da janela ampliada: aparece e sobe 8px */
+@keyframes gallery-dialog-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Contorno visível quando alguém navega pelo teclado (Tab).
+   Importante para acessibilidade! */
+.galeria-pagina :focus-visible {
+    outline: 3px solid var(--terracota-borda);
+    outline-offset: 3px;
+}
+
+
+/* =====================================================
+   2. CAPA DA GALERIA
+   A capa usa o mesmo sistema de 3 camadas da página
+   inicial (foto ::before, véu ::after, texto na frente).
+   As regras compartilhadas (position, inset, z-index,
+   animation...) estão no outro arquivo, na seção 3.
+   Aqui só definimos o que é específico da galeria.
+   ===================================================== */
+
+/* A seção da capa */
 .galeria-capa {
-  position: relative;
-  display: flex;
-  align-items: center;
-  isolation: isolate;
-  min-height: var(--page-cover-height);
-  padding: 5rem max(1.5rem, calc((100% - 1200px) / 2));
-  color: #fff;
-  background: #18382c;
+    position: relative;   /* referência para as camadas ::before e ::after */
+    isolation: isolate;   /* mantém as camadas dentro da capa */
+    display: flex;
+    align-items: center;
+    min-height: var(--page-cover-height);
+    color: #fff;
+    background: var(--verde-escuro);   /* cor de reserva enquanto a foto carrega */
+
+    /* Margem lateral: mínimo de 1.5rem, mas em telas grandes
+       alinha o texto com uma coluna central de 1200px */
+    padding: 5rem max(1.5rem, calc((100% - 1200px) / 2));
 }
 
+/* A foto da capa */
 .galeria-pagina .galeria-capa::before {
-  background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2000&q=85');
-  background-position: center 48%;
+    background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2000&q=85');
+    background-position: center 48%;
 }
 
+/* O véu: escuro à esquerda (onde fica o texto) e
+   quase transparente à direita (para a foto aparecer) */
 .galeria-pagina .galeria-capa::after {
-  background: linear-gradient(90deg, rgba(12, 34, 24, .84) 0%, rgba(12, 34, 24, .55) 48%, rgba(12, 34, 24, .08) 100%);
+    background: linear-gradient(
+        90deg,
+        rgba(12, 34, 24, 0.84) 0%,
+        rgba(12, 34, 24, 0.55) 48%,
+        rgba(12, 34, 24, 0.08) 100%
+    );
 }
 
+/* Caixa do texto da capa */
 .galeria-capa-conteudo {
-  width: min(680px, 100%);
+    width: min(680px, 100%);   /* até 680px, mas nunca maior que a tela */
 }
 
+/* Rótulo pequeno em maiúsculas (usado na capa e no cabeçalho) */
 .galeria-rotulo {
-  margin-bottom: .8rem;
-  color: #d8b78a;
-  font-size: .78rem;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    color: var(--dourado);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;   /* espaço entre as letras */
+    text-transform: uppercase;
 }
 
 .galeria-capa h1 {
-  margin: 0 0 1rem;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 3.7rem;
-  font-weight: 400;
-  line-height: 1.04;
+    margin: 0 0 1rem;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 3.7rem;
+    font-weight: 400;
+    line-height: 1.04;
 }
 
+/* Parágrafo da capa (o :not exclui o rótulo, que também é um <p>) */
 .galeria-capa-conteudo > p:not(.galeria-rotulo) {
-  max-width: 500px;
-  margin-bottom: 1.7rem;
-  color: rgba(255, 255, 255, .88);
-  font-size: 1.1rem;
+    max-width: 500px;
+    margin-bottom: 1.7rem;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 1.1rem;
 }
 
+/* Link "Explorar imagens ↓" com linha embaixo */
 .galeria-capa-link {
-  display: inline-flex;
-  align-items: center;
-  gap: .8rem;
-  padding-bottom: .4rem;
-  border-bottom: 1px solid #d8b78a;
-  color: #fff;
-  font-weight: 700;
-  text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--dourado);
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
 }
 
-.galeria-capa-link span {
-  color: #d8b78a;
-  font-size: 1.3rem;
+.galeria-capa-link span {   /* a setinha */
+    color: var(--dourado);
+    font-size: 1.3rem;
 }
 
+/* Texto pequeno "01 / 04 FLORESTA" no canto inferior direito */
 .galeria-capa-indice {
-  position: absolute;
-  right: max(1.5rem, calc((100% - 1200px) / 2));
-  bottom: 1.5rem;
-  color: rgba(255, 255, 255, .75);
-  font-size: .72rem;
-  font-weight: 700;
-  letter-spacing: .12em;
+    position: absolute;   /* posicionado em relação à capa */
+    right: max(1.5rem, calc((100% - 1200px) / 2));
+    bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
 }
 
-/* Cabecalho da colecao e controles de filtro. */
+
+/* =====================================================
+   3. COLEÇÃO: CABEÇALHO E FILTROS
+   ===================================================== */
+
 .galeria-colecao {
-  max-width: 1260px;
-  margin: 0 auto;
-  padding: 5rem 2rem 6rem;
-  scroll-margin-top: 5rem;
+    max-width: 1260px;
+    margin: 0 auto;
+    padding: 5rem 2rem 6rem;
+    scroll-margin-top: 5rem;   /* ao rolar até aqui, deixa 5rem livres no topo
+                                  (para o menu fixo não cobrir o título) */
 }
 
+/* Título à esquerda, parágrafo à direita */
 .galeria-cabecalho {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 2rem;
-  margin-bottom: 2.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 2rem;
+    margin-bottom: 2.2rem;
 }
 
+/* Sobre fundo claro, o rótulo usa a cor "clay" (o dourado só funciona no escuro) */
 .galeria-cabecalho .galeria-rotulo {
-  color: var(--gallery-clay);
+    color: var(--gallery-clay);
 }
 
 .galeria-cabecalho h2 {
-  color: var(--gallery-ink);
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 2.4rem;
-  font-weight: 400;
-  line-height: 1.15;
+    color: var(--gallery-ink);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    line-height: 1.15;
 }
 
 .galeria-cabecalho > p {
-  max-width: 370px;
-  color: #5d655d;
+    max-width: 370px;
+    color: var(--cinza-texto);
 }
 
+/* Barra com os botões de filtro e o contador de imagens */
 .galeria-ferramentas {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #d9d8ce;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--linha-clara);
 }
 
 .galeria-filtros {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .45rem;
+    display: flex;
+    flex-wrap: wrap;   /* em telas pequenas, os botões quebram de linha */
+    gap: 0.45rem;
 }
 
+/* Botão de filtro (estado normal: transparente) */
 .galeria-filtro {
-  padding: .55rem .9rem;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  background: transparent;
-  color: #4f5d53;
-  font: inherit;
-  font-size: .9rem;
-  cursor: pointer;
+    padding: 0.55rem 0.9rem;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    background: transparent;
+    color: var(--verde-filtro);
+    font: inherit;          /* usa a mesma fonte do resto da página */
+    font-size: 0.9rem;
+    cursor: pointer;
 }
 
+/* Botão com o mouse em cima OU o filtro selecionado (.ativo): fica verde */
 .galeria-filtro:hover,
 .galeria-filtro.ativo {
-  border-color: var(--gallery-leaf);
-  background: var(--gallery-leaf);
-  color: #fff;
+    border-color: var(--gallery-leaf);
+    background: var(--gallery-leaf);
+    color: #fff;
 }
 
 .galeria-contador {
-  flex: 0 0 auto;
-  color: #687168;
-  font-size: .85rem;
+    flex: 0 0 auto;   /* não estica nem encolhe */
+    color: var(--cinza-contador);
+    font-size: 0.85rem;
 }
 
-/* Grade de imagens e legenda visivel ao passar o mouse ou focar. */
+
+/* =====================================================
+   4. GRADE DE IMAGENS
+   ===================================================== */
+
+/* 3 colunas de tamanhos iguais */
 .galeria-grade {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
 }
 
 .galeria-item {
-  min-width: 0;
-  margin: 0;
+    min-width: 0;   /* evita que o item estoure a coluna */
+    margin: 0;
 }
 
+/* O botão que envolve a imagem (clicar nele abre a janela) */
 .galeria-abrir {
-  position: relative;
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  padding: 0;
-  border: 0;
-  background: #d5ddd2;
-  cursor: zoom-in;
+    position: relative;      /* referência para o rótulo "Ampliar imagem" */
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;     /* proporção fixa: todas as imagens ficam do mesmo tamanho */
+    overflow: hidden;        /* esconde o que sair do botão quando a imagem crescer */
+    padding: 0;
+    border: 0;
+    background: var(--fundo-imagem);   /* cor exibida enquanto a imagem carrega */
+    cursor: zoom-in;                   /* cursor de lupa */
 }
 
 .galeria-abrir img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .45s ease;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;               /* a imagem preenche a caixa sem distorcer */
+    transition: transform 0.45s ease;
 }
 
+/* Mouse em cima OU foco do teclado: a imagem dá um pequeno zoom */
 .galeria-abrir:hover img,
 .galeria-abrir:focus-visible img {
-  transform: scale(1.045);
+    transform: scale(1.045);
 }
 
+/* Etiqueta "Ampliar imagem" (começa invisível, 4px mais abaixo) */
 .galeria-abrir-rotulo {
-  position: absolute;
-  right: .75rem;
-  bottom: .75rem;
-  padding: .45rem .65rem;
-  background: rgba(24, 56, 44, .92);
-  color: #fff;
-  font-size: .78rem;
-  opacity: 0;
-  transform: translateY(4px);
-  transition: opacity .2s, transform .2s;
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    padding: 0.45rem 0.65rem;
+    background: rgba(24, 56, 44, 0.92);
+    color: #fff;
+    font-size: 0.78rem;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.2s, transform 0.2s;
 }
 
+/* Com o mouse ou o teclado, a etiqueta aparece e sobe */
 .galeria-abrir:hover .galeria-abrir-rotulo,
 .galeria-abrir:focus-visible .galeria-abrir-rotulo {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
+/* Legenda embaixo da imagem (categoria + título, um sobre o outro) */
 .galeria-item figcaption {
-  display: grid;
-  gap: .25rem;
-  padding: .8rem .1rem 0;
+    display: grid;
+    gap: 0.25rem;
+    padding: 0.8rem 0.1rem 0;
 }
 
-.galeria-item figcaption span {
-  color: var(--gallery-clay);
-  font-size: .7rem;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+.galeria-item figcaption span {   /* categoria */
+    color: var(--gallery-clay);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 
-.galeria-item figcaption strong {
-  color: var(--gallery-ink);
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 1.15rem;
-  font-weight: 400;
+.galeria-item figcaption strong {   /* título da imagem */
+    color: var(--gallery-ink);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
 }
 
-/* Dialog mostra uma imagem ampliada sobre uma camada escura. */
+
+/* =====================================================
+   5. JANELA (<dialog>) COM A IMAGEM AMPLIADA
+   ===================================================== */
+
 .galeria-janela {
-  position: fixed;
-  width: min(1000px, calc(100% - 2rem));
-  max-width: none;
-  max-height: calc(100% - 2rem);
-  padding: 1rem;
-  border: 0;
-  background: #f4f3ec;
-  color: var(--gallery-ink);
+    position: fixed;
+    width: min(1000px, calc(100% - 2rem));   /* até 1000px, com 1rem de folga de cada lado */
+    max-width: none;
+    max-height: calc(100% - 2rem);
+    padding: 1rem;
+    border: 0;
+    background: var(--papel-janela);
+    color: var(--gallery-ink);
 }
 
+/* [open] = só quando a janela está aberta */
 .galeria-janela[open] {
-  animation: gallery-dialog-in .2s ease-out;
+    animation: gallery-dialog-in 0.2s ease-out;
 }
 
+/* ::backdrop = a camada escura atrás da janela */
 .galeria-janela::backdrop {
-  background: rgba(11, 24, 17, .82);
+    background: rgba(11, 24, 17, 0.82);
 }
 
+/* O formulário só guarda o botão "Fechar", alinhado à direita */
 .galeria-janela form {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: .75rem;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.75rem;
 }
 
 .galeria-janela-fechar {
-  display: inline-flex;
-  align-items: center;
-  gap: .7rem;
-  padding: .45rem .7rem;
-  border: 1px solid #bdc8ba;
-  background: transparent;
-  color: var(--gallery-ink);
-  font: inherit;
-  cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid var(--borda-janela);
+    background: transparent;
+    color: var(--gallery-ink);
+    font: inherit;
+    cursor: pointer;
 }
 
-.galeria-janela-fechar span {
-  font-size: 1.2rem;
+.galeria-janela-fechar span {   /* o "×" */
+    font-size: 1.2rem;
 }
 
 .galeria-janela figure {
-  margin: 0;
+    margin: 0;
 }
 
 .galeria-janela img {
-  display: block;
-  width: 100%;
-  max-height: calc(100vh - 8rem);
-  object-fit: contain;
+    display: block;
+    width: 100%;
+    max-height: calc(100vh - 8rem);   /* nunca passa da altura da tela */
+    object-fit: contain;              /* mostra a imagem inteira, sem cortar */
 }
 
 .galeria-janela figcaption {
-  padding: .75rem .1rem .1rem;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 1.15rem;
+    padding: 0.75rem 0.1rem 0.1rem;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.15rem;
 }
-
-/* Contorno consistente para navegacao por teclado. */
-.galeria-pagina :focus-visible {
-  outline: 3px solid #bd7658;
-  outline-offset: 3px;
-}
-
-@keyframes gallery-dialog-in {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-

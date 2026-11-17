@@ -1,109 +1,185 @@
-/* Ajustes reutilizaveis do menu e do logotipo. */
+/* =====================================================
+   COMO LER ESTE ARQUIVO
+
+   Este CSS cuida do menu no topo do site (o <header>).
+   Ele está dividido em partes, da esquerda para a direita
+   na tela:
+
+     1. Ajustes rápidos (variáveis)
+     2. O cabeçalho fixo no topo
+     3. A barra de navegação (.navbar)
+     4. O logotipo
+     5. Os links do menu
+     6. Foco do teclado (acessibilidade)
+     7. O botão "hambúrguer" (as 3 linhas do menu no celular)
+
+   Algumas cores vêm do principal.css, como --white,
+   --text-color, --primary-color e --light-bg.
+   ===================================================== */
+
+
+/* =====================================================
+   1. AJUSTES RÁPIDOS (variáveis)
+   Em vez de espalhar números pelo código, cada medida do
+   menu tem um nome. Para deixar o logo maior, o espaço entre
+   os links mais largo etc., basta mudar o valor aqui.
+   ===================================================== */
 :root {
-    --nav-font-family: inherit;
-    --nav-font-size: 1rem;
-    --nav-logo-size: 86px;
-    --nav-logo-image-size: 86px;
-    --nav-logo-offset: -0.1rem;
+    --nav-font-family: inherit;     /* "inherit" = usa a mesma fonte do site */
+    --nav-font-size: 1rem;          /* tamanho do texto dos links */
+
+    --nav-logo-size: 86px;          /* largura da caixa do logo */
+    --nav-logo-image-size: 86px;    /* largura da imagem do logo */
+    --nav-logo-offset: -0.1rem;     /* pequeno empurrão do logo para a esquerda */
+
+    /* Espaço interno da barra: cima, direita, baixo, esquerda */
     --nav-padding: 0.35rem 1.5rem 0.35rem 0.75rem;
-    --nav-link-gap: 10px;
-    --nav-link-padding: 0.5rem 0.8rem;
-    --nav-toggle-width: 25px;
-    --nav-toggle-height: 3px;
-    --nav-toggle-gap: 1px;
+
+    --nav-link-gap: 10px;                  /* espaço entre um link e outro */
+    --nav-link-padding: 0.5rem 0.8rem;     /* espaço dentro de cada link */
+
+    /* As 3 linhas do botão hambúrguer */
+    --nav-toggle-width: 25px;       /* comprimento de cada linha */
+    --nav-toggle-height: 3px;       /* espessura de cada linha */
+    --nav-toggle-gap: 1px;          /* espaço entre as linhas */
 }
 
-/* Mantem a navegacao visivel durante a rolagem da pagina. */
+
+/* =====================================================
+   2. CABEÇALHO FIXO NO TOPO
+   ===================================================== */
+
 header {
-    position: sticky;
+    position: sticky;    /* "gruda" no topo da tela quando você rola a página */
     top: 0;
-    z-index: 1000;
+    z-index: 1000;       /* fica na frente de todo o resto do conteúdo */
     background: var(--white);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);   /* sombra leve embaixo */
 }
 
-/* Layout do menu, da marca e dos links de navegacao. */
+
+/* =====================================================
+   3. BARRA DE NAVEGAÇÃO
+   Uma linha com o logo na esquerda e o menu na direita.
+   ===================================================== */
+
 .navbar {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: center;               /* alinha tudo no meio, na vertical */
+    justify-content: space-between;    /* logo de um lado e menu do outro */
     width: 100%;
-    max-width: var(--max-width);
-    margin: 0 auto;
+    max-width: var(--max-width);       /* nunca passa da largura máxima do site */
+    margin: 0 auto;                    /* auto nas laterais = centralizar */
     padding: var(--nav-padding);
 }
 
+
+/* =====================================================
+   4. LOGOTIPO
+   A caixa do logo tem um tamanho fixo, e a imagem fica
+   dentro dela. O que passar da caixa é cortado (overflow).
+   ===================================================== */
+
 .logo {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 0 0 auto;
-    position: relative;
+    flex: 0 0 auto;      /* a caixa não estica nem encolhe */
+    overflow: hidden;    /* corta a parte da imagem que passar da caixa */
+
     width: var(--nav-logo-size);
-    height: calc(var(--nav-logo-size) * 0.72);
+    height: calc(var(--nav-logo-size) * 0.72);   /* altura = 72% da largura */
     margin-left: var(--nav-logo-offset);
     text-decoration: none;
-    overflow: hidden;
 }
 
 .logo img {
     display: block;
     width: var(--nav-logo-image-size);
-    height: auto;
-    max-width: none;
-    object-fit: contain;
-    transform: translateY(1px);
+    height: auto;              /* a altura se ajusta para não deformar a imagem */
+    max-width: none;           /* cancela o limite de largura que o principal.css possa ter */
+    object-fit: contain;       /* a imagem inteira aparece, sem cortar */
+    transform: translateY(1px);   /* empurra a imagem 1px para baixo (ajuste fino) */
 }
 
-/* Indicador de foco para navegacao por teclado. */
-.nav-link:focus-visible,
-.logo:focus-visible,
-.hamburger:focus-visible,
-.btn:focus-visible {
-    outline: 3px solid var(--primary-color);
-    outline-offset: 3px;
-}
 
+/* =====================================================
+   5. LINKS DO MENU
+   ===================================================== */
+
+/* A lista de links, em uma linha só */
 .nav-menu {
     display: flex;
     align-items: center;
-    gap: 0 var(--nav-link-gap);
-    list-style: none;
+    gap: 0 var(--nav-link-gap);   /* 0 entre linhas, 10px entre colunas */
+    list-style: none;             /* remove as bolinhas da lista */
 }
 
+/* Cada link */
 .nav-link {
-    display: block;
+    display: block;        /* a área clicável inclui o espaço interno (padding) */
     padding: var(--nav-link-padding);
     border-radius: 4px;
     color: var(--text-color);
     font-family: var(--nav-font-family);
     font-size: var(--nav-font-size);
     font-weight: 500;
-    text-decoration: none;
-    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;     /* tira o sublinhado padrão dos links */
+    transition: background-color 0.3s, color 0.3s;   /* a troca de cor é suave */
 }
 
+/* Mouse em cima OU página atual (classe "ativo"):
+   o link fica verde e ganha um fundo claro */
 .nav-link:hover,
 .nav-link.ativo {
     color: var(--primary-color);
     background: var(--light-bg);
 }
 
-/* Icone do menu compacto, escondido em telas largas. */
+
+/* =====================================================
+   6. FOCO DO TECLADO (acessibilidade)
+   Quem navega com a tecla Tab precisa ver onde está.
+   :focus-visible mostra o contorno SÓ no teclado (não aparece
+   quando você clica com o mouse).
+   ===================================================== */
+
+.nav-link:focus-visible,
+.logo:focus-visible,
+.hamburger:focus-visible,
+.btn:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 3px;    /* afasta o contorno 3px do elemento */
+}
+
+
+/* =====================================================
+   7. BOTÃO HAMBÚRGUER (as 3 linhas)
+   Aparece só no celular. Em telas largas fica escondido.
+
+   Como funciona: as 3 linhas (<span>) ficam empilhadas no centro
+   do botão e depois são movidas para cima e para baixo.
+   Quando o menu abre, a linha de cima e a de baixo giram
+   e viram um "X", e a do meio some.
+   ===================================================== */
+
 .hamburger {
     position: relative;
+    display: none;           /* ESCONDIDO por padrão (em telas largas) */
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 44px;
+    width: 44px;             /* 44px é um bom tamanho para tocar com o dedo */
     height: 44px;
     padding: 0;
     border: 0;
     background: transparent;
-    display: none;
-    flex-direction: column;
     cursor: pointer;
 }
 
+/* Cada linha começa no centro exato do botão
+   (left: 50% e top: 50%) e depois é ajustada com translate */
 .hamburger span {
     position: absolute;
     left: 50%;
@@ -112,21 +188,27 @@ header {
     height: var(--nav-toggle-height);
     border-radius: 2px;
     background: var(--text-color);
-    transition: transform .25s ease, opacity .2s ease;
+    transition: transform 0.25s ease, opacity 0.2s ease;   /* o giro é suave */
 }
 
+/* Menu FECHADO: as 3 linhas empilhadas.
+   translate(-50%, -50%) centraliza a linha no ponto 50%/50%,
+   e o "± 7px" empurra a de cima para cima e a de baixo para baixo. */
 .hamburger span:nth-child(1) {
-    transform: translate(-50%, calc(-50% - 7px));
+    transform: translate(-50%, calc(-50% - 7px));   /* linha de cima */
 }
 
 .hamburger span:nth-child(2) {
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);               /* linha do meio */
 }
 
 .hamburger span:nth-child(3) {
-    transform: translate(-50%, calc(-50% + 7px));
+    transform: translate(-50%, calc(-50% + 7px));   /* linha de baixo */
 }
 
+/* Menu ABERTO (o JavaScript troca aria-expanded para "true"):
+   as linhas de cima e de baixo voltam para o centro e giram,
+   formando um X. A do meio fica invisível. */
 .hamburger[aria-expanded="true"] span:nth-child(1) {
     transform: translate(-50%, -50%) rotate(45deg);
 }
@@ -139,6 +221,8 @@ header {
     transform: translate(-50%, -50%) rotate(-45deg);
 }
 
+/* Acessibilidade: quem ativou "reduzir movimento" no aparelho
+   vê o ícone mudar instantaneamente, sem animação. */
 @media (prefers-reduced-motion: reduce) {
     .hamburger span {
         transition: none;

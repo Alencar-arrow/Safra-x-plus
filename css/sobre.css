@@ -1,15 +1,46 @@
-/* Estilos da pagina "Sobre"; as cores usam tokens definidos no principal.css. */
-/* Base da página: cores compartilhadas e contenção do conteúdo principal. */
+/* =====================================================
+   0. CORES DA PÁGINA "SOBRE" (variáveis)
+   Cada cor ganha um nome. Para mudar uma cor em toda a
+   página, basta alterar aqui em cima.
+
+   Obs.: --about-paper, --about-ink, --about-clay e
+   --about-leaf já existem em outro arquivo do projeto
+   (principal.css), então continuam sendo usadas daqui.
+   O prefixo "sobre-" nas novas variáveis evita conflito
+   com variáveis de outras páginas.
+   ===================================================== */
+:root {
+    --sobre-verde-capa: #254c38;       /* cor de reserva da capa */
+    --sobre-dourado: #e6c89e;          /* detalhes dourados da capa */
+    --sobre-dourado-contato: #d8b78a;  /* dourado do link final */
+    --sobre-terracota: #a65e42;        /* rótulos e números */
+    --sobre-texto-origem: #4e5b52;
+    --sobre-texto-cinza: #59645c;
+    --sobre-cinza-palavra: #667168;
+    --sobre-fundo-principios: #e8e9df;
+    --sobre-linha: #c4c9bd;
+    --sobre-sublinhado: #bdc8ba;
+    --sobre-foco: #bd7658;
+}
+
+
+/* =====================================================
+   1. BASE DA PÁGINA
+   ===================================================== */
+
 .sobre-pagina {
     background: var(--about-paper);
     color: var(--about-ink);
 }
 
+/* overflow: hidden esconde qualquer elemento que "vaze" para os lados
+   (por exemplo, a etiqueta da imagem que usa right: -1rem) */
 .sobre-principal {
     overflow: hidden;
 }
 
-/* Tipografia serifada usada nos títulos e nas frases de destaque. */
+/* Todos os títulos e frases de destaque usam a mesma fonte com serifa.
+   Em vez de repetir font-family em cada regra, listamos todos aqui. */
 .sobre-capa h1,
 .sobre-capa-resumo,
 .sobre-origem-texto h2,
@@ -23,121 +54,169 @@
     font-weight: 400;
 }
 
-/* Capa: imagem, camada escura para contraste e conteúdo sobreposto. */
-.sobre-capa {
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-    min-height: var(--page-cover-height);
-    padding: 5rem max(1.5rem, calc((100% - 1200px) / 2));
-    overflow: hidden;
-    isolation: isolate;
-    color: #fff;
-    background: #254c38;
-}
-
-.sobre-capa::after {
-    position: absolute;
-    z-index: -1;
-    background: rgba(12, 31, 23, .48);
-    content: "";
-    inset: 0;
-}
-
-.sobre-capa-imagem {
-    position: absolute;
-    z-index: -2;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 54%;
-    animation: about-image-in 1.1s ease-out both;
-}
-
-.sobre-capa-conteudo {
-    width: min(780px, 100%);
-    padding-bottom: 2.5rem;
-}
-
+/* Rótulos pequenos em maiúsculas (ex.: "01 / ORIGEM").
+   Aqui ficam só tamanho e estilo; a cor é definida em cada seção. */
 .sobre-rotulo,
 .sobre-secao-marcador {
-    font-size: .75rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: .1em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
 }
 
-.sobre-rotulo {
-    margin-bottom: .8rem;
-    color: #e6c89e;
+/* Contorno visível quando alguém navega pelo teclado (Tab).
+   Importante para acessibilidade! */
+.sobre-pagina :focus-visible {
+    outline: 3px solid var(--sobre-foco);
+    outline-offset: 3px;
 }
 
-/* O título é grande e leve para funcionar como foco visual da capa. */
+
+/* =====================================================
+   2. ANIMAÇÃO
+   A imagem da capa começa um pouco maior e volta ao
+   tamanho normal. A animação do texto da capa
+   (cover-copy-in) está no outro arquivo de CSS.
+   ===================================================== */
+
+@keyframes about-image-in {
+    from { transform: scale(1.04); }
+    to   { transform: scale(1); }
+}
+
+
+/* =====================================================
+   3. CAPA
+   Aqui a foto é uma tag <img> de verdade (e não um
+   ::before como na galeria). As camadas, de trás para frente:
+     imagem  (z-index: -2)
+     véu     (z-index: -1)  -> ::after
+     texto   (normal)
+   ===================================================== */
+
+.sobre-capa {
+    position: relative;    /* referência para os elementos "absolute" dentro dela */
+    isolation: isolate;    /* mantém as camadas dentro da capa */
+    overflow: hidden;      /* corta a imagem que passar dos limites (por causa do zoom) */
+
+    display: flex;
+    align-items: flex-end; /* texto colado na parte de baixo da capa */
+    min-height: var(--page-cover-height);
+    color: #fff;
+    background: var(--sobre-verde-capa);   /* cor de reserva enquanto a foto carrega */
+
+    /* Margem lateral: mínimo de 1.5rem, mas em telas grandes
+       alinha o texto com uma coluna central de 1200px */
+    padding: 5rem max(1.5rem, calc((100% - 1200px) / 2));
+}
+
+/* O véu escuro por cima da foto, para o texto branco ficar legível */
+.sobre-capa::after {
+    content: "";           /* obrigatório para o ::after aparecer */
+    position: absolute;
+    inset: 0;              /* inset: 0 = colar nas 4 bordas (cobre tudo) */
+    z-index: -1;
+    background: rgba(12, 31, 23, 0.48);
+}
+
+/* A foto da capa */
+.sobre-capa-imagem {
+    position: absolute;
+    inset: 0;
+    z-index: -2;           /* fica no fundo */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;               /* preenche a capa sem distorcer */
+    object-position: center 54%;     /* enquadramento da foto */
+    animation: about-image-in 1.1s ease-out both;
+}
+
+/* Caixa do texto da capa */
+.sobre-capa-conteudo {
+    width: min(780px, 100%);   /* até 780px, mas nunca maior que a tela */
+    padding-bottom: 2.5rem;
+}
+
+.sobre-rotulo {
+    margin-bottom: 0.8rem;
+    color: var(--sobre-dourado);
+}
+
+/* Título grande e leve: é o foco visual da capa */
 .sobre-capa h1 {
     margin: 0;
     font-size: 7rem;
-    line-height: .95;
+    line-height: 0.95;
 }
 
 .sobre-capa-resumo {
-    margin: .7rem 0 1.8rem;
-    color: rgba(255, 255, 255, .92);
+    margin: 0.7rem 0 1.8rem;
+    color: rgba(255, 255, 255, 0.92);
     font-size: 1.8rem;
 }
 
-/* Links e legenda da capa: detalhes em dourado reforçam a identidade visual. */
+/* Link "Conheça nossa origem ↓" com linha dourada embaixo */
 .sobre-capa-link {
     display: inline-flex;
     align-items: center;
-    gap: .8rem;
-    padding-bottom: .45rem;
-    border-bottom: 1px solid #e6c89e;
+    gap: 0.8rem;
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid var(--sobre-dourado);
     color: #fff;
     font-weight: 700;
     text-decoration: none;
 }
 
-.sobre-capa-link span {
-    color: #e6c89e;
+.sobre-capa-link span {   /* a setinha */
+    color: var(--sobre-dourado);
     font-size: 1.2rem;
 }
 
+/* Texto "CIDADE × FLORESTA" no canto inferior direito */
 .sobre-capa-nota {
     position: absolute;
     right: max(1.5rem, calc((100% - 1200px) / 2));
     bottom: 2rem;
-    color: rgba(255, 255, 255, .78);
-    font-size: .7rem;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.7rem;
     font-weight: 700;
-    letter-spacing: .12em;
+    letter-spacing: 0.12em;
 }
 
-.sobre-capa-nota span {
-    padding: 0 .35rem;
-    color: #e6c89e;
+.sobre-capa-nota span {   /* o "×" */
+    padding: 0 0.35rem;
+    color: var(--sobre-dourado);
 }
 
-/* Origem: grade com marcador lateral, texto e frase de destaque. */
+
+/* =====================================================
+   4. SEÇÃO ORIGEM
+   Grade de 2 colunas: marcador pequeno à esquerda (160px)
+   e todo o resto à direita.
+   ===================================================== */
+
 .sobre-origem {
     display: grid;
     grid-template-columns: 160px minmax(0, 1fr);
-    gap: 1rem 3rem;
+    gap: 1rem 3rem;        /* 1rem entre linhas, 3rem entre colunas */
     max-width: 1200px;
     margin: 0 auto;
     padding: 7rem 2rem 6rem;
 }
 
+/* Marcador "01 / ORIGEM": o texto é terracota e o número fica escuro.
+   Essa regra vale para TODAS as seções que usam o marcador. */
 .sobre-secao-marcador {
-    color: #a65e42;
+    color: var(--sobre-terracota);
 }
 
 .sobre-secao-marcador span {
     color: var(--about-ink);
 }
 
+/* ">" = só o marcador que é filho direto da seção de origem */
 .sobre-origem > .sobre-secao-marcador {
-    padding-top: .7rem;
+    padding-top: 0.7rem;
 }
 
 .sobre-origem-texto h2 {
@@ -147,17 +226,19 @@
     line-height: 1.12;
 }
 
+/* Os 2 parágrafos lado a lado */
 .sobre-origem-detalhe {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 2rem;
     max-width: 900px;
-    color: #4e5b52;
+    color: var(--sobre-texto-origem);
     font-size: 1rem;
 }
 
+/* Frase de destaque com barra lateral */
 .sobre-tese {
-    grid-column: 2;
+    grid-column: 2;        /* fica na 2ª coluna da grade (alinhada ao texto) */
     max-width: 800px;
     margin-top: 2.5rem;
     padding: 1.1rem 0 0 1.2rem;
@@ -165,13 +246,18 @@
     font-size: 1.5rem;
 }
 
-/* Princípios: duas colunas no desktop e itens organizados em linhas. */
+
+/* =====================================================
+   5. SEÇÃO PRINCÍPIOS
+   Duas colunas: título à esquerda, lista à direita.
+   ===================================================== */
+
 .sobre-principios {
     display: grid;
-    grid-template-columns: minmax(260px, .8fr) minmax(0, 1.2fr);
+    grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
     gap: 4rem;
     padding: 6rem max(2rem, calc((100% - 1200px) / 2));
-    background: #e8e9df;
+    background: var(--sobre-fundo-principios);
 }
 
 .sobre-principios-cabecalho h2 {
@@ -182,53 +268,64 @@
 
 .sobre-principios-cabecalho > p {
     max-width: 330px;
-    color: #59645c;
+    color: var(--sobre-texto-cinza);
 }
 
+/* A lista tem uma linha em cima e cada item tem uma linha embaixo */
 .sobre-principios-lista {
-    border-top: 1px solid #c4c9bd;
+    border-top: 1px solid var(--sobre-linha);
 }
 
+/* Cada princípio é uma linha com 3 colunas:
+   número (42px) | texto (resto) | palavra (82px) */
 .sobre-principio {
     display: grid;
     grid-template-columns: 42px minmax(0, 1fr) 82px;
     gap: 1.2rem;
     align-items: start;
     padding: 1.7rem 0;
-    border-bottom: 1px solid #c4c9bd;
+    border-bottom: 1px solid var(--sobre-linha);
 }
 
+/* Número e palavra (Missão, Visão, Valores) */
 .sobre-principio-numero,
 .sobre-principio-palavra {
-    color: #a65e42;
-    font-size: .72rem;
+    color: var(--sobre-terracota);
+    font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: .08em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
 }
 
 .sobre-principio h3 {
-    margin-bottom: .45rem;
+    margin-bottom: 0.45rem;
     font-size: 1.55rem;
 }
 
 .sobre-principio p {
     max-width: 510px;
-    color: #59645c;
-    font-size: .95rem;
+    color: var(--sobre-texto-cinza);
+    font-size: 0.95rem;
 }
 
+/* A palavra fica à direita e em cinza (sobrescreve a cor terracota acima,
+   porque esta regra vem DEPOIS) */
 .sobre-principio-palavra {
-    padding-top: .35rem;
-    color: #667168;
+    padding-top: 0.35rem;
+    color: var(--sobre-cinza-palavra);
     text-align: right;
 }
 
-/* Perspectiva: imagem e texto lado a lado, com links para outras páginas. */
+
+/* =====================================================
+   6. SEÇÃO PERSPECTIVA
+   Imagem de um lado e texto do outro.
+   ===================================================== */
+
 .sobre-perspectiva {
     display: grid;
-    grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
-    align-items: center;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: center;   /* centraliza imagem e texto na vertical */
     gap: 5rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -236,23 +333,25 @@
 }
 
 .sobre-perspectiva-imagem {
-    position: relative;
+    position: relative;    /* referência para a etiqueta sobre a imagem */
     min-width: 0;
 }
 
 .sobre-perspectiva-imagem img {
     display: block;
     width: 100%;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 4 / 5;   /* proporção fixa (retrato) */
     object-fit: cover;
 }
 
+/* Etiqueta "O futuro também se cultiva." sobre a imagem.
+   right: -1rem faz ela "vazar" um pouco para fora da imagem. */
 .sobre-perspectiva-imagem span {
     position: absolute;
     right: -1rem;
     bottom: 1.4rem;
     max-width: 80%;
-    padding: .8rem 1rem;
+    padding: 0.8rem 1rem;
     background: var(--about-ink);
     color: #fff;
     font-size: 1.2rem;
@@ -265,14 +364,16 @@
     line-height: 1.12;
 }
 
+/* Parágrafo (o :not exclui o marcador, que também é um <p>) */
 .sobre-perspectiva-texto > p:not(.sobre-secao-marcador) {
     max-width: 500px;
-    color: #59645c;
+    color: var(--sobre-texto-cinza);
 }
 
+/* Linha com os dois links */
 .sobre-perspectiva-links {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap;       /* em telas pequenas, o 2º link desce */
     gap: 1rem 1.6rem;
     margin-top: 2rem;
 }
@@ -280,26 +381,32 @@
 .sobre-perspectiva-links a {
     display: inline-flex;
     align-items: center;
-    gap: .5rem;
+    gap: 0.5rem;
     color: var(--about-leaf);
     font-weight: 700;
-    text-decoration-color: #bdc8ba;
-    text-underline-offset: .3rem;
+    text-decoration-color: var(--sobre-sublinhado);   /* cor do sublinhado */
+    text-underline-offset: 0.3rem;                    /* distância do sublinhado ao texto */
 }
 
-.sobre-perspectiva-links a span {
+.sobre-perspectiva-links a span {   /* a setinha */
     color: var(--about-clay);
 }
 
-/* Contato: chamada final com contraste alto e link destacado. */
+
+/* =====================================================
+   7. SEÇÃO CONTATO (faixa final escura)
+   ===================================================== */
+
 .sobre-contato {
     padding: 4.5rem max(2rem, calc((100% - 1200px) / 2));
     background: var(--about-ink);
     color: #fff;
 }
 
+/* Sobre fundo escuro, o marcador muda de cor:
+   texto dourado e número branco */
 .sobre-contato .sobre-secao-marcador {
-    color: #e6c89e;
+    color: var(--sobre-dourado);
 }
 
 .sobre-contato .sobre-secao-marcador span {
@@ -313,30 +420,19 @@
     line-height: 1.15;
 }
 
+/* Link "Fale com a equipe SafraX →" */
 .sobre-contato > a {
     display: inline-flex;
     align-items: center;
-    gap: .7rem;
-    padding-bottom: .4rem;
-    border-bottom: 1px solid #d8b78a;
+    gap: 0.7rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--sobre-dourado-contato);
     color: #fff;
     font-weight: 700;
     text-decoration: none;
 }
 
-.sobre-contato > a span {
-    color: #d8b78a;
+.sobre-contato > a span {   /* a setinha */
+    color: var(--sobre-dourado-contato);
     font-size: 1.2rem;
 }
-
-.sobre-pagina :focus-visible {
-    outline: 3px solid #bd7658;
-    outline-offset: 3px;
-}
-
-/* Anima a imagem da capa ao entrar; o movimento reduzido é tratado abaixo. */
-@keyframes about-image-in {
-    from { transform: scale(1.04); }
-    to { transform: scale(1); }
-}
-

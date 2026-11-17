@@ -1,9 +1,55 @@
-/* Link de salto e ajustes visuais da capa de contato. */
+/* =====================================================
+   COMO LER ESTE ARQUIVO
+
+   Este CSS cuida da página de contato. Ele está dividido
+   em partes, na mesma ordem em que elas aparecem na tela:
+
+     1. Link "Pular para o conteúdo" (invisível até usar o Tab)
+     2. Capa (a faixa com foto no topo)
+     3. Os dois painéis: formulário (esquerda) e canais (direita)
+     4. Campos do formulário
+     5. Erros de validação
+     6. Caixa de seleção e botão de enviar
+     7. Mensagem de sucesso
+     8. Canais de contato (lado direito)
+     9. Cartões da equipe
+
+   Algumas cores vêm do principal.css, como --primary-color,
+   --primary-dark e --white. As outras estão logo abaixo.
+   ===================================================== */
+
+
+/* =====================================================
+   0. CORES DESTA PÁGINA (variáveis)
+   Cada cor ganha um nome. Para mudar uma cor em toda a
+   página, basta alterar aqui.
+   ===================================================== */
+:root {
+    --contato-borda-painel: #d7e6d8;     /* borda dos painéis */
+    --contato-borda-campo: #c5d8c6;      /* borda dos campos do formulário */
+    --contato-texto-cinza: #4b5563;      /* parágrafos de apoio */
+    --contato-orientacao: #5b6770;       /* dicas abaixo dos campos */
+    --contato-erro: #b42318;             /* mensagens de erro nos campos */
+    --contato-erro-fundo: #fff7f6;       /* fundo do campo com erro */
+    --contato-status-texto: #9b1c1c;     /* texto da caixa de erro geral */
+    --contato-status-fundo: #fde8e8;     /* fundo da caixa de erro geral */
+    --contato-sucesso-fundo: #edf7ee;    /* fundo da mensagem de sucesso */
+}
+
+
+/* =====================================================
+   1. LINK "PULAR PARA O CONTEÚDO"
+   É um link para quem navega só com o teclado: ao apertar
+   Tab pela primeira vez, ele aparece e permite ir direto
+   ao conteúdo, sem passar por todo o menu.
+   ===================================================== */
+
+/* Estado normal: escondido FORA da tela (top negativo) */
 .pagina-contato .pular-link {
     position: absolute;
     left: 1rem;
-    top: -4rem;
-    z-index: 1100;
+    top: -4rem;          /* -4rem = acima do topo da tela, ou seja, invisível */
+    z-index: 1100;       /* fica na frente de todo o resto */
     padding: 0.7rem 1rem;
     background: var(--primary-dark);
     color: var(--white);
@@ -12,72 +58,103 @@
     font-weight: 700;
 }
 
+/* Quando recebe foco (Tab): desce para dentro da tela */
 .pagina-contato .pular-link:focus {
     top: 1rem;
 }
 
+
+/* =====================================================
+   2. CAPA
+   A classe .hero vem do principal.css e já define tamanho,
+   texto centralizado e como a imagem de fundo se ajusta.
+   Aqui só trocamos a imagem e o espaçamento.
+   ===================================================== */
+
 .pagina-contato .contato-capa {
+    /* Duas camadas de fundo: um véu escuro por cima (o gradiente)
+       e a foto por baixo. O véu ajuda o texto branco a ficar legível. */
     background-image:
         linear-gradient(rgba(10, 28, 16, 0.72), rgba(10, 28, 16, 0.78)),
         url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80');
     padding: 7rem 1.5rem;
 }
 
+/* Rótulo pequeno em maiúsculas: "CONTATO E EQUIPE" */
 .contato-rotulo {
     margin-bottom: 0.75rem;
     color: var(--secondary-color);
     font-size: 0.8rem;
     font-weight: 700;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.14em;   /* espaço entre as letras */
     text-transform: uppercase;
 }
 
+/* Espaço acima do conteúdo principal */
 .contato-pagina {
     padding-top: 3rem;
 }
 
-/* Estrutura dos paineis de formulario e informacoes de contato. */
+
+/* =====================================================
+   3. OS DOIS PAINÉIS (formulário e canais)
+   ===================================================== */
+
+/* Duas colunas lado a lado:
+   - esquerda (formulário): maior
+   - direita (canais): menor, com no mínimo 18rem de largura */
 .contato-estrutura {
     display: grid;
     grid-template-columns: minmax(0, 1.4fr) minmax(18rem, 0.8fr);
     gap: 2rem;
-    align-items: start;
+    align-items: start;   /* cada painel tem a altura do seu próprio conteúdo */
 }
 
+/* Visual de "caixa branca" compartilhado pelos dois painéis */
 .contato-painel,
 .contato-lateral {
+    padding: 2rem;
     background: var(--white);
-    border: 1px solid #d7e6d8;
+    border: 1px solid var(--contato-borda-painel);
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(27, 94, 32, 0.06);
 }
 
-.contato-painel {
-    padding: 2rem;
-}
-
+/* Quando o formulário some (depois do envio), o título "Envie uma mensagem"
+   some junto, para sobrar só a mensagem de sucesso.
+   :has() significa "que contém": este painel que contém um formulário escondido. */
 .contato-painel:has(.contato-formulario[hidden]) .contato-painel-cabecalho {
     display: none;
 }
 
+/* Tudo que tiver o atributo "hidden" some de verdade.
+   O !important garante que nenhuma outra regra (como display: grid)
+   consiga mostrar o elemento de volta. */
 .pagina-contato [hidden] {
     display: none !important;
 }
 
-/* Campos, estados de foco e mensagens de validacao do formulario. */
+/* Títulos e textos de apoio dos painéis */
 .contato-painel-cabecalho h2,
 .contato-lateral h2,
 .contato-sucesso h3 {
-    color: var(--primary-dark);
     margin-bottom: 0.6rem;
+    color: var(--primary-dark);
 }
 
 .contato-painel-cabecalho p,
 .contato-lateral > p {
-    color: #4b5563;
     margin-bottom: 1.5rem;
+    color: var(--contato-texto-cinza);
 }
 
+
+/* =====================================================
+   4. CAMPOS DO FORMULÁRIO
+   ===================================================== */
+
+/* O principal.css tem um estilo padrão para formulários (caixa com
+   fundo e borda). Aqui ele é DESFEITO, porque o painel já faz esse papel. */
 .contato-formulario {
     max-width: none;
     margin: 0;
@@ -86,37 +163,26 @@
     border: 0;
 }
 
-.formulario-status {
-    min-height: 0;
-    margin-bottom: 0;
-    color: #9b1c1c;
-    font-weight: 600;
-}
-
-.formulario-status:not(:empty) {
-    margin-bottom: 1rem;
-    padding: 0.8rem 1rem;
-    background: #fde8e8;
-    border-radius: 8px;
-}
-
+/* Cada linha com 2 campos lado a lado (Nome + E-mail, Telefone + Assunto) */
 .formulario-linha {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem 1.25rem;
+    gap: 1rem 1.25rem;   /* 1rem entre linhas, 1.25rem entre colunas */
 }
 
 .formulario-campo {
     margin-bottom: 1rem;
 }
 
+/* O texto de cada campo ("Nome completo", "E-mail"...) */
 .contato-formulario label {
-    display: block;
+    display: block;     /* ocupa a linha toda, ficando em cima do campo */
     margin: 0 0 0.4rem;
     font-weight: 700;
     color: var(--primary-dark);
 }
 
+/* Todos os campos de digitar e a lista de opções ficam com o mesmo visual */
 .contato-formulario input[type="text"],
 .contato-formulario input[type="email"],
 .contato-formulario input[type="tel"],
@@ -124,29 +190,30 @@
 .contato-formulario textarea {
     width: 100%;
     padding: 0.85rem 0.95rem;
-    border: 1.5px solid #c5d8c6;
+    border: 1.5px solid var(--contato-borda-campo);
     border-radius: 8px;
     background-color: var(--white);
     font-family: var(--font-main);
     font-size: 1rem;
     color: var(--text-color);
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s;   /* a mudança de cor é suave */
 }
 
+/* A caixa de mensagem só pode ser esticada para baixo, nunca para os lados */
 .contato-formulario textarea {
     resize: vertical;
     min-height: 8rem;
 }
 
+/* Mouse em cima: a borda fica verde */
 .contato-formulario input:hover,
 .contato-formulario select:hover,
 .contato-formulario textarea:hover {
     border-color: var(--primary-color);
 }
 
-.contato-formulario input:focus-visible,
-.contato-formulario select:focus-visible,
-.contato-formulario textarea:focus-visible,
+/* Campo selecionado (clicado ou com o Tab): borda verde e um contorno
+   mais claro em volta, para mostrar bem onde você está */
 .contato-formulario input:focus,
 .contato-formulario select:focus,
 .contato-formulario textarea:focus {
@@ -155,16 +222,43 @@
     outline-offset: 1px;
 }
 
-.contato-formulario .invalido {
-    border-color: #b42318;
-    background: #fff7f6;
+
+/* =====================================================
+   5. ERROS DE VALIDAÇÃO
+   O JavaScript escreve as mensagens de erro e adiciona a classe
+   "invalido" nos campos preenchidos de forma errada.
+   ===================================================== */
+
+/* Caixa de erro geral, no topo do formulário.
+   Quando está vazia, ela não ocupa espaço nenhum. */
+.formulario-status {
+    min-height: 0;
+    margin-bottom: 0;
+    color: var(--contato-status-texto);
+    font-weight: 600;
 }
 
-.contato-formulario .invalido:focus,
-.contato-formulario .invalido:focus-visible {
+/* :not(:empty) = "quando NÃO está vazia".
+   Só então ela aparece com fundo rosa, espaçamento e cantos arredondados. */
+.formulario-status:not(:empty) {
+    margin-bottom: 1rem;
+    padding: 0.8rem 1rem;
+    background: var(--contato-status-fundo);
+    border-radius: 8px;
+}
+
+/* Campo com erro: borda vermelha e fundo rosado */
+.contato-formulario .invalido {
+    border-color: var(--contato-erro);
+    background: var(--contato-erro-fundo);
+}
+
+/* Campo com erro E selecionado: o contorno também fica vermelho */
+.contato-formulario .invalido:focus {
     outline-color: rgba(180, 35, 24, 0.28);
 }
 
+/* Textos pequenos embaixo de cada campo (dica ou erro) */
 .campo-orientacao,
 .campo-erro {
     margin-top: 0.35rem;
@@ -172,18 +266,23 @@
 }
 
 .campo-orientacao {
-    color: #5b6770;
+    color: var(--contato-orientacao);   /* dica: cinza */
 }
 
 .campo-erro {
-    min-height: 1.1em;
-    color: #b42318;
+    min-height: 1.1em;    /* reserva espaço, para o formulário não "pular" quando um erro aparece */
+    color: var(--contato-erro);
 }
 
-/* Consentimento, envio do formulario e confirmacao de sucesso. */
+
+/* =====================================================
+   6. CAIXA DE SELEÇÃO E BOTÃO DE ENVIAR
+   ===================================================== */
+
+/* "Quero receber novidades por e-mail": quadradinho + texto lado a lado */
 .caixa-selecao-rotulo {
     display: flex;
-    align-items: flex-start;
+    align-items: flex-start;   /* o quadradinho fica alinhado à 1ª linha do texto */
     gap: 0.7rem;
     margin: 0.5rem 0 1.25rem;
     padding: 0.9rem 1rem;
@@ -191,16 +290,17 @@
     border-radius: 8px;
     font-weight: 500;
     color: var(--primary-dark);
-    cursor: pointer;
+    cursor: pointer;           /* o cursor vira uma mãozinha */
 }
 
 .caixa-selecao-rotulo input {
     width: 1.1rem;
     height: 1.1rem;
     margin-top: 0.15rem;
-    accent-color: var(--primary-color);
+    accent-color: var(--primary-color);   /* cor do quadradinho quando marcado */
 }
 
+/* Botão "Enviar mensagem" (o visual base vem da classe .btn) */
 .contato-envio {
     width: 100%;
     border: 0;
@@ -208,22 +308,32 @@
     font-size: 1.05rem;
 }
 
+/* Contorno visível quando o botão é selecionado pelo teclado (Tab) */
 .contato-envio:focus-visible {
     outline: 3px solid var(--primary-color);
     outline-offset: 3px;
 }
 
+/* Botão desativado (enquanto a mensagem está sendo enviada):
+   mais claro e com cursor de "espera" */
 .contato-envio:disabled {
     opacity: 0.7;
     cursor: wait;
 }
 
+
+/* =====================================================
+   7. MENSAGEM DE SUCESSO
+   Aparece no lugar do formulário depois do envio.
+   ===================================================== */
+
 .contato-sucesso {
     padding: 1.5rem;
-    background: #edf7ee;
+    background: var(--contato-sucesso-fundo);
     border-radius: 10px;
 }
 
+/* Rótulo "MENSAGEM ENVIADA" */
 .contato-sucesso-rotulo {
     color: var(--primary-color);
     font-size: 0.8rem;
@@ -236,17 +346,19 @@
     margin-bottom: 0.8rem;
 }
 
-/* Canais de contato e cartoes da equipe. */
-.contato-lateral {
-    padding: 2rem;
-}
 
+/* =====================================================
+   8. CANAIS DE CONTATO (painel da direita)
+   ===================================================== */
+
+/* A lista: tira as bolinhas e espaça os itens */
 .contato-canais {
     list-style: none;
     display: grid;
     gap: 1.15rem;
 }
 
+/* O nome de cada canal ("E-MAIL", "TELEFONE") fica em cima do valor */
 .contato-canais span {
     display: block;
     margin-bottom: 0.2rem;
@@ -257,6 +369,8 @@
     text-transform: uppercase;
 }
 
+/* O valor de cada canal (link, endereço ou texto) tem a mesma aparência.
+   font-style: normal tira o itálico que o navegador coloca em <address>. */
 .contato-canais a,
 .contato-canais address,
 .contato-canais p {
@@ -266,10 +380,16 @@
     font-weight: 600;
 }
 
+/* Mouse em cima do link: escurece e ganha sublinhado */
 .contato-canais a:hover {
     color: var(--primary-dark);
     text-decoration: underline;
 }
+
+
+/* =====================================================
+   9. EQUIPE (4 cartões)
+   ===================================================== */
 
 .contato-equipe {
     margin-top: 4rem;
@@ -279,6 +399,7 @@
     margin-top: 0;
 }
 
+/* 4 colunas de tamanhos iguais, sem bolinhas de lista */
 .equipe-grade {
     list-style: none;
     display: grid;
@@ -286,6 +407,7 @@
     gap: 1.25rem;
 }
 
+/* height: 100% faz todos os cartões terem a mesma altura */
 .equipe-cartao {
     height: 100%;
     padding: 1.4rem;
@@ -294,6 +416,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+/* Função da pessoa (ex.: "BACK-END") */
 .equipe-funcao {
     margin-bottom: 0.45rem;
     color: var(--primary-color);
@@ -309,7 +432,8 @@
     font-size: 1.15rem;
 }
 
+/* :last-child = o último parágrafo do cartão (a descrição) */
 .equipe-cartao p:last-child {
-    color: #4b5563;
+    color: var(--contato-texto-cinza);
     font-size: 0.95rem;
 }

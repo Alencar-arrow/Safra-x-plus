@@ -1,204 +1,348 @@
-/* Estilos da pagina de hospedagem, isolados da estrutura compartilhada. */
-body.hospedagem-pagina {
-    background: #f4f3ef;
-    color: #1f2a24;
+/* =====================================================
+   COMO LER ESTE ARQUIVO
+
+   Todas as regras começam com "body.hospedagem-pagina".
+   Isso quer dizer: "só vale se o <body> tiver a classe
+   hospedagem-pagina". Assim, os estilos daqui não afetam
+   as outras páginas do site.
+
+   A página reutiliza a classe .hero do principal.css.
+   Por isso, algumas regras abaixo servem para DESFAZER o
+   visual padrão dela (por exemplo, "background: none").
+
+   As partes estão na mesma ordem da tela:
+     1. Base e animação
+     2. Capa
+     3. Cabeçalho de seção
+     4. Tabela de planos
+     5. Hospedagem mais verde
+     6. Domínio
+     7. Telas pequenas
+   ===================================================== */
+
+
+/* =====================================================
+   0. CORES DA PÁGINA (variáveis)
+   Cada cor ganha um nome. Para mudar uma cor em toda a
+   página, basta alterar aqui.
+   ===================================================== */
+:root {
+    --hosp-papel: #f4f3ef;          /* fundo da página e das linhas pares */
+    --hosp-texto: #1f2a24;          /* texto geral */
+    --hosp-texto-cinza: #4b5a54;    /* parágrafos */
+    --hosp-verde-escuro: #18382c;   /* títulos e cabeçalho da tabela */
+    --hosp-verde-medio: #32634a;    /* barra lateral da seção verde */
+    --hosp-verde-link: #245b3a;     /* links */
+    --hosp-terracota: #9c573e;      /* rótulos e etiqueta "Pago" */
+    --hosp-foco: #bd7658;           /* contorno do teclado */
+    --hosp-borda: #d5ddd2;          /* bordas e linhas divisórias */
+    --hosp-linha: #cbd4c8;          /* linha acima do cabeçalho de seção */
+    --hosp-fundo-imagem: #10251c;   /* cor enquanto a imagem carrega */
+    --hosp-gratis-fundo: #dff4de;   /* etiqueta "Grátis" */
+    --hosp-gratis-texto: #1b5e20;
+    --hosp-pago-fundo: #f6e6dc;     /* etiqueta "Pago" */
 }
 
-/* Apresentacao com texto e imagem lado a lado. */
+
+/* =====================================================
+   1. BASE DA PÁGINA E ANIMAÇÃO
+   ===================================================== */
+
+body.hospedagem-pagina {
+    background: var(--hosp-papel);
+    color: var(--hosp-texto);
+}
+
+/* Caixa central: o conteúdo nunca passa de 1240px de largura */
 body.hospedagem-pagina .pagina-conteudo {
     max-width: 1240px;
-    margin: 0 auto;
+    margin: 0 auto;      /* auto nas laterais = centralizar */
     padding: 3.5rem 1.5rem 5rem;
 }
 
+/* Animação de entrada: o elemento começa invisível e 16px mais
+   abaixo, e sobe até a posição normal enquanto aparece. */
+@keyframes hosting-enter {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Rótulo pequeno em maiúsculas (ex.: "COMPARATIVO") */
+body.hospedagem-pagina .rotulo {
+    color: var(--hosp-terracota);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;   /* espaço entre as letras */
+    text-transform: uppercase;
+}
+
+
+/* =====================================================
+   2. CAPA: TEXTO À ESQUERDA, IMAGEM À DIREITA
+   ===================================================== */
+
 body.hospedagem-pagina .hero {
+    /* Duas colunas: texto (0.9fr) e imagem (1.1fr, um pouco maior) */
     display: grid;
-    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     align-items: center;
     gap: 3rem;
-    min-height: 0;
+
     margin: 0 0 3.5rem;
     padding: 1rem 0 0;
-    background: none;
-    color: inherit;
-    text-align: left;
+
+    /* DESFAZENDO o visual padrão do .hero */
+    min-height: 0;        /* remove a altura mínima da capa grande */
+    background: none;     /* remove a foto de fundo */
+    color: inherit;       /* volta a usar a cor de texto da página */
+    text-align: left;     /* o .hero original é centralizado */
 }
 
+/* O bloco de texto aparece com a animação de entrada */
 body.hospedagem-pagina .hero > div {
-    animation: hosting-enter .65s ease both;
-}
-
-body.hospedagem-pagina .rotulo {
-    color: #9c573e;
-    font-size: .75rem;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-transform: uppercase;
+    animation: hosting-enter 0.65s ease both;
 }
 
 body.hospedagem-pagina .hero h1 {
     max-width: 580px;
-    margin: .75rem 0 1rem;
-    color: #18382c;
+    margin: 0.75rem 0 1rem;
+    color: var(--hosp-verde-escuro);
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 4rem;
     font-weight: 400;
     line-height: 1.05;
 }
 
+/* ":last-child" = o último parágrafo do bloco de texto (o resumo) */
 body.hospedagem-pagina .hero p:last-child {
     max-width: 540px;
     margin-bottom: 0;
-    color: #4b5a54;
+    color: var(--hosp-texto-cinza);
     line-height: 1.8;
 }
 
+/* A moldura da imagem (<figure>) */
 body.hospedagem-pagina .hospedagem-visual {
-    position: relative;
+    position: relative;   /* referência para a legenda sobre a imagem */
     height: 390px;
     margin: 0;
-    overflow: hidden;
+    overflow: hidden;     /* corta a imagem nos cantos arredondados */
     border-radius: 6px;
-    background: #10251c;
-    animation: hosting-enter .75s .12s ease both;
+    background: var(--hosp-fundo-imagem);   /* cor exibida enquanto a imagem carrega */
+    animation: hosting-enter 0.75s 0.12s ease both;   /* 0.12s = pequeno atraso */
 }
 
+/* A imagem preenche a moldura sem distorcer.
+   (O "transition" está pronto para um efeito de zoom, mas nenhuma
+   regra de hover usa isso ainda.) */
 body.hospedagem-pagina .hospedagem-visual img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
-    transition: transform .6s cubic-bezier(.2, .7, .2, 1);
+    transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
+/* Legenda sobre a imagem, na parte de baixo */
 body.hospedagem-pagina .hospedagem-visual figcaption {
     position: absolute;
     right: 1.25rem;
     bottom: 1.25rem;
     left: 1.25rem;
     padding: 1rem;
-    border-left: 4px solid #bd7658;
-    background: rgba(15, 34, 26, .86);
+    border-left: 4px solid var(--hosp-foco);   /* barra colorida lateral */
+    background: rgba(15, 34, 26, 0.86);
     color: #fff;
-    font-size: .9rem;
+    font-size: 0.9rem;
 }
 
-body.hospedagem-pagina .secao-titulo {
+
+/* =====================================================
+   3. CABEÇALHO DE SEÇÃO ("Planos para publicar o SafraX")
+
+   ATENÇÃO: o CSS original usava o nome ".secao-titulo", mas o HTML
+   usa class="secao-cabecalho". Como os nomes não combinavam, essas
+   regras nunca eram aplicadas. Aqui o nome foi corrigido.
+   ===================================================== */
+
+body.hospedagem-pagina .secao-cabecalho {
     padding-top: 1.5rem;
-    border-top: 1px solid #cbd4c8;
+    border-top: 1px solid var(--hosp-linha);   /* linha acima do título */
 }
 
-body.hospedagem-pagina .secao-titulo h2 {
-    margin-top: .5rem;
-    color: #18382c;
+body.hospedagem-pagina .secao-cabecalho h2 {
+    margin-top: 0.5rem;
+    color: var(--hosp-verde-escuro);
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 2.2rem;
     font-weight: 400;
 }
 
-body.hospedagem-pagina .secao-titulo > p:last-child {
-    margin-top: .4rem;
-    color: #4b5a54;
+body.hospedagem-pagina .secao-cabecalho > p:last-child {
+    margin-top: 0.4rem;
+    color: var(--hosp-texto-cinza);
 }
 
+
+/* =====================================================
+   4. TABELA DE PLANOS
+   ===================================================== */
+
+/* A "caixa" em volta da tabela.
+   overflow-x: auto cria uma barra de rolagem lateral se a tabela
+   não couber na tela (celular), sem quebrar o resto da página. */
 body.hospedagem-pagina .provedor-tabela-area {
     margin-top: 1.5rem;
     overflow-x: auto;
-    border: 1px solid #d5ddd2;
+    border: 1px solid var(--hosp-borda);
     border-radius: 6px;
     background: #fff;
 }
 
-body.hospedagem-pagina .provedor-tabela {
-    width: 100%;
-    min-width: 860px;
-    border-collapse: collapse;
-    text-align: left;
-}
-
+/* Contorno visível quando a caixa é selecionada pelo teclado (Tab).
+   Importante para acessibilidade: quem usa teclado precisa conseguir
+   rolar a tabela. */
 body.hospedagem-pagina .provedor-tabela-area:focus-visible {
-    outline: 3px solid #bd7658;
+    outline: 3px solid var(--hosp-foco);
     outline-offset: 3px;
 }
 
-body.hospedagem-pagina .provedor-tabela caption {
-    padding: 1rem 1.2rem;
-    color: #4b5a54;
+body.hospedagem-pagina .provedor-tabela {
+    width: 100%;
+    min-width: 760px;           /* abaixo disso, aparece a rolagem lateral */
+    border-collapse: collapse;  /* junta as bordas das células em uma só linha */
     text-align: left;
 }
 
+/* Título da tabela (o <caption>) */
+body.hospedagem-pagina .provedor-tabela caption {
+    padding: 1rem 1.2rem;
+    color: var(--hosp-texto-cinza);
+    text-align: left;
+}
+
+/* Todas as células (cabeçalho <th> e dados <td>) */
 body.hospedagem-pagina .provedor-tabela th,
 body.hospedagem-pagina .provedor-tabela td {
     padding: 1rem 1.2rem;
-    border-top: 1px solid #d5ddd2;
-    vertical-align: top;
+    border-top: 1px solid var(--hosp-borda);   /* linha entre as linhas da tabela */
+    vertical-align: top;                       /* o texto começa no topo da célula */
     line-height: 1.65;
 }
 
+/* Cabeçalho da tabela: fundo verde escuro e texto branco */
 body.hospedagem-pagina .provedor-tabela thead th {
     border-top: 0;
-    background: #18382c;
+    background: var(--hosp-verde-escuro);
     color: #fff;
-    font-size: .88rem;
+    font-size: 0.88rem;
 }
 
+/* Primeira coluna (nome do plano) */
 body.hospedagem-pagina .provedor-tabela tbody th {
     min-width: 140px;
-    color: #18382c;
+    color: var(--hosp-verde-escuro);
     font-weight: 700;
 }
 
+/* Linhas pares com fundo diferente (efeito "zebra"), para ajudar
+   a acompanhar uma linha com o olhar */
 body.hospedagem-pagina .provedor-tabela tbody tr:nth-child(even) {
-    background: #f4f3ef;
+    background: var(--hosp-papel);
 }
 
-body.hospedagem-pagina .provedor-tabela a,
-body.hospedagem-pagina .verde-hospedagem a,
-body.hospedagem-pagina .dominio-opcoes a {
-    color: #245b3a;
+/* Etiqueta "Grátis" ou "Pago" embaixo do nome do plano */
+body.hospedagem-pagina .plano-tag {
+    display: block;
+    width: fit-content;     /* a etiqueta ocupa só a largura do texto */
+    margin-top: 0.4rem;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;   /* número enorme = cantos totalmente redondos */
+    font-size: 0.75rem;
     font-weight: 700;
-    text-underline-offset: .18em;
 }
 
+body.hospedagem-pagina .plano-gratis {
+    background: var(--hosp-gratis-fundo);
+    color: var(--hosp-gratis-texto);
+}
+
+body.hospedagem-pagina .plano-pago {
+    background: var(--hosp-pago-fundo);
+    color: var(--hosp-terracota);
+}
+
+/* Na coluna de custo: o valor em destaque e o detalhe pequeno embaixo */
+body.hospedagem-pagina .provedor-tabela .detalhe {
+    display: block;
+    color: var(--hosp-texto-cinza);
+    font-size: 0.88rem;
+}
+
+/* Nota embaixo da tabela */
 body.hospedagem-pagina .provedor-nota {
-    margin-top: .75rem;
-    color: #4b5a54;
-    font-size: .9rem;
+    margin-top: 0.75rem;
+    color: var(--hosp-texto-cinza);
+    font-size: 0.9rem;
     line-height: 1.7;
 }
+
+
+/* =====================================================
+   5. E 6. CAIXAS "HOSPEDAGEM VERDE" E "DOMÍNIO"
+   As duas têm o mesmo visual de caixa branca.
+   ===================================================== */
 
 body.hospedagem-pagina .verde-hospedagem,
 body.hospedagem-pagina .dominio-guia {
     margin-top: 3rem;
     padding: 2rem;
-    border: 1px solid #d5ddd2;
+    border: 1px solid var(--hosp-borda);
     background: #fff;
 }
 
+/* Só a caixa verde tem uma barra lateral mais grossa */
 body.hospedagem-pagina .verde-hospedagem {
-    border-left: 5px solid #32634a;
+    border-left: 5px solid var(--hosp-verde-medio);
 }
 
 body.hospedagem-pagina .verde-hospedagem h2,
 body.hospedagem-pagina .dominio-guia h2 {
-    margin: .5rem 0 1rem;
-    color: #18382c;
+    margin: 0.5rem 0 1rem;
+    color: var(--hosp-verde-escuro);
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 2rem;
     font-weight: 400;
 }
 
-body.hospedagem-pagina .verde-hospedagem > p:not(.rotulo),
-body.hospedagem-pagina .dominio-guia > p:last-child {
-    color: #4b5a54;
+/* Lista da caixa verde (itens com marcador) */
+body.hospedagem-pagina .verde-hospedagem ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: var(--hosp-texto-cinza);
     line-height: 1.8;
 }
 
-body.hospedagem-pagina .verde-hospedagem > p + p {
-    margin-top: .8rem;
+body.hospedagem-pagina .verde-hospedagem li {
+    margin-bottom: 0.5rem;
 }
 
+/* Todos os links dentro da tabela e das caixas */
+body.hospedagem-pagina .provedor-tabela a,
+body.hospedagem-pagina .verde-hospedagem a,
+body.hospedagem-pagina .dominio-opcoes a {
+    color: var(--hosp-verde-link);
+    font-weight: 700;
+    text-underline-offset: 0.18em;   /* distância do sublinhado ao texto */
+}
+
+
+/* =====================================================
+   6. DOMÍNIO (cartões .com.br e .org)
+   ===================================================== */
+
+/* Dois cartões lado a lado */
 body.hospedagem-pagina .dominio-opcoes {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -208,41 +352,49 @@ body.hospedagem-pagina .dominio-opcoes {
 
 body.hospedagem-pagina .dominio-opcoes article {
     padding: 1.3rem;
-    border: 1px solid #d5ddd2;
-    background: #f4f3ef;
+    border: 1px solid var(--hosp-borda);
+    background: var(--hosp-papel);
 }
 
 body.hospedagem-pagina .dominio-opcoes h3 {
-    margin-bottom: .5rem;
-    color: #18382c;
+    margin-bottom: 0.5rem;
+    color: var(--hosp-verde-escuro);
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 1.5rem;
     font-weight: 400;
 }
 
 body.hospedagem-pagina .dominio-opcoes p {
-    margin-bottom: .8rem;
-    color: #4b5a54;
+    margin-bottom: 0.8rem;
+    color: var(--hosp-texto-cinza);
     line-height: 1.7;
 }
 
+/* Parágrafo final da caixa de domínio, separado por uma linha em cima.
+   ":last-child" = o último filho da caixa. */
 body.hospedagem-pagina .dominio-guia > p:last-child {
     padding-top: 1rem;
-    border-top: 1px solid #d5ddd2;
+    border-top: 1px solid var(--hosp-borda);
+    color: var(--hosp-texto-cinza);
+    line-height: 1.8;
 }
 
+
+/* =====================================================
+   7. TELAS PEQUENAS (celular)
+   Tudo aqui dentro só vale quando a tela tem 700px ou menos.
+   ===================================================== */
+
 @media (max-width: 700px) {
+
+    /* Menos espaço interno nas caixas brancas */
     body.hospedagem-pagina .verde-hospedagem,
     body.hospedagem-pagina .dominio-guia {
         padding: 1.25rem;
     }
 
+    /* Os cartões de domínio ficam um embaixo do outro (1 coluna) */
     body.hospedagem-pagina .dominio-opcoes {
         grid-template-columns: 1fr;
     }
-}
-
-@keyframes hosting-enter {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
 }

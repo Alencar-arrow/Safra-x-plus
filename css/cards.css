@@ -1,62 +1,119 @@
+/* =====================================================
+   COMO LER ESTE ARQUIVO
 
- /* Grade fluida de cards, com colunas que se ajustam ao espaco disponivel. */
- .grade-cartoes {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
+   Este CSS cuida dos "cards" (cartões) do site. Um card é uma
+   caixa com imagem em cima, título, texto e um link embaixo.
 
-        /* Card organiza imagem, texto e link como uma pilha vertical. */
-        .cartao {
-            background-color: var(--white);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
+   Existem duas peças:
+     1. A GRADE (.grade-cartoes): organiza vários cards lado a lado
+     2. O CARD (.cartao): a caixa em si, com tudo que tem dentro
 
-        /* Pequena elevacao visual indica que o card pode ser explorado. */
-        .cartao:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.12);
-        }
+   Estrutura do HTML (para você enxergar onde cada classe entra):
 
-        /* Imagem ocupa a largura do card sem deformar o conteudo. */
-        .cartao-imagem {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
+     <section class="grade-cartoes">          <- a grade
+         <article class="cartao">             <- um card
+             <img class="cartao-imagem">      <- imagem
+             <div class="cartao-corpo">       <- área do texto
+                 <h3 class="cartao-titulo">
+                 <p class="cartao-texto">
+                 <a class="cartao-link">
+             </div>
+         </article>
+         ... (mais cards)
+     </section>
 
-        /* Area interna distribui o texto e mantem o link no final. */
-        .cartao-corpo {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
+   As cores vêm do principal.css: --white e --primary-color.
+   ===================================================== */
 
-        .cartao-titulo {
-            font-size: 1.3rem;
-            color: var(--primary-color);
-            margin-bottom: 0.8rem;
-        }
 
-        .cartao-texto {
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
+/* =====================================================
+   1. A GRADE DE CARDS
+   ===================================================== */
 
-        .cartao-link {
-            text-decoration: none;
-            color: var(--primary-color);
-            font-weight: bold;
-        }
+/* Os cards ficam lado a lado e se ajustam sozinhos ao espaço.
 
-        .cartao-link:hover {
-            text-decoration: underline;
-        }
+   repeat(auto-fit, minmax(300px, 1fr)) significa:
+     - "cada coluna tem no mínimo 300px"
+     - "se couber mais de uma coluna, crie quantas couberem"
+     - "1fr = divida o espaço que sobrar igualmente entre elas"
+
+   Resultado: em tela grande aparecem 3 ou 4 cards por linha; em tablet,
+   2; em celular, 1. Sem precisar de @media. */
+.grade-cartoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;          /* espaço entre os cards */
+    margin-top: 2rem;
+}
+
+
+/* =====================================================
+   2. O CARD
+   ===================================================== */
+
+/* A caixa do card.
+   Ela é uma coluna vertical (flex-direction: column):
+   a imagem em cima e o corpo embaixo. */
+.cartao {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;       /* corta a imagem nos cantos arredondados */
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);    /* sombra leve */
+    transition: transform 0.3s, box-shadow 0.3s;   /* o efeito do hover é suave */
+}
+
+/* Mouse em cima: o card sobe 5px e a sombra fica mais forte.
+   Isso dá a sensação de que o card "levanta" e pode ser clicado. */
+.cartao:hover {
+    transform: translateY(-5px);   /* valor negativo = para cima */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* A imagem: ocupa a largura toda do card, com altura fixa de 200px.
+   object-fit: cover faz a imagem preencher a área e cortar o excesso,
+   sem esticar nem deformar. */
+.cartao-imagem {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* O corpo do card (a área com título, texto e link).
+   flex-grow: 1 faz o corpo ocupar todo o espaço que sobrar no card.
+   Assim, se um card tiver menos texto, os cards da mesma linha continuam
+   com a mesma altura. */
+.cartao-corpo {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 1.5rem;
+}
+
+.cartao-titulo {
+    margin-bottom: 0.8rem;
+    color: var(--primary-color);
+    font-size: 1.3rem;
+}
+
+/* O parágrafo também usa flex-grow: 1.
+   Ele "empurra" o link para o final do card, então os links ficam
+   alinhados embaixo em todos os cards, mesmo com textos de tamanhos
+   diferentes. */
+.cartao-texto {
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+/* O link: verde, em negrito e sem sublinhado (só aparece no hover) */
+.cartao-link {
+    color: var(--primary-color);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.cartao-link:hover {
+    text-decoration: underline;
+}
